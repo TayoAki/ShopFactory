@@ -31,7 +31,7 @@ npm run build && npm start   # production build (PORT is respected)
 | First-party analytics (server-side, no third-party pixels) | `src/lib/analytics.ts`, `src/app/api/analytics/route.ts` |
 | Waitlist and newsletter (Klaviyo when keys are set) | `src/app/api/waitlist/route.ts` |
 | Lifestyle media manifest | `src/data/media.ts` |
-| Homepage hero film (16:9 desktop, 9:16 phone, sound, plays once, copy appears after) | `src/components/HeroVideo.tsx`, `public/video/`, `scripts/encode-hero-video.py`, `scripts/hero-shots.json` |
+| Homepage hero film (16:9 desktop, 9:16 phone, sound, loops, two lines appear after the first play) | `src/components/HeroVideo.tsx`, `public/video/`, `scripts/encode-hero-video.py`, `scripts/hero-shots.json` |
 
 ### Pages
 
@@ -55,19 +55,24 @@ npm run build && npm start   # production build (PORT is respected)
 
 ## Hero video
 
-The homepage hero plays the brand film (Cut 2, bright ending; 30 s, with sound). The hero copy appears when it ends.
+The homepage hero loops the brand film (Cut 2, bright ending; 30 s, with sound). Over it sit two lines and no buttons:
+- the headline "Good company. Better hats."
+- "For women who bring their own style to the course."
+
+Both lines fade in when the first play-through ends and then stay up.
 
 **Formats**
 - **Desktops** get the full 16:9 frame (WebM 7.2 MB).
 - **Phones** get a 9:16 cut, reframed shot by shot around each subject (WebM 3.6 MB).
-- Each also has an MP4 fallback for browsers without WebM.
+- Each also has an MP4 fallback.
 
-**Sound and timing**
-- **Sound** is on by default. Browsers refuse autoplay with sound until a visitor has interacted with the site. In that case the film starts muted, and the sound comes on with their first tap, click or key press anywhere on the page. A speaker icon toggles it.
-- **Plays once:** the film stops on its last frame, the Cream Rope Cap, and the copy and CTA fade in.
-- **Repeat visits:** visitors who already watched it this session get that last frame and the copy straight away.
+**Sound**
+- Sound is on by default. Browsers refuse autoplay with sound until a visitor has interacted with the site. In that case the film starts muted, and the sound comes on with their first tap, click or key press anywhere on the page.
+- A speaker icon toggles sound.
 
-**The copy shows immediately when:**
+**Repeat visits:** later visits in the same session show the lines straight away, with the film looping muted behind them.
+
+**The lines show immediately when:**
 - reduced motion or Save-Data is on
 - the film can't play, or hasn't started within 6 seconds
 - keyboard focus moves into the hero
@@ -80,7 +85,7 @@ The homepage hero plays the brand film (Cut 2, bright ending; 30 s, with sound).
 2. Put the cut times and each shot's subject position in `scripts/hero-shots.json`.
 3. Run `python3 scripts/encode-hero-video.py <source.mp4> scripts/hero-shots.json <out-dir>`.
 4. Copy `hero-*.webm|mp4` to `public/video/`.
-5. Copy the posters and end frames to `public/images/lifestyle/hero-video-*.webp`.
+5. Copy the posters to `public/images/lifestyle/hero-video-*.webp`.
 
 ## Switches (environment variables)
 

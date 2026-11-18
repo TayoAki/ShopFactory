@@ -22,30 +22,20 @@ export default function HomePage() {
   return (
     <>
       {/* 1. Hero */}
-      {/* The copy waits for the film to finish (data-intro="pending" hides it); HeroVideo reveals it. */}
+      {/* The two lines wait for the film's first play-through (data-intro="pending" hides them); HeroVideo reveals them. */}
       <section id="hero" className="hero" data-intro="pending" aria-labelledby="hero-title">
         <noscript dangerouslySetInnerHTML={{ __html: '<style>.hero[data-intro] .hero__content{opacity:1;transform:none;pointer-events:auto}.hero[data-intro] .hero__media::after{opacity:1}</style>' }} />
         <div className="hero__media">
           <ArtImage mobile={media.heroVideoMobile} desktop={media.heroVideoDesktop} alt={media.heroVideoMobile.alt} priority />
           <HeroVideo
             heroId="hero"
-            mobile={{ webm: '/video/hero-mobile.webm', mp4: '/video/hero-mobile.mp4', end: '/images/lifestyle/hero-video-mobile-end.webp' }}
-            desktop={{ webm: '/video/hero-desktop.webm', mp4: '/video/hero-desktop.mp4', end: '/images/lifestyle/hero-video-desktop-end.webp' }}
+            mobile={{ webm: '/video/hero-mobile.webm', mp4: '/video/hero-mobile.mp4' }}
+            desktop={{ webm: '/video/hero-desktop.webm', mp4: '/video/hero-desktop.mp4' }}
           />
         </div>
         <div className="hero__content container">
-          <span className="eyebrow">Good company. Better hats.</span>
-          <h1 id="hero-title">Golf hats that look like you.</h1>
-          <p className="hero__sub">Embroidered caps, ponytail caps and UPF 50+ performance hats, made for women golfers and the friends who play with them.</p>
-          {site.dropMode ? (
-            <a href="#waitlist" className="btn btn--cream">Get first-drop access <Icon name="arrow" width={20} /></a>
-          ) : (
-            <div className="btn-row">
-              <Link href="/products/cream-rope-cap" className="btn btn--cream">Shop the Cream Rope Cap · {money(flagship.price)}</Link>
-              <Link href="/collections/all" className="btn btn--secondary hide-mobile">Shop all hats</Link>
-            </div>
-          )}
-          <TrustLine light />
+          <h1 id="hero-title">Good company. Better hats.</h1>
+          <p className="hero__line">For women who bring their own style to the course.</p>
         </div>
       </section>
 

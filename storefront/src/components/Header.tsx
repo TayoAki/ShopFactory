@@ -52,9 +52,6 @@ export function Header() {
             <button className="icon-btn menu-toggle" aria-label="Open menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}>
               <Icon name="menu" />
             </button>
-            <Link href="/" className="desk-wordmark" aria-label="Bogey Baby home">
-              <Image src="/brand/wordmark-stitched.webp" alt="Bogey Baby" width={1200} height={293} sizes="180px" priority />
-            </Link>
             <nav className="nav" aria-label="Main">
               <details className="mega" ref={megaRef}>
                 <summary>Shop</summary>

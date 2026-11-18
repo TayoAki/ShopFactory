@@ -145,10 +145,8 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   .nav summary::-webkit-details-marker { display: none; }
   .nav a:hover, .nav summary:hover { background: rgba(8, 45, 34, 0.06); }
   .menu-toggle { display: none !important; }
-  .header__left .desk-wordmark { display: flex; align-items: center; min-height: 44px; }
 }
-.desk-wordmark { display: none; width: 150px; }
-@media (min-width: 1200px) { .desk-wordmark { width: 180px; } .nav a, .nav summary { padding: 0 12px; } }
+@media (min-width: 1200px) { .nav a, .nav summary { padding: 0 12px; } }
 @media (min-width: 1024px) { .header__left { gap: 8px; } }
 .mega { position: relative; }
 .mega__panel { position: absolute; left: 0; top: calc(100% + 10px); z-index: 50; width: min(760px, 80vw); display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 24px; padding: 24px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-drawer); }
@@ -219,6 +217,8 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .hero h1 { color: var(--cream-ink); text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25); }
 .hero .eyebrow { color: var(--gold-light); }
 .hero__sub { font-size: 1.12rem; line-height: 1.55; max-width: 34ch; margin: 14px 0 22px; color: #f3ecd2; }
+.hero__line { font-size: 1.15rem; line-height: 1.45; max-width: 30ch; text-wrap: balance; margin: 10px 0 0; color: #f3ecd2; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55); }
+@media (min-width: 900px) { .hero__line { font-size: 1.4rem; margin-top: 14px; } }
 @media (min-width: 900px) {
   /* Fill the screen below the announcement bar (44px), header and its 1px border; never taller than the 16:9 video. */
   .hero { display: grid; grid-template-columns: repeat(12, 1fr); height: min(calc(100svh - 45px - var(--header-h)), 56.25vw); min-height: 520px; }
