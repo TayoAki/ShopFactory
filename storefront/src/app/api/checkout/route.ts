@@ -57,7 +57,7 @@ export async function POST(request: Request) {
       discounts: coupon ? [{ coupon: coupon.id }] : undefined,
       automatic_tax: { enabled: true },
       shipping_address_collection: { allowed_countries: ['US'] },
-      shipping_options: [{ shipping_rate_data: { display_name: 'Free US shipping', type: 'fixed_amount', fixed_amount: { amount: 0, currency: 'usd' }, tax_behavior: 'exclusive' } }],
+      shipping_options: [{ shipping_rate_data: { display_name: basket.shipping === 0 ? 'Free standard US shipping' : 'Standard US shipping', type: 'fixed_amount', fixed_amount: { amount: basket.shipping, currency: 'usd' }, tax_behavior: 'exclusive' } }],
       metadata: { bogey_attempt: id, basket_hash: hash },
       success_url: origin + '/order/confirmed?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: origin + '/checkout',

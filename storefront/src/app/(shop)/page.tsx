@@ -5,9 +5,10 @@ import { EmailCapture } from '@/components/EmailCapture';
 import { FeatureRow } from '@/components/FeatureRow';
 import { HeroVideo } from '@/components/HeroVideo';
 import { Icon } from '@/components/Icon';
-import { ProductCard } from '@/components/ProductCard';
+import { HomeProductRail } from '@/components/HomeProductRail';
 import { TrustLine } from '@/components/TrustLine';
 import { media } from '@/data/media';
+import { journal } from '@/data/journal';
 import { bestSellers, getProduct, benefitBullets, productsIn } from '@/lib/catalog';
 import { money } from '@/lib/money';
 import { bundleTiers } from '@/lib/pricing';
@@ -22,16 +23,12 @@ export default function HomePage() {
   return (
     <>
       {/* 1. Hero */}
-      {/* The two lines wait until the film reaches its Cream Rope Cap end card at 23 s (data-intro="pending" hides them). */}
-      <section id="hero" className="hero" data-intro="pending" aria-labelledby="hero-title">
-        <noscript dangerouslySetInnerHTML={{ __html: '<style>.hero[data-intro] .hero__content{opacity:1;transform:none;pointer-events:auto}.hero[data-intro] .hero__media::after{opacity:1}</style>' }} />
+      <section id="hero" className="hero" aria-labelledby="hero-title">
         <div className="hero__media">
           <ArtImage mobile={media.heroVideoMobile} desktop={media.heroVideoDesktop} alt={media.heroVideoMobile.alt} priority />
           <HeroVideo
-            heroId="hero"
-            mobile={{ webm: '/video/see-you-out-there-swing-mobile-v2.webm', mp4: '/video/see-you-out-there-swing-mobile-v2.mp4' }}
-            desktop={{ webm: '/video/see-you-out-there-swing-desktop.webm', mp4: '/video/see-you-out-there-swing-desktop.mp4' }}
-            revealAt={23.17}
+            mobile={{ webm: '/video/see-you-out-there-natural-mobile.webm', mp4: '/video/see-you-out-there-natural-mobile.mp4' }}
+            desktop={{ webm: '/video/see-you-out-there-natural-desktop.webm', mp4: '/video/see-you-out-there-natural-desktop.mp4' }}
           />
         </div>
         <div className="hero__content container">
@@ -41,6 +38,8 @@ export default function HomePage() {
           <p className="hero__line">For women who bring their own style to the course.</p>
         </div>
       </section>
+
+      <HomeProductRail products={bestSellers()} />
 
       {site.dropMode && (
         <section id="waitlist" className="section section--paper2">
@@ -52,24 +51,6 @@ export default function HomePage() {
           </div>
         </section>
       )}
-
-      {/* 2. Best sellers */}
-      <section className="section">
-        <div className="container">
-          <div className="section-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: 16, maxWidth: 'none', flexWrap: 'wrap' }}>
-            <div>
-              <span className="eyebrow">Best sellers</span>
-              <h2>No Cap, All Carry</h2>
-            </div>
-            <Link href="/collections/all" className="link link--cta" data-umami-event="home_shop_all">Shop all {productsIn('all').length} hats →</Link>
-          </div>
-          <div className="grid grid--4">
-            {bestSellers().map((p, i) => (
-              <ProductCard key={p.handle} product={p} priority={i < 2} />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 3. Shop by what matters */}
       <section className="section section--tight">
@@ -93,6 +74,11 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="fit-finder" aria-labelledby="fit-finder-title">
+        <div className="fit-finder__image"><Image src="/images/editorial/find-your-fit.webp" alt="Cream and sage Bogey Baby hats beside a measuring tape" width={1200} height={900} sizes="(min-width:900px) 50vw, 100vw" /></div>
+        <div className="fit-finder__content"><Image src="/brand/golfer-badge-192.webp" alt="" width={96} height={96} /><span className="eyebrow">Made to feel like you</span><h2 id="fit-finder-title">Find your fit.</h2><p>Small fit or standard? Hair up or down? Three quick questions, and we’ll point you toward your next favorite golf hat.</p><Link href="/pages/fit-quiz" className="btn" data-umami-event="home_fit_quiz">Take the quiz →</Link></div>
       </section>
 
       {/* 4. Why it's better (problem + solution) */}
@@ -167,21 +153,13 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* 7. Good company (community) */}
-      <section className="section">
+      <section className="section" aria-labelledby="journal-title">
         <div className="container">
-          <div className="section-head section-head--center">
-            <span className="eyebrow">Good company</span>
-            <h2>Made for the whole group</h2>
-            <p className="lead" style={{ marginTop: 12 }}>Range days, league nights, girls&apos; trips and the 19th hole. Brand new this season: tag your first round and tell us how it fits.</p>
-          </div>
-          <div className="grid grid--3">
-            {[media.homeBackswing, media.homeAfterTheRound, media.homeCartPortrait].map((m) => (
-              <div className="media-frame" key={m.src} style={{ aspectRatio: '4 / 5' }}>
-                <Image src={m.src} alt={m.alt} width={m.width} height={m.height} sizes="(min-width: 900px) 33vw, 50vw" />
-              </div>
-            ))}
-          </div>
+          <div className="releases__head"><h2 id="journal-title">The Bogey Baby Journal</h2><Link href="/journal" className="link link--cta">All stories →</Link></div>
+          <div className="journal-grid">{journal.map(post => <article className="journal-card" key={post.slug}>
+            <Link href={`/journal/${post.slug}`}><Image src={post.image} alt={post.alt} width={1200} height={900} sizes="(min-width:900px) 25vw, 100vw" /></Link>
+            <div><span className="eyebrow">{post.category}</span><h3><Link href={`/journal/${post.slug}`}>{post.title}</Link></h3><p>{post.excerpt}</p><Link className="link link--cta" href={`/journal/${post.slug}`}>Read more →</Link></div>
+          </article>)}</div>
         </div>
       </section>
 
@@ -212,7 +190,7 @@ export default function HomePage() {
           <div className="accordion" style={{ marginTop: 0 }}>
             <details>
               <summary>Will it fit my head?</summary>
-              <div className="acc-body">Most of our caps adjust with a strap or snapback, and the Small Fit Performance Cap is made for smaller heads. Not sure? Exchanges are free within 30 days. See the <Link className="link" href="/pages/fit-guide">Fit Guide</Link>.</div>
+              <div className="acc-body">Most of our caps adjust with a strap or snapback, and the Small Fit Performance Cap is made for smaller heads. Not sure? See our 30-day return policy for eligibility and fees. See the <Link className="link" href="/pages/fit-guide">Fit Guide</Link>.</div>
             </details>
             <details>
               <summary>Can I wear a ponytail?</summary>
@@ -220,11 +198,11 @@ export default function HomePage() {
             </details>
             <details>
               <summary>How fast does it ship?</summary>
-              <div className="acc-body">Every hat is made to order and ships within 10 business days. US shipping is free on every order.</div>
+              <div className="acc-body">Every hat is made to order and ships within 10 business days. Standard US shipping is free on orders of $120+ after discounts.</div>
             </details>
             <details>
               <summary>What if I don&apos;t love it?</summary>
-              <div className="acc-body">Swap the fit for free, or return it within 30 days. <Link className="link" href="/pages/shipping-returns">Shipping &amp; Returns</Link></div>
+              <div className="acc-body">Request a return within 30 days of ordering. Items must be unused with tags and packaging; refunds have a $5 fee. <Link className="link" href="/pages/shipping-returns">Shipping &amp; Returns</Link></div>
             </details>
           </div>
         </div>

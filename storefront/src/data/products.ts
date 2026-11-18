@@ -86,7 +86,7 @@ export const products: Product[] = [
     description:
       'Warm cream with a white rope across the brim and our golfer stitched mid-swing on the front. The hat that started Bogey Baby: good for the first tee, the 19th hole and lunch after.',
     features: { rope: true },
-    fit: 'Adjustable. Not sure about fit? Exchanges are free within 30 days.',
+    fit: 'Adjustable. Not sure about fit? See our 30-day return policy for eligibility and fees.',
     details: [
       { label: 'Color', value: 'Warm cream with a white rope across the brim' },
       { label: 'Decoration', value: 'Multicolor embroidered golfer on the front' },
@@ -102,6 +102,7 @@ export const products: Product[] = [
       },
     ],
     gallery: [
+      { src: '/images/models/cream-on-course.webp', alt: 'A golfer wearing the Cream Rope Cap on the course', width: 960, height: 1200, ai: true },
       { src: '/images/products/flagship-cream-macro.webp', alt: 'Close-up of the golfer embroidered on the Cream Rope Cap', width: 928, height: 1152, ai: true },
       { src: '/images/lifestyle/cap-on-pine.webp', alt: 'The Cream Rope Cap on dark green fabric beside a golf ball', width: 900, height: 1125 },
       { src: '/images/lifestyle/flagship-on-head.webp', alt: 'A golfer wearing the Cream Rope Cap on the course', width: 928, height: 1152, ai: true },
@@ -168,6 +169,7 @@ export const products: Product[] = [
       { name: 'Rose', slug: 'rose', swatch: '#D9A5A5', image: img('p-ponytail-rose', 'The Front Nine Ponytail Cap in Rose with the embroidered golfer'), printify: { color: 'Rose / Polka Dots', variantId: 147850 } },
     ],
     gallery: [
+      { src: '/images/models/front-nine-on-course.webp', alt: 'A golfer wearing the Sage front nine ponytail cap on the course', width: 960, height: 1200, ai: true },
       { src: '/images/lifestyle/ponytail-back.webp', alt: 'A golfer from behind with her ponytail through the back of the cap', width: 928, height: 1152, ai: true },
     ],
     collections: ['all', 'embroidered', 'caps', 'ponytail-caps'],
@@ -283,7 +285,8 @@ export const products: Product[] = [
       { name: 'White', slug: 'white', swatch: '#F8F8F4', image: img('p-perfpony-white', 'The Back Nine Ponytail Cap in White with the printed golfer'), printify: { color: 'White', variantId: 301478 } },
       { name: 'Light Pink', slug: 'light-pink', swatch: '#F4CCD2', image: img('p-perfpony-lightpink', 'The Back Nine Ponytail Cap in Light Pink with the printed golfer'), printify: { color: 'Light Pink', variantId: 301474 } },
     ],
-    gallery: [],
+    gallery: [
+      { src: '/images/models/back-nine-on-course.webp', alt: 'A golfer wearing the Winter Green back nine ponytail cap on the course', width: 960, height: 1200, ai: true },],
     collections: ['all', 'performance', 'caps', 'ponytail-caps'],
     badge: 'UPF 50+',
     source: { kind: 'printify', blueprintId: 6963, printProviderId: 217, brand: 'Imperial', model: 'L338', productId: '6afd4846f6a94476cc098310' },
@@ -314,7 +317,8 @@ export const products: Product[] = [
       { name: 'Putty', slug: 'putty', swatch: '#CDBFA8', image: img('p-smallfit-putty', 'The Small Fit Performance Cap in Putty with the printed golfer'), printify: { color: 'Putty', variantId: 301488 } },
       { name: 'Light Pink', slug: 'light-pink', swatch: '#F4CCD2', image: img('p-smallfit-lightpink', 'The Small Fit Performance Cap in Light Pink with the printed golfer'), printify: { color: 'Light Pink', variantId: 301495 } },
     ],
-    gallery: [],
+    gallery: [
+      { src: '/images/models/small-fit-on-course.webp', alt: 'A golfer wearing the Sage small fit performance cap on the course', width: 960, height: 1200, ai: true },],
     collections: ['all', 'performance', 'caps'],
     badge: 'Small fit',
     source: { kind: 'printify', blueprintId: 6962, printProviderId: 217, brand: 'Imperial', model: 'L210P', productId: '6afd4849e37c0316bf055b9a' },

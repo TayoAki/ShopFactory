@@ -9,7 +9,7 @@ const groups: { title: string; qa: [string, string][] }[] = [
   {
     title: 'Fit and hair',
     qa: [
-      ['Will it fit my small head?', 'The Small Fit Performance Cap is made in a small fit for smaller heads. Most other caps adjust with a strap, snapback or hook-and-loop closure. If the fit is off, exchanges are free within 30 days.'],
+      ['Will it fit my small head?', 'The Small Fit Performance Cap is made in a small fit for smaller heads. Most other caps adjust with a strap, snapback or hook-and-loop closure. If the fit is off, see our 30-day return policy for eligibility and fees.'],
       ['Which hats work with a ponytail?', 'The Front Nine Ponytail Cap, Range Day Mesh Cap, Cart Path Trucker and Turn Cord Cap have concealed ponytail openings. The Back Nine Ponytail Cap has an open back with elastic cross bands. Visors leave your hair completely free.'],
       ['How do I measure my head?', 'Wrap a soft tape just above your ears. See the Fit Guide for details.'],
     ],
@@ -25,9 +25,9 @@ const groups: { title: string; qa: [string, string][] }[] = [
   {
     title: 'Shipping, exchanges and returns',
     qa: [
-      ['How fast does it ship?', 'Every hat is made to order and ships within 10 business days. US shipping is free on every order.'],
-      ['Can I exchange for a different fit?', 'Yes. Fit exchanges are free within 30 days of delivery. Start one from your account or reply to your order email.'],
-      ['What is your return policy?', 'Return unworn hats within 30 days of delivery, with no restocking fee.'],
+      ['How fast does it ship?', 'Every hat is made to order and ships within 10 business days. Standard US shipping is free on orders of $120+ after discounts.'],
+      ['Can I exchange for a different fit?', 'Yes. Request a different size or color within 30 days of ordering. Keep the hat unused with tags and packaging and contact us to arrange an exchange.'],
+      ['What is your return policy?', 'Request a return within 30 days of ordering. Hats must be unused with tags and original packaging. Store-credit returns are free; refunds to the original payment method have a $5 fee.'],
       ['Do you ship internationally?', 'We ship to US addresses at launch.'],
     ],
   },

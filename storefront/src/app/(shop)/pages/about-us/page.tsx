@@ -45,7 +45,7 @@ export default function AboutPage() {
             items={[
               { icon: 'needle', title: 'Made for us', text: 'A golfer who looks like us, on hats picked for women who play.' },
               { icon: 'smallfit', title: 'Built to fit', text: 'Ponytail openings, a true small fit and adjustable closures.' },
-              { icon: 'exchange', title: 'No-risk fit', text: 'Free fit exchanges and 30-day returns on every hat.' },
+              { icon: 'calendar', title: 'Know your fit', text: '30-day returns on unused hats. Refund fee applies.' },
             ]}
           />
         </div>

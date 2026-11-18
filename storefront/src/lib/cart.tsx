@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { getProduct } from '@/lib/catalog';
-import { bundleDiscount, tierFor } from '@/lib/pricing';
+import { bundleDiscount, tierFor, shippingFor } from '@/lib/pricing';
 import { track } from '@/lib/analytics';
 
 export interface CartLine {
@@ -16,6 +16,7 @@ interface CartState {
   count: number;
   subtotal: number;
   discount: number;
+  shipping: number;
   total: number;
   tierName: string | null;
   isOpen: boolean;
@@ -66,7 +67,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       subtotal += p.price * l.qty;
     }
     const discount = bundleDiscount(subtotal, count);
-    return { count, subtotal, discount, total: subtotal - discount, tierName: tierFor(count)?.name ?? null };
+    const shipping = shippingFor(subtotal - discount);
+    return { count, subtotal, discount, shipping, total: subtotal - discount + shipping, tierName: tierFor(count)?.name ?? null };
   }, [lines]);
 
   const add = useCallback<CartState['add']>((items, opts) => {

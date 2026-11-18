@@ -1,3 +1,5 @@
+import { site } from './site';
+
 /**
  * Bundle pricing ("Bring your golf buddy"). Percent-based so it works across hats with different prices.
  * Printify embroidered caps cost about $21 each, plus US shipping of $4.59 for the first item and $2.09
@@ -23,4 +25,9 @@ export function tierPrice(unitCents: number, qty: number): { total: number; save
   const subtotal = unitCents * qty;
   const saved = bundleDiscount(subtotal, qty);
   return { total: subtotal - saved, saved };
+}
+
+/** Shipping threshold uses merchandise after bundle discounts, before tax. */
+export function shippingFor(merchandiseCents: number): number {
+  return merchandiseCents <= 0 || merchandiseCents >= site.policies.freeShippingThreshold ? 0 : site.policies.standardShipping;
 }

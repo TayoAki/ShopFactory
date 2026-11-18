@@ -197,7 +197,7 @@ export function ProductView({ product, bullets }: { product: Product; bullets: B
           )}
         </div>
         <p className="ship-note">
-          <Icon name="truck" width={18} style={{ display: 'inline', verticalAlign: '-4px' }} /> Made to order for you. Ships within 10 business days, free to any US address.
+          <Icon name="truck" width={18} style={{ display: 'inline', verticalAlign: '-4px' }} /> Made to order for you. Ships within 10 business days, to US addresses. Shipping is free on orders $120+ after discounts.
         </p>
       </div>
 
@@ -206,7 +206,7 @@ export function ProductView({ product, bullets }: { product: Product; bullets: B
           <Image src={selected.image.src} alt="" width={44} height={55} style={{ borderRadius: 6 }} />
           <div className="sticky-atc__info">
             <strong>{product.title}</strong>
-            <span>{money(total)} · Free fit exchanges</span>
+            <span>{money(total)} · 30-day returns</span>
           </div>
           <button type="button" className="btn btn--sm" onClick={addToBag} tabIndex={showSticky ? 0 : -1}>
             Add to bag

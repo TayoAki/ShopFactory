@@ -1,4 +1,4 @@
-import { Icon } from './Icon';
+import { BrandIcon } from './BrandIcon';
 
 export function FeatureRow({ items, cols = 4 }: { items: { icon: string; title: string; text: string }[]; cols?: 3 | 4 }) {
   return (
@@ -6,7 +6,7 @@ export function FeatureRow({ items, cols = 4 }: { items: { icon: string; title: 
       {items.map((it) => (
         <li key={it.title} className="feature">
           <div className="feature__icon">
-            <Icon name={it.icon} />
+            <BrandIcon name={it.icon} />
           </div>
           <h3>{it.title}</h3>
           <p>{it.text}</p>

@@ -11,9 +11,9 @@ export default function AccountPage() {
         <div>
           <span className="eyebrow">Account</span>
           <h1>Your orders and exchanges</h1>
-          <p className="lead" style={{ marginTop: 14 }}>Sign in to track an order or start a free fit exchange.</p>
+          <p className="lead" style={{ marginTop: 14 }}>Sign in to track an order or request a return.</p>
           <p className="muted">No account? You don&apos;t need one: reply to your order email, or write to <a className="link" href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> with your order number.</p>
-          <Link href="/pages/shipping-returns" className="link link--cta">How exchanges work →</Link>
+          <Link href="/pages/shipping-returns" className="link link--cta">Returns & exchanges →</Link>
         </div>
         <form className="panel form-grid" action="/api/account/magic-link" method="post">
           <h2 className="h3">Sign in with a link</h2>

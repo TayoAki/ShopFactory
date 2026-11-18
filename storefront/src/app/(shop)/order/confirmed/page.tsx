@@ -14,7 +14,7 @@ export default function OrderConfirmedPage() {
           <ConfirmedDetails />
           <div className="panel" style={{ marginTop: 20 }}>
             <h2 className="h3">A fit tip for when it arrives</h2>
-            <p style={{ margin: '8px 0 0' }}>Adjust the strap before your first round. Wrong fit? Start a free exchange from your account within 30 days.</p>
+            <p style={{ margin: '8px 0 0' }}>Adjust the strap before your first round. Need another fit? Contact us within 30 days of ordering; keep the hat unused with tags and packaging.</p>
           </div>
           <div className="btn-row" style={{ marginTop: 22 }}>
             <Link href="/collections/all" className="btn">Keep shopping</Link>

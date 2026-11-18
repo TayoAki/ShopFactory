@@ -9,7 +9,7 @@
     "start": "next start -p ${PORT:-3000}",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test src/lib/printify.test.ts src/lib/fulfillment.test.ts"
+    "test": "tsx --test src/lib/pricing.test.ts src/lib/printify.test.ts src/lib/fulfillment.test.ts"
   },
   "engines": {
     "node": ">=20"

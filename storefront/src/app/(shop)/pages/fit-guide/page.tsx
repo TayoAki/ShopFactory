@@ -40,7 +40,7 @@ export default function FitGuidePage() {
         <div className="container">
           <div className="section-head">
             <h2>How each hat fits</h2>
-            <p className="muted" style={{ marginTop: 8 }}>Between sizes or not sure? Pick the hat you love. If the fit is off, exchanges are free within 30 days.</p>
+            <p className="muted" style={{ marginTop: 8 }}>Between sizes or not sure? Pick the hat you love. If the fit is off, see our 30-day return policy for eligibility and fees.</p>
           </div>
           <div style={{ overflowX: 'auto' }}>
             <table className="table">

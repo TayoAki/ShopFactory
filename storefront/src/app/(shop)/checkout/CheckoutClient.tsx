@@ -91,7 +91,7 @@ export function CheckoutClient() {
                 <label className="field"><span>ZIP code</span><input className="input" name="zip" autoComplete="postal-code" inputMode="numeric" required /></label>
               </div>
               <div className="panel" style={{ padding: 16 }}>
-                <strong>Free US shipping</strong>
+                <strong>{cart.shipping === 0 ? 'Free US shipping' : '$7 standard US shipping'}</strong>
                 <div className="small muted">Made to order, ships within 10 business days.</div>
               </div>
             </fieldset>
@@ -114,7 +114,7 @@ export function CheckoutClient() {
             <h2 className="h3">Order summary</h2>
             <CartLines compact />
             <div style={{ marginTop: 14 }}><CartSummary /></div>
-            <p className="small muted" style={{ marginTop: 12 }}>Secure checkout · Free fit exchanges within 30 days</p>
+            <p className="small muted" style={{ marginTop: 12 }}>Secure checkout · 30-day returns; refund fee applies</p>
           </aside>
         </div>
       </div>

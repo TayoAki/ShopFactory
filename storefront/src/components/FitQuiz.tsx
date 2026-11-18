@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 import { products, type Product } from '@/data/products';
@@ -8,9 +9,9 @@ import { track } from '@/lib/analytics';
 
 type Answers = { fit: string; hair: string; sun: string };
 const questions = [
-  { name: 'fit', title: 'How do most caps fit?', options: [{ value: 'small', label: 'They usually feel too roomy' }, { value: 'regular', label: 'An adjustable fit usually works' }] },
-  { name: 'hair', title: 'How do you wear your hair on the course?', options: [{ value: 'up', label: 'Ponytail or bun' }, { value: 'down', label: 'Down, short, or tucked away' }] },
-  { name: 'sun', title: 'Is rated sun protection a priority?', options: [{ value: 'upf', label: 'Yes, I want UPF 50+ fabric' }, { value: 'any', label: 'Show me all styles' }] },
+  { name: 'fit', title: 'How do most caps fit?', options: [{ value: 'small', label: 'They usually feel too roomy', image: '/images/products/p-smallfit-sage.webp' }, { value: 'regular', label: 'An adjustable fit usually works', image: '/images/products/flagship-cream-front.webp' }] },
+  { name: 'hair', title: 'How do you wear your hair on the course?', options: [{ value: 'up', label: 'Ponytail or bun', image: '/images/editorial/ponytail-round.webp' }, { value: 'down', label: 'Down, short, or tucked away', image: '/images/models/cream-on-course.webp' }] },
+  { name: 'sun', title: 'Is rated sun protection a priority?', options: [{ value: 'upf', label: 'Yes, I want UPF 50+ fabric', image: '/images/products/p-perfpony-wintergreen.webp' }, { value: 'any', label: 'Show me all styles', image: '/images/editorial/find-your-fit.webp' }] },
 ] as const;
 
 function matches(product: Product, answers: Answers) {
@@ -46,6 +47,7 @@ export function FitQuiz() {
       <section className="section">
         <div className="container">
           <div className="section-head">
+            <Image className="fit-quiz__intro-image" src="/images/editorial/find-your-fit.webp" alt="Cream and sage Bogey Baby caps beside a measuring tape" width={1200} height={900} sizes="(min-width:900px) 760px, 100vw" priority />
             <h1>Find your fit.</h1>
             <p className="lead" style={{ marginTop: 14 }}>Three quick questions to find hats worth trying on.</p>
           </div>
@@ -56,6 +58,7 @@ export function FitQuiz() {
                 <div className="fit-quiz__options">
                   {question.options.map(option => (
                     <label className="fit-quiz__option" key={option.value}>
+                      <Image src={option.image} alt="" width={400} height={320} sizes="(min-width:640px) 360px, 45vw" />
                       <input type="radio" name={question.name} value={option.value} required />
                       <span>{option.label}</span>
                     </label>

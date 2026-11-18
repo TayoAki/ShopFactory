@@ -8,7 +8,7 @@ import { bundleTiers } from '@/lib/pricing';
 
 export const metadata: Metadata = {
   title: 'Bring Your Golf Buddy',
-  description: 'Save 10% on any 2 Bogey Baby golf hats and 15% on 3 or more. Free US shipping and free fit exchanges.',
+  description: 'Save 10% on any 2 Bogey Baby golf hats and 15% on 3 or more. US shipping and 30-day returns.',
   robots: { index: false, follow: false },
 };
 
@@ -49,8 +49,8 @@ export default function GolfBuddyPage() {
           <FeatureRow
             items={[
               { icon: 'gift', title: 'Any 2 hats, 10% off', text: 'Any styles, any colors. Three or more saves 15%.' },
-              { icon: 'truck', title: 'Free US shipping', text: 'On every hat, with no minimum.' },
-              { icon: 'exchange', title: 'Free fit exchanges', text: 'Swap either fit within 30 days.' },
+              { icon: 'truck', title: 'Free US shipping $120+', text: '$7 below $120; threshold applies after discounts.' },
+              { icon: 'calendar', title: '$5 refund fee', text: 'Store-credit returns are free. Eligibility applies.' },
               { icon: 'calendar', title: '30-day returns', text: 'Not right? Send it back.' },
             ]}
           />
@@ -64,7 +64,7 @@ export default function GolfBuddyPage() {
           </div>
           <div>
             <h2>The 30-day fit promise</h2>
-            <p className="lead" style={{ marginTop: 12 }}>If either hat doesn&apos;t fit, swap it free. Don&apos;t love it? Send it back within 30 days, no restocking fee.</p>
+            <p className="lead" style={{ marginTop: 12 }}>Request a return within 30 days of ordering. Hats must be unused with tags and packaging. Store-credit returns are free; a $5 fee applies to refunds.</p>
             <div className="accordion">
               <details><summary>Can we pick different styles and colors?</summary><div className="acc-body">Yes. Any hats in your bag count toward the bundle savings.</div></details>
               <details><summary>Can I ship one to my friend?</summary><div className="acc-body">Both hats ship together to one address for now.</div></details>

@@ -32,7 +32,7 @@ export function Footer() {
               <li><Link href="/pages/fit-guide">Fit Guide</Link></li>
               <li><Link href="/pages/faq">FAQ</Link></li>
               <li><Link href="/pages/shipping-returns">Shipping &amp; Returns</Link></li>
-              <li><Link href="/account">Start an exchange</Link></li>
+              <li><Link href="/pages/contact">Request a return</Link></li>
               <li><Link href="/pages/contact">Contact</Link></li>
             </ul>
           </div>
@@ -40,6 +40,7 @@ export function Footer() {
             <h2>About</h2>
             <ul>
               <li><Link href="/pages/about-us">Our Story</Link></li>
+              <li><Link href="/journal">The Journal</Link></li>
               <li><Link href="/pages/reviews">Reviews</Link></li>
             </ul>
           </div>

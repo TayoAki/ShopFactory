@@ -112,7 +112,7 @@ export default function FiveReasonsPage() {
           <span className="eyebrow">Pick your hats</span>
           <h2>Start with these three</h2>
           <p>
-            Bring your golf buddy: save {pair.percentOff}% on any 2 hats and {four.percentOff}% on 3 or more. Free US shipping on every order, and free fit exchanges within 30 days.
+            Bring your golf buddy: save {pair.percentOff}% on any 2 hats and {four.percentOff}% on 3 or more. Free US shipping on orders $120+ after discounts, and 30-day returns; refund fee applies.
           </p>
           <div className="grid grid--3" style={{ marginTop: 18 }}>
             {picks.map((p) => <ProductCard key={p.handle} product={p} sizes="(min-width: 800px) 240px, 50vw" />)}
@@ -122,10 +122,10 @@ export default function FiveReasonsPage() {
         <section className="reason">
           <h2>Questions</h2>
           <div className="accordion" style={{ marginTop: 10 }}>
-            <details><summary>Will it fit my small head?</summary><div className="acc-body">The Small Fit Performance Cap is made in a small fit, and most of our caps adjust. If the fit is off, exchanges are free within 30 days.</div></details>
+            <details><summary>Will it fit my small head?</summary><div className="acc-body">The Small Fit Performance Cap is made in a small fit, and most of our caps adjust. If the fit is off, see our 30-day return policy for eligibility and fees.</div></details>
             <details><summary>Does it work with a ponytail?</summary><div className="acc-body">Yes, on five caps: the Front Nine, Range Day, Cart Path and Turn caps have concealed ponytail openings, and the Back Nine has an open back.</div></details>
             <details><summary>How do I wash it?</summary><div className="acc-body">Spot clean or hand wash cold, reshape and air dry.</div></details>
-            <details><summary>How fast will it arrive?</summary><div className="acc-body">Every hat is made to order and ships within 10 business days, free to any US address.</div></details>
+            <details><summary>How fast will it arrive?</summary><div className="acc-body">Every hat is made to order and ships within 10 business days, to US addresses. Shipping is free on orders $120+ after discounts.</div></details>
           </div>
         </section>
 

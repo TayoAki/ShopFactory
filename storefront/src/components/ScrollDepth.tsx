@@ -28,7 +28,7 @@ export function ScrollDepth({ stickyText, stickyHref, stickyCta }: { stickyText?
     <div className="sticky-atc" data-show={show} aria-hidden={!show}>
       <div className="sticky-atc__info">
         <strong>{stickyText}</strong>
-        <span>Free shipping · Free fit exchanges</span>
+        <span>US shipping · 30-day returns</span>
       </div>
       <Link href={stickyHref} className="btn btn--sm" tabIndex={show ? 0 : -1}>
         {stickyCta}

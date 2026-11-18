@@ -158,7 +158,7 @@ export function Header() {
             <Link href="/account">Account</Link>
           </div>
         </div>
-        <div className="drawer__foot small">Free US shipping · Free fit exchanges · 30-day returns</div>
+        <div className="drawer__foot small">Free US shipping $120+ · 30-day returns</div>
       </aside>
     </>
   );

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ handle: s
   const img = p.colors[0].image;
   return {
     title: `${p.title} | ${p.style === 'cap' ? "Women's Golf Cap" : p.style === 'visor' ? "Women's Golf Visor" : p.style === 'bucket' ? "Women's Golf Bucket Hat" : "Women's Golf Beanie"}`,
-    description: `${p.description.split('. ')[0]}. Free US shipping and free fit exchanges.`,
+    description: `${p.description.split('. ')[0]}. US shipping and 30-day returns.`,
     alternates: { canonical: `/products/${p.handle}` },
     openGraph: { images: [{ url: img.src, width: img.width, height: img.height, alt: img.alt }] },
   };
@@ -40,7 +40,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
   if (p.features.upf50) compareRows.push({ label: 'Sun', ours: 'UPF 50+ fabric', typical: 'Often not rated' });
   if (p.features.makeupResistant) compareRows.push({ label: 'Sweatband', ours: 'Makeup-resistant', typical: 'Standard band' });
   compareRows.push({ label: 'The golfer', ours: 'A woman golfer who looks like us', typical: '—' });
-  compareRows.push({ label: 'Fit exchanges', ours: 'Free within 30 days', typical: 'Varies' });
+  compareRows.push({ label: 'Returns', ours: '30 days; refund fee applies', typical: 'Varies' });
 
   return (
     <>
@@ -73,7 +73,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
               <summary>Fit and sizing</summary>
               <div className="acc-body">
                 <p>{p.fit}</p>
-                <p>Between sizes or not sure? Pick the hat you love; if the fit is off, exchanges are free within 30 days. <Link className="link" href="/pages/fit-guide">Fit Guide</Link></p>
+                <p>Between sizes or not sure? Pick the hat you love; if the fit is off, see our 30-day return policy for eligibility and fees. <Link className="link" href="/pages/fit-guide">Fit Guide</Link></p>
               </div>
             </details>
             <details>
@@ -81,8 +81,8 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
               <div className="acc-body">Spot clean with cool water and a soft brush, or hand wash cold. Reshape and air dry. Don&apos;t machine dry.</div>
             </details>
             <details>
-              <summary>Shipping and exchanges</summary>
-              <div className="acc-body">Made to order and shipped within 10 business days. Free US shipping on every order. Free fit exchanges and returns within 30 days of delivery. <Link className="link" href="/pages/shipping-returns">Shipping &amp; Returns</Link></div>
+              <summary>Shipping and returns</summary>
+              <div className="acc-body">Made to order and shipped within 10 business days. Free standard US shipping on orders of $120+ after discounts. Request returns within 30 days of ordering; items must be unused with tags and packaging. Refunds have a $5 fee. <Link className="link" href="/pages/shipping-returns">Shipping &amp; Returns</Link></div>
             </details>
             <details>
               <summary>About our golfer</summary>
@@ -97,7 +97,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           <div>
             <span className="eyebrow">Find your fit</span>
             <h2>Find your fit in 10 seconds.</h2>
-            <p className="lead" style={{ marginTop: 12 }}>Measure around your head just above the ears. {p.features.smallFit ? 'This cap is made in a small fit for smaller heads.' : 'This hat adjusts to fit most heads.'} Between sizes or unsure? Exchanges are free.</p>
+            <p className="lead" style={{ marginTop: 12 }}>Measure around your head just above the ears. {p.features.smallFit ? 'This cap is made in a small fit for smaller heads.' : 'This hat adjusts to fit most heads.'} Between sizes or unsure? See our 30-day return policy for eligibility and fees.</p>
             <Link href="/pages/fit-guide" className="link link--cta">Open the Fit Guide →</Link>
           </div>
           <div className="panel">
@@ -120,7 +120,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
             <Image src="/brand/golfer-badge-96.webp" alt="" width={72} height={72} />
             <div style={{ flex: 1, minWidth: 240 }}>
               <h3>The 30-day fit promise</h3>
-              <p style={{ margin: 0 }} className="muted">If it doesn&apos;t fit, swap it free. Don&apos;t love it? Send it back within 30 days.</p>
+              <p style={{ margin: 0 }} className="muted">Request a return within 30 days of ordering. Keep the hat unused with tags and packaging. A $5 fee applies to refunds.</p>
             </div>
             <Link href="/pages/shipping-returns" className="btn btn--secondary">How it works</Link>
           </div>

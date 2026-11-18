@@ -60,18 +60,18 @@ export const media = {
     "alt": "The Cream Rope Cap and the sage Small Fit Performance Cap side by side, with a tape measure between them",
     "ai": true
   },
-  // First frames of the brand film (Cut 2, bright ending), for the hero: desktop full 16:9 frame, phone 9:16 reframed.
+  // Natural Sunlight film posters: full desktop frame and a subject-aware portrait crop.
   "heroVideoDesktop": {
-    "src": "/images/lifestyle/see-you-out-there-swing-desktop.webp",
+    "src": "/images/lifestyle/see-you-out-there-natural-desktop.webp",
     "width": 1920,
     "height": 1080,
     "alt": "The Bogey Baby golfer, embroidered on the front of a cap",
     "ai": false
   },
   "heroVideoMobile": {
-    "src": "/images/lifestyle/see-you-out-there-swing-mobile.webp",
-    "width": 608,
-    "height": 1080,
+    "src": "/images/lifestyle/see-you-out-there-natural-mobile.webp",
+    "width": 810,
+    "height": 1440,
     "alt": "The Bogey Baby golfer, embroidered on the front of a cap",
     "ai": false
   },

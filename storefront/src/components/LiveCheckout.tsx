@@ -31,7 +31,7 @@ export function LiveCheckout() {
       <div className="container split">
         <div>
           <h1>Checkout</h1>
-          <p className="lead" style={{ marginTop: 16 }}>Enter your delivery and payment details in secure checkout. Free US shipping. Any applicable tax is calculated using your delivery address.</p>
+          <p className="lead" style={{ marginTop: 16 }}>Enter your delivery and payment details in secure checkout. Standard US shipping is $7, or free on orders $120+ after discounts. Any applicable tax is calculated using your delivery address.</p>
           <button className="btn" disabled={busy} onClick={startCheckout} style={{ marginTop: 24 }}>
             {busy ? 'Opening secure checkout…' : 'Continue to secure checkout'}
           </button>

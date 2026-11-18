@@ -50,7 +50,8 @@ export function CartSummary() {
       {cart.discount > 0 && (
         <div className="summary-row saving"><span>{cart.tierName} savings</span><span>−{money(cart.discount)}</span></div>
       )}
-      <div className="summary-row"><span>Shipping (US)</span><span>Free</span></div>
+      <div className="summary-row"><span>Shipping (US)</span><span>{cart.shipping === 0 ? 'Free' : money(cart.shipping)}</span></div>
+      <p className="small muted">Free standard US shipping at $120 after discounts. Tax is calculated at checkout.</p>
       <div className="summary-row summary-row--total"><span>Total</span><span>{money(cart.total)}</span></div>
     </div>
   );
@@ -109,7 +110,7 @@ export function CartDrawer() {
           ) : (
             <>
               <p className="saving" style={{ margin: '0 0 6px' }}>
-                <Icon name="check" width={18} style={{ display: 'inline', verticalAlign: '-4px' }} /> Free US shipping included
+                <Icon name="check" width={18} style={{ display: 'inline', verticalAlign: '-4px' }} /> {cart.shipping === 0 ? 'Free US shipping included' : 'Free US shipping on orders $120+ after discounts'}
                 {tier && <> · {tier.name}: {tier.percentOff}% off</>}
               </p>
               <CartLines />

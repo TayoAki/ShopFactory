@@ -2,7 +2,7 @@ import Stripe from 'stripe';
 import { Pool } from 'pg';
 import { createHash } from 'node:crypto';
 import { getProduct } from '@/lib/catalog';
-import { bundleDiscount } from '@/lib/pricing';
+import { bundleDiscount, shippingFor } from '@/lib/pricing';
 
 export type CheckoutLine = { handle: string; color: string; qty: number };
 export class CheckoutError extends Error {}
@@ -44,7 +44,8 @@ export function validateBasket(input: unknown) {
       printifyVariantId: color.printify?.variantId,
     };
   });
-  return { lines: snapshot, count, subtotal, discount: bundleDiscount(subtotal, count) };
+  const discount = bundleDiscount(subtotal, count);
+  return { lines: snapshot, count, subtotal, discount, shipping: shippingFor(subtotal - discount) };
 }
 
 export function basketHash(basket: ReturnType<typeof validateBasket>) {
@@ -89,6 +90,15 @@ export async function paymentDatabase() {
   return pool;
 }
 
+/** Verify against the saved checkout snapshot, including legacy free-shipping sessions. */
+export function assertPaymentTotals(session: Stripe.Checkout.Session, basket: {subtotal:number; discount:number; shipping?:number}) {
+  if (session.currency !== 'usd' || session.amount_subtotal !== basket.subtotal ||
+      session.total_details?.amount_discount !== basket.discount || session.amount_total === null ||
+      session.amount_total !== basket.subtotal - basket.discount + (basket.shipping ?? 0) + (session.total_details?.amount_tax ?? 0) ||
+      (session.shipping_cost?.amount_subtotal ?? session.shipping_cost?.amount_total) !== (basket.shipping ?? 0) ||
+      session.automatic_tax?.status !== 'complete') throw new Error('Payment totals or tax are inconsistent.');
+}
+
 export async function recordPaidSession(sessionId: string) {
   const stripe = stripeClient();
   const session = await stripe.checkout.sessions.retrieve(sessionId);
@@ -100,10 +110,7 @@ export async function recordPaidSession(sessionId: string) {
   const attempt = result.rows[0];
   if (!attempt || attempt.basket_hash !== session.metadata?.basket_hash) throw new Error('Payment does not match a checkout attempt.');
   const basket = attempt.basket as ReturnType<typeof validateBasket>;
-  if (session.currency !== 'usd' || session.amount_subtotal !== basket.subtotal ||
-      session.total_details?.amount_discount !== basket.discount || session.amount_total === null ||
-      session.amount_total < basket.subtotal - basket.discount || session.shipping_cost?.amount_total !== 0 ||
-      session.automatic_tax?.status !== 'complete') throw new Error('Payment totals or tax are inconsistent.');
+  assertPaymentTotals(session, basket);
   await db.query(`
     INSERT INTO bogey_checkout.orders(session_id,attempt_id,livemode,amount_total,currency,basket,stripe_session)
     VALUES($1,$2,$3,$4,$5,$6,$7)

@@ -19,8 +19,8 @@ const pages: Record<string, { title: string; summary: string; body: string[] }> 
     summary: 'The basics of buying from Bogey Baby: prices, made-to-order production, shipping, exchanges and returns.',
     body: [
       'Orders: every hat is made to order after you buy it. Prices are in US dollars and include any bundle savings shown at checkout.',
-      'Shipping: orders ship within 10 business days to US addresses. Shipping is free.',
-      'Exchanges and returns: fit exchanges are free within 30 days of delivery, and unworn hats can be returned within 30 days with no restocking fee.',
+      'Shipping: orders ship within 10 business days to US addresses. Standard US shipping is $7, or free on orders $120+ after discounts.',
+      'Returns and exchanges: requests must be made within 30 days of ordering. Items must be unused with tags and packaging. Store-credit returns are free; refunds have a $5 fee and shipping charges are not refundable.',
       'Use of the site: please don’t misuse the site or copy our designs, including the Bogey Baby golfer.',
     ],
   },

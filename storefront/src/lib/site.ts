@@ -4,14 +4,15 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   tagline: 'Good company. Better hats.',
   description:
-    'Golf hats made for women golfers and the friends who play with them. Embroidered classics and UPF 50+ performance caps, with free US shipping and free fit exchanges.',
+    'Golf hats made for women golfers and the friends who play with them. Embroidered classics and UPF 50+ performance caps, with US shipping and 30-day returns.',
   supportEmail: 'hello@bogeybaby.com',
   dropMode: process.env.NEXT_PUBLIC_DROP_MODE === 'true',
   dropDate: process.env.NEXT_PUBLIC_DROP_DATE || '',
   indexable: process.env.NEXT_PUBLIC_INDEXABLE === 'true',
   checkoutMode: (['live', 'test'].includes(process.env.NEXT_PUBLIC_CHECKOUT_MODE || '') ? process.env.NEXT_PUBLIC_CHECKOUT_MODE : 'demo') as 'live' | 'test' | 'demo',
   policies: {
-    freeShippingUS: true,
+    freeShippingThreshold: 12000,
+    standardShipping: 700,
     exchangeDays: 30,
     returnDays: 30,
     makeTime: '2–5 business days',
@@ -20,7 +21,6 @@ export const site = {
 } as const;
 
 export const trustItems = [
-  { icon: 'truck', label: 'Free US shipping' },
-  { icon: 'exchange', label: 'Free fit exchanges' },
+  { icon: 'truck', label: 'Free US shipping $120+' },
   { icon: 'calendar', label: '30-day returns' },
 ] as const;
