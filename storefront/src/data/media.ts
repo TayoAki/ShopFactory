@@ -6,8 +6,8 @@ export const media = {
   // First frames of the brand video "See You Out There", reframed for the hero (desktop 4:3, phone 9:16).
   "heroVideoDesktop": {
     "src": "/images/lifestyle/hero-video-desktop.webp",
-    "width": 1280,
-    "height": 960,
+    "width": 1440,
+    "height": 1080,
     "alt": "The Bogey Baby golfer, embroidered on the front of the Cream Rope Cap",
     "ai": false
   },

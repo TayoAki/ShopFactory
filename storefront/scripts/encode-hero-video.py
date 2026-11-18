@@ -28,12 +28,12 @@ def run(args):
     print(" ".join(args[-3:]), flush=True)
     subprocess.run(args, check=True)
 
-for name, cw, centres, scale in [("desktop", 1440, DESK_C, "1280:960"), ("mobile", 608, MOB_C, "608:1080")]:
+for name, cw, centres, scale in [("desktop", 1440, DESK_C, "1440:1080"), ("mobile", 608, MOB_C, "608:1080")]:
     g = graph(cw, centres, scale)
     base = ["ffmpeg", "-v", "error", "-y", "-i", SRC, "-filter_complex", g, "-map", "[v]", "-an"]
-    run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "27" if name == "desktop" else "26", "-profile:v", "high",
+    run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "23", "-profile:v", "high",
                 "-movflags", "+faststart", f"{OUT}/hero-{name}.mp4"])
-    run(base + ["-c:v", "libvpx-vp9", "-crf", "37", "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "2",
+    run(base + ["-c:v", "libvpx-vp9", "-crf", "32", "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "2",
                 f"{OUT}/hero-{name}.webm"])
     # Poster: the first frame of this cut.
     run(["ffmpeg", "-v", "error", "-y", "-i", f"{OUT}/hero-{name}.mp4", "-frames:v", "1", "-c:v", "libwebp", "-quality", "78",
