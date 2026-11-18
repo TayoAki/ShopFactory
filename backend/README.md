@@ -2,6 +2,16 @@
 
 The commerce backend for the Bogey Baby store. It's built on [Medusa](https://github.com/medusajs/medusa) v2.22, starting from the official `medusa-starter-default`.
 
+## Live
+
+- **API:** https://medusa-production-d5c770da.up.railway.app (health check at `/health`)
+- **Admin:** https://medusa-production-d5c770da.up.railway.app/app
+  - Log in with `admin@bogeybaby.com`.
+  - The password is the `MEDUSA_ADMIN_PASSWORD` variable on the `medusa` service in Railway.
+  - After logging in, change the email and password under Settings → Profile.
+- **Publishable key:** `pk_389c3606a19f028949a92e0096c726db997965e00e2eea86e53a013fd4cba81c`
+  - It's public by design and is already set on the storefront service as `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY`, alongside `NEXT_PUBLIC_MEDUSA_BACKEND_URL`.
+
 ## What's in it
 
 **The store**
