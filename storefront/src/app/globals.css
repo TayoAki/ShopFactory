@@ -125,7 +125,8 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .header__left, .header__right { display: flex; align-items: center; gap: 4px; }
 .header__right { justify-content: flex-end; }
 .header__brand { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 8px 4px; text-decoration: none; }
-.header__wordmark { width: 160px; height: auto; }
+/* Phones: the embroidered wordmark, as large as the bar allows beside the menu button and bag. */
+.header__wordmark { width: min(230px, calc(100vw - 150px)); height: auto; }
 /* The embroidered wordmark sits slightly raised off the fabric. */
 .header__wordmark, .wordmark-embroidered { filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.28)); }
 .header__badge { display: none; }
@@ -133,31 +134,19 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .icon-btn:hover { background: rgba(8, 45, 34, 0.06); }
 .icon-btn svg { width: 24px; height: 24px; }
 .bag-count { position: absolute; top: 4px; right: 2px; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 999px; background: var(--pine-900); color: var(--cream-ink); font-size: 0.7rem; font-weight: 700; line-height: 19px; text-align: center; }
-.nav { display: none; }
+/* Search lives in the menu drawer on phones. */
+.icon-btn.header__search { display: none; }
+@media (min-width: 900px) { .icon-btn.hide-mobile, .icon-btn.header__search { display: inline-flex; } }
 @media (min-width: 1024px) {
   :root { --header-h: 96px; }
-  .header__bar { grid-template-columns: 1fr auto 1fr; }
-  /* The crest sits in the middle with the two menus pulled in beside it; wordmark far left, icons far right. */
-  .header__brand { gap: 0; padding: 4px 22px; }
-  .header__badge { display: block; width: 84px; height: 84px; }
-  .header__left .nav { margin-left: auto; }
-  .header__right .nav { margin-right: auto; }
+  /* Desktop: no text menu. The crest patch hangs below the bar at the top of the page (120px) and shrinks into it
+     (80px) once the page scrolls; the menu button opens the drawer. */
+  .header__brand { align-self: start; align-items: flex-start; height: var(--header-h); padding: 8px 0 0; position: relative; z-index: 2; }
+  .header__badge { display: block; width: 120px; height: 120px; transform-origin: 50% 0; transition: transform 220ms var(--ease); filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.28)); }
+  .header.is-scrolled .header__badge { transform: scale(0.667); }
   .header__wordmark--mobile { display: none; }
-  .nav { display: flex; align-items: center; gap: 4px; }
-  .nav a, .nav summary { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; white-space: nowrap; font-family: var(--font-stitch), Georgia, serif; font-size: 1.05rem; color: var(--pine-900); text-decoration: none; border-radius: 8px; list-style: none; cursor: pointer; }
-  .nav summary::-webkit-details-marker { display: none; }
-  .nav a:hover, .nav summary:hover { background: rgba(8, 45, 34, 0.06); }
-  .menu-toggle { display: none !important; }
 }
-@media (min-width: 1200px) { .nav a, .nav summary { padding: 0 12px; } }
-@media (min-width: 1024px) { .header__left { gap: 8px; } }
-.mega { position: relative; }
-.mega__panel { position: absolute; left: 0; top: calc(100% + 10px); z-index: 50; width: min(760px, 80vw); display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 24px; padding: 24px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-drawer); }
-.mega__col h4 { margin: 0 0 10px; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pine-500); }
-.mega__col ul { list-style: none; margin: 0; padding: 0; }
-.mega__col li a { display: flex !important; align-items: center; min-height: 44px; padding: 0 !important; font-family: var(--font-sans), Arial, sans-serif !important; font-size: 0.98rem !important; }
-.mega__promo { display: grid; gap: 10px; padding: 14px; border-radius: 12px; background: var(--pine-900); color: var(--cream-ink); text-decoration: none; }
-.mega__promo strong { font-family: var(--font-stitch), Georgia, serif; font-weight: 400; font-size: 1.3rem; }
+@media (prefers-reduced-motion: reduce) { .header__badge { transition: none; } }
 
 /* ---------- Drawers ---------- */
 .overlay { position: fixed; inset: 0; z-index: 60; background: rgba(8, 45, 34, 0.45); opacity: 0; pointer-events: none; transition: opacity 200ms var(--ease); }

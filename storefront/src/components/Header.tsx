@@ -3,13 +3,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { site } from '@/lib/site';
 import { Icon } from './Icon';
 
 const shopLinks = [
   { href: '/collections/all', label: 'Shop all hats' },
+  { href: '/products/cream-rope-cap', label: 'The Cream Rope Cap' },
   { href: '/collections/embroidered', label: 'Embroidered classics' },
   { href: '/collections/performance', label: 'Performance (UPF 50+)' },
   { href: '/collections/ponytail-caps', label: 'Ponytail caps' },
@@ -22,68 +23,50 @@ const styleLinks = [
   { href: '/collections/beanies', label: 'Beanies' },
 ];
 
+/**
+ * Twill header with no text menu: the menu button (every screen size) opens the drawer with all the links.
+ * Desktop: the crest patch sits in the middle, hanging below the bar at the top of the page and shrinking into it
+ * once the page scrolls. Phones: the embroidered BOGEY BABY wordmark in the middle; search lives in the drawer.
+ */
 export function Header() {
   const cart = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const megaRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
     setMenuOpen(false);
-    if (megaRef.current) megaRef.current.open = false;
   }, [pathname]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setMenuOpen(false);
-        if (megaRef.current) megaRef.current.open = false;
-      }
+      if (e.key === 'Escape') setMenuOpen(false);
     };
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return (
     <>
-      <header className="header">
+      <header className={`header${scrolled ? ' is-scrolled' : ''}`}>
         <div className="container header__bar">
           <div className="header__left">
             <button className="icon-btn menu-toggle" aria-label="Open menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}>
               <Icon name="menu" />
             </button>
-            <nav className="nav" aria-label="Main">
-              <details className="mega" ref={megaRef}>
-                <summary>Shop</summary>
-                <div className="mega__panel">
-                  <div className="mega__col">
-                    <h4>Shop</h4>
-                    <ul>{shopLinks.map((l) => <li key={l.href}><Link href={l.href}>{l.label}</Link></li>)}</ul>
-                  </div>
-                  <div className="mega__col">
-                    <h4>By style</h4>
-                    <ul>{styleLinks.map((l) => <li key={l.href}><Link href={l.href}>{l.label}</Link></li>)}</ul>
-                  </div>
-                  <Link href="/pages/golf-buddy" className="mega__promo">
-                    <Image src="/images/lifestyle/cart-friends.webp" alt="" width={1350} height={900} sizes="240px" style={{ borderRadius: 8, width: '100%', height: 'auto' }} />
-                    <strong>Bring your golf buddy</strong>
-                    <span>Save 10% on 2 hats, 15% on 3 or more →</span>
-                  </Link>
-                </div>
-              </details>
-              <Link href="/products/cream-rope-cap">The Cream Rope Cap</Link>
-            </nav>
           </div>
           <Link href="/" className="header__brand" aria-label="Bogey Baby home">
-            <Image className="header__badge" src="/brand/golfer-badge-192.webp" alt="" width={192} height={192} priority />
-            <Image className="header__wordmark header__wordmark--mobile" src="/brand/wordmark-embroidered.webp" alt="Bogey Baby" width={1200} height={164} sizes="160px" priority />
+            <Image className="header__badge" src="/brand/golfer-badge-384.webp" alt="" width={384} height={384} sizes="120px" priority />
+            <Image className="header__wordmark header__wordmark--mobile" src="/brand/wordmark-embroidered.webp" alt="Bogey Baby" width={1400} height={191} sizes="230px" priority />
           </Link>
           <div className="header__right">
-            <nav className="nav" aria-label="Help">
-              <Link href="/pages/fit-guide">Fit Guide</Link>
-              <Link href="/pages/about-us">Our Story</Link>
-            </nav>
-            <Link href="/search" className="icon-btn" aria-label="Search">
+            <Link href="/search" className="icon-btn header__search" aria-label="Search">
               <Icon name="search" />
             </Link>
             <Link href="/account" className="icon-btn hide-mobile" aria-label="Account">
@@ -102,7 +85,7 @@ export function Header() {
       <div className="overlay" data-open={menuOpen} onClick={() => setMenuOpen(false)} aria-hidden="true" />
       <aside className="drawer drawer--left" data-open={menuOpen} aria-label="Menu" aria-hidden={!menuOpen} inert={!menuOpen}>
         <div className="drawer__head">
-          <Image className="wordmark-embroidered" src="/brand/wordmark-embroidered.webp" alt="Bogey Baby" width={1200} height={164} sizes="150px" style={{ width: 150, height: 'auto' }} />
+          <Image className="wordmark-embroidered" src="/brand/wordmark-embroidered.webp" alt="Bogey Baby" width={1400} height={191} sizes="180px" style={{ width: 180, height: 'auto' }} />
           <button className="icon-btn" aria-label="Close menu" onClick={() => setMenuOpen(false)}>
             <Icon name="close" />
           </button>
