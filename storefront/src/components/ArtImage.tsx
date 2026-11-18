@@ -8,7 +8,7 @@ export function ArtImage({ mobile, desktop, alt, priority = false, className }: 
   const { props: m } = getImageProps({ ...common, src: mobile.src, width: mobile.width, height: mobile.height, quality: 78 });
   return (
     <picture className={className}>
-      <source media="(min-width: 900px)" srcSet={d.srcSet} sizes="(min-width: 900px) 60vw, 100vw" />
+      <source media="(min-width: 900px)" srcSet={d.srcSet} sizes="100vw" />
       <img {...m} alt={alt} fetchPriority={priority ? 'high' : undefined} />
     </picture>
   );

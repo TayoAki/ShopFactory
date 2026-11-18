@@ -31,7 +31,7 @@ npm run build && npm start   # production build (PORT is respected)
 | First-party analytics (server-side, no third-party pixels) | `src/lib/analytics.ts`, `src/app/api/analytics/route.ts` |
 | Waitlist and newsletter (Klaviyo when keys are set) | `src/app/api/waitlist/route.ts` |
 | Lifestyle media manifest | `src/data/media.ts` |
-| Homepage hero video (phone 9:16 and desktop 4:3 cuts, poster frames, plays once) | `src/components/HeroVideo.tsx`, `public/video/`, `scripts/encode-hero-video.py` |
+| Homepage hero video (full-width 16:9 on desktop, 9:16 on phones, poster frames, plays once) | `src/components/HeroVideo.tsx`, `public/video/`, `scripts/encode-hero-video.py` |
 
 ### Pages
 
@@ -56,8 +56,8 @@ npm run build && npm start   # production build (PORT is respected)
 ## Hero video
 
 The homepage hero plays the brand film "See You Out There" (15 s, no sound):
-- **Phones** get a 9:16 cut and **desktops** a 4:3 cut. Each shot is reframed around its subject.
-- **Formats:** each cut is a VP9 WebM (phone 1.7 MB, desktop 3.1 MB) with an H.264 MP4 fallback.
+- **Desktops** get the full 16:9 frame filling the hero. **Phones** get a 9:16 cut, with each shot reframed around its subject.
+- **Formats:** each cut is a VP9 WebM (phone 1.7 MB, desktop 3.5 MB) with an H.264 MP4 fallback.
 - **Loading:** a poster frame renders first and stays the largest paint. The video starts after the page loads and fades in.
 - **Skipped** for visitors with reduced motion or Save-Data on.
 - **Plays once:** the video doesn't loop, and stops on its last frame, the Cream Rope Cap.

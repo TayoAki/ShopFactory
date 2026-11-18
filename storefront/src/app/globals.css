@@ -97,7 +97,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   --btn-bg: transparent; --btn-fg: var(--pine-900); --btn-stitch: var(--pine-900); --btn-shadow: transparent;
   font-family: var(--font-sans), Arial, sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase; min-height: 48px;
 }
-.section--pine .btn--secondary { --btn-fg: var(--cream-ink); --btn-stitch: var(--cream-ink); }
+.section--pine .btn--secondary, .hero .btn--secondary { --btn-fg: var(--cream-ink); --btn-stitch: var(--cream-ink); }
 .btn--block { width: 100%; }
 .btn--sm { min-height: 44px; padding: 8px 18px; font-size: 1rem; }
 .link { color: var(--pine-900); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
@@ -205,10 +205,16 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .hero .eyebrow { color: var(--gold-light); }
 .hero__sub { font-size: 1.12rem; line-height: 1.55; max-width: 34ch; margin: 14px 0 22px; color: #f3ecd2; }
 @media (min-width: 900px) {
-  .hero { display: grid; grid-template-columns: repeat(12, 1fr); min-height: min(86vh, 800px); }
-  .hero__media { grid-column: 7 / -1; grid-row: 1; aspect-ratio: auto; max-height: none; height: 100%; }
-  .hero__media::after { display: none; }
-  .hero__content { position: relative; grid-column: 1 / 7; grid-row: 1; align-self: center; margin: 0; padding: 64px 0 64px max(var(--gutter), calc((100vw - var(--container)) / 2)); }
+  /* Fill the screen below the announcement bar and header (129px), never taller than the 16:9 video. */
+  .hero { display: grid; grid-template-columns: repeat(12, 1fr); height: min(calc(100svh - 129px), 56.25vw); min-height: 520px; }
+  /* The video fills the whole hero; the copy sits bottom-left over a neutral shadow on that side only. */
+  .hero__media { grid-column: 1 / -1; grid-row: 1; aspect-ratio: auto; max-height: none; height: 100%; }
+  .hero__media img { position: absolute; inset: 0; }
+  .hero__media img, .hero__video { object-position: 50% 35%; }
+  .hero__media::after { background: linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.32) 32%, rgba(0, 0, 0, 0) 58%); }
+  .hero__content { position: relative; z-index: 2; grid-column: 1 / 7; grid-row: 1; align-self: end; margin: 0; padding: 64px 0 72px max(var(--gutter), calc((100vw - var(--container)) / 2)); }
+  .hero h1, .hero__sub { text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4); }
+  .hero .eyebrow, .hero .trust { text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55); }
   .hero__media { min-height: 0; }
   .hero__sub { font-size: 1.25rem; max-width: 40ch; }
 }

@@ -7,8 +7,8 @@ type Cut = { mp4: string; webm: string };
 /**
  * Background video for the homepage hero. The poster image underneath is rendered on the server and stays the
  * largest paint; the video loads after the page has finished loading, fades in once it is actually playing,
- * plays once and stops on its last frame. Phones get a 9:16 cut and desktops a 4:3 cut, each reframed shot by
- * shot. Skipped for reduced motion and Save-Data.
+ * plays once and stops on its last frame. Desktops get the full 16:9 frame; phones get a 9:16 cut reframed
+ * shot by shot. Skipped for reduced motion and Save-Data.
  */
 export function HeroVideo({ mobile, desktop }: { mobile: Cut; desktop: Cut }) {
   const ref = useRef<HTMLVideoElement>(null);
