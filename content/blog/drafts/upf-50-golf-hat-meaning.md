@@ -95,7 +95,7 @@ UPF rates fabric. SPF rates sunscreen. The [Skin Cancer Foundation](https://www.
 
 SPF is not a timer, though. The [FDA](https://www.fda.gov/about-fda/center-drug-evaluation-and-research-cder/sun-protection-factor-spf) says "SPF does not inform consumers about the time that can be spent in the sun without getting sunburn." To cover UVA as well as UVB, the FDA's [sun safety tips](https://www.fda.gov/consumers/consumer-updates/tips-stay-safe-sun-sunscreen-sunglasses) point to broad-spectrum sunscreen, which protects against both.
 
-On the course you want both numbers working. The Skin Cancer Foundation's [golf advice](https://www.skincancer.org/blog/sun-protection-habits-golf-course/) is a water-resistant, broad-spectrum SPF 30 or higher, at least one ounce, 30 minutes before you head out, reapplied every two hours or more often if you're sweating heavily. Clothing has one edge over sunscreen. The foundation's clothing guide points out that you never need to reapply it.
+On the course you want both numbers working. The Skin Cancer Foundation's [golf advice](https://www.skincancer.org/blog/sun-protection-habits-golf-course/) calls for a water-resistant, broad-spectrum SPF 30 or higher, at least one ounce of it, 30 minutes before you head out. Reapply every two hours, or more often if you're sweating heavily. Clothing has one edge over sunscreen. The foundation's clothing guide points out that you never need to reapply it.
 
 For sunscreen on brown and Black skin, see our guide to [golf sun protection for darker skin](/journal/golf-sunscreen-darker-skin). <!-- OWNER CHECK: /journal/<slug> route not built yet, PLAN 11.3 item 8. -->
 
@@ -103,7 +103,7 @@ For sunscreen on brown and Black skin, see our guide to [golf sun protection for
 
 No. A UPF rating covers the fabric, and only the skin under that fabric. A cap shades your crown, forehead and eyes, while [Druids](https://www.druids.com/blogs/golf/golf-cap-vs-visor) notes "your ears, the sides of your face and the back of your neck may still be exposed."
 
-The Skin Cancer Foundation recommends "a brim of at least three inches to shade the face, scalp, neck, shoulders and upper back," and flags the tops of the ears and the back of the neck as places people overlook. The [CDC](https://www.cdc.gov/skin-cancer/sun-safety/index.html) says that if you wear a baseball cap, you should cover your ears and the back of your neck with clothing, use sunscreen, or stay in the shade.
+The Skin Cancer Foundation recommends "a brim of at least three inches to shade the face, scalp, neck, shoulders and upper back." It also flags the tops of the ears and the back of the neck as places people overlook. The [CDC](https://www.cdc.gov/skin-cancer/sun-safety/index.html) says that if you wear a baseball cap, you should cover your ears and the back of your neck with clothing, use sunscreen, or stay in the shade.
 
 Openings matter too. The UPF 50+ rating on our hats describes their fabric. It doesn't cover the open back panel on the Back Nine Ponytail Cap, and it doesn't apply to the mesh backs on our other caps.
 
@@ -139,7 +139,7 @@ These three hats list "UPF 50+ protection" in their details. <!-- OWNER CHECK: U
 
 ### The Small Fit Performance Cap
 
-- **What it is:** An unstructured, low-profile cap in 100% recycled polyester, made in a small fit "for smaller heads, so the brim sits where it should," with fabric rated UPF 50+.
+- **What it is:** An unstructured, low-profile cap in 100% recycled polyester with fabric rated UPF 50+. It's made in a small fit "for smaller heads, so the brim sits where it should."
 - **Best for:** Long, sunny rounds when standard caps slide down over your eyes.
 - **Trade-off:** It has no ponytail opening, and it comes in one small fit, so check the fit guide first.
 - **See it:** [our small-fit UPF 50+ cap](/products/small-fit-performance-cap)

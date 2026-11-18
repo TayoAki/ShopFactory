@@ -103,7 +103,7 @@ Keep a stick or a small tube in your bag so it's there at the turn. The CDC note
 
 The spots people overlook are the ears, the back of the neck, the part and the hairline. The Skin Cancer Foundation's golf advice says to "cover your ears and neck with sunscreen as these areas are still exposed," even under a cap or visor.
 
-Your part and hairline need the same attention. Dermatologist Dendy Engelman, MD, told the [Skin Cancer Foundation](https://www.skincancer.org/blog/ask-the-expert-how-can-i-protect-my-scalp-better/) to apply sunscreen "when hair is dry to wherever your hair parts, any thinning or balding spots and all around the hairline." Braids, cornrows and twists can mean several parts, so count every one. Engelman also says you can layer on cosmetic foundations and powders with SPF 15 and higher, as you would on your face.
+Your part and hairline need the same attention. Dermatologist Dendy Engelman, MD, answered this for the [Skin Cancer Foundation](https://www.skincancer.org/blog/ask-the-expert-how-can-i-protect-my-scalp-better/). Her advice is to apply sunscreen "when hair is dry to wherever your hair parts, any thinning or balding spots and all around the hairline." Braids, cornrows and twists can mean several parts, so count every one. Engelman also says you can layer on cosmetic foundations and powders with SPF 15 and higher, as you would on your face.
 
 A quick checklist before the first tee:
 
@@ -135,7 +135,7 @@ We don't make a wide-brim hat. [Our striped-band bucket hat](/products/19th-hole
 
 ## Tee times, shade and the cart
 
-Book early or late if you can. The Skin Cancer Foundation suggests rounds "very early in the morning or late in the afternoon when the sun is less intense," and notes that "many golf courses offer discounted rates for late tee-off times."
+Book early or late if you can. The Skin Cancer Foundation suggests rounds "very early in the morning or late in the afternoon when the sun is less intense." It also notes that "many golf courses offer discounted rates for late tee-off times."
 
 The CDC says "UV rays are strongest from 10 a.m. to 4 p.m. daylight saving time (9 a.m. to 3 p.m. standard time)." A late-morning or midday tee time puts much of your round inside that window.
 
@@ -145,7 +145,7 @@ Don't forget your eyes. The foundation suggests sunglasses that "block 99-100 pe
 
 ## When should you see a dermatologist?
 
-See a board-certified dermatologist if you find anything that looks like skin cancer. The AAD says that in people with darker skin tones, skin cancer "may show up in areas that receive little, if any, sun," including the palms, soles, fingers and toes, nails, and inside the mouth or on a lip. It also notes that in darker skin tones, skin cancer is "often advanced by the time it's diagnosed."
+See a board-certified dermatologist if you find anything that looks like skin cancer. The AAD says that in people with darker skin tones, skin cancer "may show up in areas that receive little, if any, sun." Its list includes the palms, soles, fingers and toes, nails, and inside the mouth or on a lip. It also notes that in darker skin tones, skin cancer is "often advanced by the time it's diagnosed."
 
 That's why the AAD recommends regular skin self-exams. For darker skin tones, it says to look for:
 

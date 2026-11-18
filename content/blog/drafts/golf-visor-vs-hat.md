@@ -96,7 +96,7 @@ If that sounds like your Saturday, [a cotton golf visor](/collections/visors) is
 
 A cap is the better choice when the sun is strong, your part or scalp burns, or your hair is short or thinning. Druids recommends a cap for strong sunlight and exposed courses, and says "golfers with short, thinning or no hair will usually get more reliable coverage from a cap."
 
-A cap still leaves gaps. The [CDC](https://www.cdc.gov/skin-cancer/sun-safety/index.html) says that if you wear a baseball cap, you should also cover your ears and the back of your neck with clothing, use sunscreen, or stay in the shade.
+A cap still leaves gaps. The [CDC](https://www.cdc.gov/skin-cancer/sun-safety/index.html) has advice for baseball caps. Cover your ears and the back of your neck with clothing, use sunscreen, or stay in the shade.
 
 Heat is where a cap gives ground to a visor. A mesh back helps. Our Range Day Mesh Cap has "a soft mesh back for hot range sessions," and the Cart Path Trucker has a breathable mesh back too.
 
@@ -104,9 +104,9 @@ Two of our caps are made with fabric rated UPF 50+: the Back Nine Ponytail Cap a
 
 ## Do visors protect you from the sun?
 
-A visor shades your eyes and face, but it leaves your scalp, part and hairline open to the sun. The [Skin Cancer Foundation's golf advice](https://www.skincancer.org/blog/sun-protection-habits-golf-course/) calls caps and visors "good options which will stay in place and provide coverage to your face," because a wide-brimmed hat "isn't the most practical option on a golf course." Druids names the catch: "exposed areas such as the hairline and parting can still burn."
+A visor shades your eyes and face, but it leaves your scalp, part and hairline open to the sun. The [Skin Cancer Foundation's golf advice](https://www.skincancer.org/blog/sun-protection-habits-golf-course/) says a wide-brimmed hat "isn't the most practical option on a golf course." It calls caps and visors "good options which will stay in place and provide coverage to your face." Druids names the catch: "exposed areas such as the hairline and parting can still burn."
 
-So a visor works best with sunscreen on the parts it leaves open. In a [Skin Cancer Foundation Ask the Expert answer](https://www.skincancer.org/blog/ask-the-expert-how-can-i-protect-my-scalp-better/), dermatologist Dendy Engelman, MD, says to apply sunscreen "when hair is dry to wherever your hair parts, any thinning or balding spots and all around the hairline." With braids or cornrows, that can mean several parts.
+So a visor works best with sunscreen on the parts it leaves open. Dermatologist Dendy Engelman, MD, covered this in a [Skin Cancer Foundation Ask the Expert answer](https://www.skincancer.org/blog/ask-the-expert-how-can-i-protect-my-scalp-better/). Apply sunscreen, she says, "when hair is dry to wherever your hair parts, any thinning or balding spots and all around the hairline." With braids or cornrows, that can mean several parts.
 
 Two honest notes about ours. The Clubhouse Visor sits in our performance line, but it has no UPF rating. And we don't publish brim measurements for any of our hats. The Skin Cancer Foundation's [guide to sun-protective clothing](https://www.skincancer.org/prevention/sun-protection/clothing/clothing-umbrella-sun-protection/) recommends a hat with "a brim of at least three inches to shade the face, scalp, neck, shoulders and upper back." We won't claim any of our brims meets that.
 

@@ -59,7 +59,7 @@ sources:
 
 **Black women's golf groups** give you people to play with, from Wake-Robin Golf Club, founded in 1937, to a free sisterhood with chapters in six metro areas. Below are five groups we checked on their own websites on 18 November 2026, plus one national association open to all women.
 
-Golf is easier to stick with when someone is **waiting for you on the first tee**. Each group here was built around Black women golfers or women of color, and several welcome beginners.
+Golf is easier to stick with when someone is **waiting for you on the first tee**. The five groups here were built around Black women golfers or women of color, and several welcome beginners.
 
 What's below:
 
@@ -83,7 +83,7 @@ Bogey Baby makes hats for this crowd on purpose. Here's [why we center Black wom
 
 ## Long-standing clubs
 
-These clubs were founded by Black women when many courses and clubs shut them out, and all three still run today. Their history gets its own post: [our short history of Black women in golf](/journal/black-women-golf-history).<!-- OWNER CHECK: 11.3 #8. Sibling links assume the /journal/<slug> route. -->
+These three clubs have decades behind them, and all three still play today. Their history gets its own post: [our short history of Black women in golf](/journal/black-women-golf-history).<!-- OWNER CHECK: 11.3 #8. Sibling links assume the /journal/<slug> route. -->
 
 ### Wake-Robin Golf Club
 
@@ -143,7 +143,7 @@ Clemmie Perry established Women of Color Golf and its youth program, Girls on th
 
 ### LPGA Amateur Golf Association
 
-The LPGA Amateur Golf Association isn't specific to Black women golfers, but it reaches a lot of cities and it welcomes beginners through its Let's Go Golf 101 program ([LPGA Amateurs, Memberships](https://lpgaamateurs.com/memberships/)).
+The LPGA Amateur Golf Association isn't specific to Black women golfers. It's here because it organizes members into local chapters, and its memberships include access to a program called Let's Go Golf 101 ([LPGA Amateurs, Memberships](https://lpgaamateurs.com/memberships/)).
 
 - **Where:** Local chapters around the country. Members who don't live near a chapter can join At Large.
 - **Who it's for:** Members must be 18 or older.
@@ -157,9 +157,9 @@ Start with the groups that already have chapters, then widen the search.
 
 <!-- IMAGE: black-womens-golf-groups-us-map.svg (Path C SVG, see heroImage), placed here after the first paragraph. Width and height set explicitly, loading="lazy", decoding="async". -->
 
-1. **Check chapter lists.** Black Girls Golf lists six chapters, and the LPGA Amateurs have local chapters in many areas.
-2. **Ask at your local course.** The pro shop at a public course will know which women's leagues and clinics play there.
-3. **Search your city.** Try your city's name with "Black women golf" on Instagram and in local Facebook groups. Plenty of newer groups start there.
+1. **Check chapter lists.** Black Girls Golf lists six chapters, and the LPGA Amateurs organize full members into local chapters.
+2. **Ask at your local course.** The pro shop at a public course can tell you which women's leagues and clinics play there.
+3. **Search your city.** Try your city's name with "Black women golf" on Instagram and in local Facebook groups, then check that the group has a current site or recent posts.
 4. **Ask four questions before you join.** Is it open to beginners? What does it cost? How often does it play? Where?
 5. **Start one.** Black Girls Golf takes applications to start a chapter. A new chapter launches with an in-person meetup once it has volunteer ambassadors and at least 25 active members.
 
@@ -172,7 +172,7 @@ Bring what you'd bring to any first round, plus a friend if you can.
 - **Clubs, if you have them.** If you don't, ask the organizer whether the clinic has clubs you can borrow.
 - **Clothes that meet the course's dress code.** Our guide to [what to wear golfing for the first time](/journal/what-to-wear-golfing-women) covers outfits by weather.
 - **Sunscreen.** The Skin Cancer Foundation's [golf advice](https://www.skincancer.org/blog/sun-protection-habits-golf-course/) is water-resistant, broad-spectrum SPF 30 or higher, reapplied every two hours or more often if you're sweating heavily. That's general guidance, not medical advice.
-- **Water and a snack.** Clinics and 9-hole leagues can run longer than you expect.
+- **Water and a snack.** Not every course sells food at the range, so bring your own.
 - **A hat that fits your head and your hair.** We make [golf hats made for women](/collections/all) who play, with ponytail openings, a small fit and adjustable closures.
 - **Your golf buddy.** Two new faces are easier than one. If you're both buying, look at [matching hats for the group](/pages/golf-buddy).
 

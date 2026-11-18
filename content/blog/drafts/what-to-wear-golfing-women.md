@@ -158,7 +158,7 @@ If caps usually slip down over your eyes, [find your fit before you buy](/pages/
 Bring a glove, sunscreen, water and a layer. Here's the full list:
 
 - **A golf glove.** Ship Sticks suggests packing "a few extra gloves in case yours get too wet to use."
-- **Sunscreen.** The Skin Cancer Foundation's golf advice is a water-resistant, broad-spectrum SPF 30 or higher, at least one ounce, 30 minutes before you head out. Reapply every two hours, or more often if you're sweating heavily.
+- **Sunscreen.** The Skin Cancer Foundation's golf advice calls for a water-resistant, broad-spectrum SPF 30 or higher, at least one ounce, 30 minutes before you head out. Reapply every two hours, or more often if you're sweating heavily.
 - **Sunscreen for your part.** Dermatologist Dendy Engelman, MD, told the [Skin Cancer Foundation](https://www.skincancer.org/blog/ask-the-expert-how-can-i-protect-my-scalp-better/) to apply it "when hair is dry to wherever your hair parts."
 - **Sunglasses.** The Skin Cancer Foundation suggests a pair that blocks "99-100 percent of UV radiation."
 - **Water and a snack.** You'll be out for a while.
