@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { EmailCapture } from '@/components/EmailCapture';
 import { JsonLd } from '@/components/JsonLd';
-import { ProductCard } from '@/components/ProductCard';
+import { CollectionBrowser } from '@/components/CollectionBrowser';
 import { TrustLine } from '@/components/TrustLine';
 import { collections } from '@/data/products';
 import { getCollection, productsIn } from '@/lib/catalog';
@@ -61,19 +61,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ han
               </Link>
             ))}
           </nav>
-          <p className="muted" style={{ marginBottom: 16 }}>{items.length} {items.length === 1 ? 'hat' : 'hats'}</p>
-          <div className="grid grid--4">
-            {items.map((p, i) => (
-              <ProductCard key={p.handle} product={p} priority={i < 2} />
-            ))}
-            {!site.dropMode && items.length >= 4 && (
-              <Link href="/pages/golf-buddy" className="card" style={{ background: 'var(--pine-900)', color: 'var(--cream-ink)', borderRadius: 'var(--radius)', padding: 20, justifyContent: 'space-between' }}>
-                <span className="badge">Most popular</span>
-                <span className="display" style={{ color: 'var(--cream-ink)', fontSize: '1.7rem', lineHeight: 1.15 }}>Bring your golf buddy</span>
-                <span>Save 10% on 2 hats and 15% on 3 or more. Mix any styles. →</span>
-              </Link>
-            )}
-          </div>
+          <CollectionBrowser key={handle} products={items} />
         </div>
       </section>
 
