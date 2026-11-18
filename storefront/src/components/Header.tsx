@@ -53,7 +53,7 @@ export function Header() {
               <Icon name="menu" />
             </button>
             <Link href="/" className="desk-wordmark" aria-label="Bogey Baby home">
-              <Image src="/brand/wordmark-pine-300.webp" alt="Bogey Baby" width={300} height={54} priority />
+              <Image src="/brand/wordmark-stitched.webp" alt="Bogey Baby" width={1200} height={293} sizes="180px" priority />
             </Link>
             <nav className="nav" aria-label="Main">
               <details className="mega" ref={megaRef}>
@@ -79,7 +79,7 @@ export function Header() {
           </div>
           <Link href="/" className="header__brand" aria-label="Bogey Baby home">
             <Image className="header__badge" src="/brand/golfer-badge-192.webp" alt="" width={192} height={192} priority />
-            <Image className="header__wordmark header__wordmark--mobile" src="/brand/wordmark-pine-300.webp" alt="Bogey Baby" width={300} height={54} priority />
+            <Image className="header__wordmark header__wordmark--mobile" src="/brand/wordmark-stitched.webp" alt="Bogey Baby" width={1200} height={293} sizes="144px" priority />
           </Link>
           <div className="header__right">
             <nav className="nav" aria-label="Help">
@@ -105,7 +105,7 @@ export function Header() {
       <div className="overlay" data-open={menuOpen} onClick={() => setMenuOpen(false)} aria-hidden="true" />
       <aside className="drawer drawer--left" data-open={menuOpen} aria-label="Menu" aria-hidden={!menuOpen} inert={!menuOpen}>
         <div className="drawer__head">
-          <Image src="/brand/wordmark-pine-300.webp" alt="Bogey Baby" width={150} height={27} />
+          <Image src="/brand/wordmark-stitched.webp" alt="Bogey Baby" width={1200} height={293} sizes="150px" style={{ width: 150, height: 'auto' }} />
           <button className="icon-btn" aria-label="Close menu" onClick={() => setMenuOpen(false)}>
             <Icon name="close" />
           </button>
