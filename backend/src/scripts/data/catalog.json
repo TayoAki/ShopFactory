@@ -1,0 +1,1254 @@
+[
+  {
+    "handle": "cream-rope-cap",
+    "title": "The Cream Rope Cap",
+    "subtitle": "Embroidered rope cap",
+    "line": "flagship",
+    "style": "cap",
+    "price": 3800,
+    "decoration": "embroidery",
+    "description": "Warm cream with a white rope across the brim and our golfer stitched mid-swing on the front. The hat that started Bogey Baby: good for the first tee, the 19th hole and lunch after.",
+    "features": {
+      "rope": true
+    },
+    "fit": "Adjustable. Not sure about fit? Exchanges are free within 30 days.",
+    "details": [
+      {
+        "label": "Color",
+        "value": "Warm cream with a white rope across the brim"
+      },
+      {
+        "label": "Decoration",
+        "value": "Multicolor embroidered golfer on the front"
+      },
+      {
+        "label": "Shape",
+        "value": "Five-panel cap with a curved brim"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Cream",
+        "slug": "cream",
+        "swatch": "#EFE6CF",
+        "image": {
+          "src": "/images/products/flagship-cream-front.webp",
+          "alt": "The Cream Rope Cap, front view, with the embroidered golfer",
+          "width": 1200,
+          "height": 1500
+        },
+        "printify": {
+          "color": "Ivory",
+          "variantId": 288216
+        }
+      }
+    ],
+    "gallery": [
+      {
+        "src": "/images/products/flagship-cream-macro.webp",
+        "alt": "Close-up of the golfer embroidered on the Cream Rope Cap",
+        "width": 928,
+        "height": 1152,
+        "ai": true
+      },
+      {
+        "src": "/images/lifestyle/cap-on-pine.webp",
+        "alt": "The Cream Rope Cap on dark green fabric beside a golf ball",
+        "width": 900,
+        "height": 1125
+      },
+      {
+        "src": "/images/lifestyle/flagship-on-head.webp",
+        "alt": "A golfer wearing the Cream Rope Cap on the course",
+        "width": 928,
+        "height": 1152,
+        "ai": true
+      },
+      {
+        "src": "/images/lifestyle/cart-friends.webp",
+        "alt": "Two friends in Cream Rope Caps laugh beside a golf cart",
+        "width": 1350,
+        "height": 900
+      }
+    ],
+    "collections": [
+      "all",
+      "embroidered",
+      "caps",
+      "rope-caps"
+    ],
+    "badge": "Best seller",
+    "source": {
+      "kind": "printify",
+      "blueprintId": 6597,
+      "printProviderId": 99,
+      "brand": "Comfort Colors",
+      "model": "CCRC0",
+      "productId": "6afd48122457491ec709aff7"
+    }
+  },
+  {
+    "handle": "sunwashed-rope-cap",
+    "title": "The Sunwashed Rope Cap",
+    "subtitle": "Embroidered rope cap",
+    "line": "classics",
+    "style": "cap",
+    "price": 3800,
+    "decoration": "embroidery",
+    "description": "Our golfer, stitched on a lightweight ripstop rope cap in soft washed colors. A performance sweatband keeps it comfortable through a long round.",
+    "features": {
+      "rope": true
+    },
+    "fit": "Adjustable plastic snapback.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% polyester micro ripstop, 3.69 oz./yd²"
+      },
+      {
+        "label": "Shape",
+        "value": "Semi-structured five-panel, high profile"
+      },
+      {
+        "label": "Brim",
+        "value": "Slightly curved bill with a rope braid"
+      },
+      {
+        "label": "Inside",
+        "value": "Performance sweatband"
+      },
+      {
+        "label": "Closure",
+        "value": "Plastic snapback"
+      },
+      {
+        "label": "Decoration",
+        "value": "Embroidered golfer on the front"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Espresso",
+        "slug": "espresso",
+        "swatch": "#4A3226",
+        "image": {
+          "src": "/images/products/p-rope-espresso.webp",
+          "alt": "The Sunwashed Rope Cap in Espresso with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Espresso",
+          "variantId": 288210
+        }
+      },
+      {
+        "name": "Chambray",
+        "slug": "chambray",
+        "swatch": "#8FA6BF",
+        "image": {
+          "src": "/images/products/p-rope-chambray.webp",
+          "alt": "The Sunwashed Rope Cap in Chambray with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Chambray",
+          "variantId": 288214
+        }
+      },
+      {
+        "name": "Peachy",
+        "slug": "peachy",
+        "swatch": "#F2C1A5",
+        "image": {
+          "src": "/images/products/p-rope-peachy.webp",
+          "alt": "The Sunwashed Rope Cap in Peachy with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Peachy",
+          "variantId": 288212
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "embroidered",
+      "caps",
+      "rope-caps"
+    ],
+    "badge": "New",
+    "source": {
+      "kind": "printify",
+      "blueprintId": 6597,
+      "printProviderId": 99,
+      "brand": "Comfort Colors",
+      "model": "CCRC0",
+      "productId": "6afd4839c9c982cfa30d38a0"
+    }
+  },
+  {
+    "handle": "front-nine-ponytail-cap",
+    "title": "The Front Nine Ponytail Cap",
+    "subtitle": "Embroidered ponytail cap",
+    "line": "classics",
+    "style": "cap",
+    "price": 3800,
+    "decoration": "embroidery",
+    "description": "A concealed ponytail opening at the back means your hair goes where you want it. Washed cotton, a low-profile fit and a sweatband that resists makeup. Our golfer is stitched on the front.",
+    "features": {
+      "ponytail": "concealed",
+      "makeupResistant": true,
+      "wicking": true
+    },
+    "fit": "Unstructured, low profile. Antique brass tri-glide strap adjusts to fit.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% cotton pigment-washed twill"
+      },
+      {
+        "label": "Shape",
+        "value": "Unstructured six-panel, low profile"
+      },
+      {
+        "label": "Hair",
+        "value": "Evolve™ concealed ponytail opening"
+      },
+      {
+        "label": "Inside",
+        "value": "Elude™ makeup-resistant, breathable, wicking sweatband"
+      },
+      {
+        "label": "Brim",
+        "value": "Pre-curved, with a contrasting pattern undervisor"
+      },
+      {
+        "label": "Closure",
+        "value": "Antique brass tri-glide"
+      },
+      {
+        "label": "Decoration",
+        "value": "Embroidered golfer on the front"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Sage",
+        "slug": "sage",
+        "swatch": "#A9B8A0",
+        "image": {
+          "src": "/images/products/p-ponytail-sage.webp",
+          "alt": "The Front Nine Ponytail Cap in Sage with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Sage / Polka Dots",
+          "variantId": 147848
+        }
+      },
+      {
+        "name": "Vanilla",
+        "slug": "vanilla",
+        "swatch": "#EFE6CF",
+        "image": {
+          "src": "/images/products/p-ponytail-vanilla.webp",
+          "alt": "The Front Nine Ponytail Cap in Vanilla with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Vanilla / Longhorn",
+          "variantId": 147857
+        }
+      },
+      {
+        "name": "Rose",
+        "slug": "rose",
+        "swatch": "#D9A5A5",
+        "image": {
+          "src": "/images/products/p-ponytail-rose.webp",
+          "alt": "The Front Nine Ponytail Cap in Rose with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Rose / Polka Dots",
+          "variantId": 147850
+        }
+      }
+    ],
+    "gallery": [
+      {
+        "src": "/images/lifestyle/ponytail-back.webp",
+        "alt": "A golfer from behind with her ponytail through the back of the cap",
+        "width": 928,
+        "height": 1152,
+        "ai": true
+      }
+    ],
+    "collections": [
+      "all",
+      "embroidered",
+      "caps",
+      "ponytail-caps"
+    ],
+    "badge": "Made for ponytails",
+    "source": {
+      "kind": "printify",
+      "blueprintId": 2667,
+      "printProviderId": 99,
+      "brand": "Infinity Her",
+      "model": "CASSIE",
+      "productId": "6afd483c407fa5bff003727b"
+    }
+  },
+  {
+    "handle": "range-day-mesh-cap",
+    "title": "The Range Day Mesh Cap",
+    "subtitle": "Embroidered mesh-back cap",
+    "line": "classics",
+    "style": "cap",
+    "price": 3600,
+    "decoration": "embroidery",
+    "description": "A washed-cotton front, a soft mesh back for hot range sessions and a concealed ponytail opening. Our golfer is stitched on the front.",
+    "features": {
+      "ponytail": "concealed",
+      "makeupResistant": true,
+      "meshBack": true,
+      "wicking": true
+    },
+    "fit": "Unstructured, low profile. Plastic snapback.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% cotton pigment-washed twill front, 100% soft polyester mesh back"
+      },
+      {
+        "label": "Shape",
+        "value": "Unstructured six-panel, low profile"
+      },
+      {
+        "label": "Hair",
+        "value": "Evolve™ concealed ponytail opening"
+      },
+      {
+        "label": "Inside",
+        "value": "Elude™ makeup-resistant, breathable, moisture-management sweatband"
+      },
+      {
+        "label": "Brim",
+        "value": "Pre-curved, pattern undervisor"
+      },
+      {
+        "label": "Closure",
+        "value": "Plastic snapback"
+      },
+      {
+        "label": "Decoration",
+        "value": "Embroidered golfer on the front"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Sage",
+        "slug": "sage",
+        "swatch": "#A9B8A0",
+        "image": {
+          "src": "/images/products/p-mesh-sage.webp",
+          "alt": "The Range Day Mesh Cap in Sage with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Sage / Polka Dots",
+          "variantId": 123002
+        }
+      },
+      {
+        "name": "Lavender",
+        "slug": "lavender",
+        "swatch": "#B9A9CF",
+        "image": {
+          "src": "/images/products/p-mesh-lavender.webp",
+          "alt": "The Range Day Mesh Cap in Lavender with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Lavender / Stripes",
+          "variantId": 122995
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "embroidered",
+      "caps",
+      "ponytail-caps"
+    ],
+    "source": {
+      "kind": "printify",
+      "blueprintId": 2003,
+      "printProviderId": 99,
+      "brand": "Infinity Her",
+      "model": "TESS",
+      "productId": "6afd483ec9c982cfa30d38a6"
+    }
+  },
+  {
+    "handle": "tee-time-dad-cap",
+    "title": "The Tee Time Dad Cap",
+    "subtitle": "Embroidered dad cap",
+    "line": "classics",
+    "style": "cap",
+    "price": 3400,
+    "decoration": "embroidery",
+    "description": "The easy, broken-in cap for early tee times. Soft cotton, a relaxed low profile and an antique brass buckle, with our golfer stitched on the front.",
+    "features": {},
+    "fit": "Unstructured, low profile. Hideaway strap with antique brass buckle.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% cotton"
+      },
+      {
+        "label": "Shape",
+        "value": "Unstructured six-panel, low profile"
+      },
+      {
+        "label": "Brim",
+        "value": "Permacurv® visor with four-row stitching"
+      },
+      {
+        "label": "Closure",
+        "value": "Self-fabric hideaway strap with antique brass buckle"
+      },
+      {
+        "label": "Decoration",
+        "value": "Embroidered golfer on the front"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Spruce",
+        "slug": "spruce",
+        "swatch": "#1F4A3A",
+        "image": {
+          "src": "/images/products/p-dad-spruce.webp",
+          "alt": "The Tee Time Dad Cap in Spruce with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Spruce",
+          "variantId": 105379
+        }
+      },
+      {
+        "name": "Stone",
+        "slug": "stone",
+        "swatch": "#CFC4AD",
+        "image": {
+          "src": "/images/products/p-dad-stone.webp",
+          "alt": "The Tee Time Dad Cap in Stone with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Stone",
+          "variantId": 105380
+        }
+      },
+      {
+        "name": "White",
+        "slug": "white",
+        "swatch": "#F8F8F4",
+        "image": {
+          "src": "/images/products/p-dad-white.webp",
+          "alt": "The Tee Time Dad Cap in White with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "White",
+          "variantId": 105381
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "embroidered",
+      "caps"
+    ],
+    "source": {
+      "kind": "printify",
+      "blueprintId": 1447,
+      "printProviderId": 217,
+      "brand": "Yupoong",
+      "model": "6245CM",
+      "productId": "6afd4841e37c0316bf055b91"
+    }
+  },
+  {
+    "handle": "winter-rules-beanie",
+    "title": "The Winter Rules Beanie",
+    "subtitle": "Embroidered cuffed beanie",
+    "line": "classics",
+    "style": "beanie",
+    "price": 3200,
+    "decoration": "embroidery",
+    "description": "For frosty early rounds and the walk to the clubhouse. A soft, stretchy cuffed knit with our golfer stitched on the cuff.",
+    "features": {
+      "warm": true
+    },
+    "fit": "One size fits all, with a stretchy knit.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% Turbo acrylic, hypoallergenic"
+      },
+      {
+        "label": "Shape",
+        "value": "12\" (30 cm) cuffed beanie"
+      },
+      {
+        "label": "Fit",
+        "value": "One size fits all"
+      },
+      {
+        "label": "Decoration",
+        "value": "Embroidered golfer on the cuff"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Spruce",
+        "slug": "spruce",
+        "swatch": "#1F4A3A",
+        "image": {
+          "src": "/images/products/p-beanie-spruce.webp",
+          "alt": "The Winter Rules Beanie in Spruce with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Spruce",
+          "variantId": 116432
+        }
+      },
+      {
+        "name": "Gold",
+        "slug": "gold",
+        "swatch": "#C9A24A",
+        "image": {
+          "src": "/images/products/p-beanie-gold.webp",
+          "alt": "The Winter Rules Beanie in Gold with the embroidered golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Gold",
+          "variantId": 116422
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "embroidered",
+      "beanies"
+    ],
+    "source": {
+      "kind": "printify",
+      "blueprintId": 1691,
+      "printProviderId": 99,
+      "brand": "Yupoong",
+      "model": "1501KC",
+      "productId": "6afd4843407fa5bff0037282"
+    }
+  },
+  {
+    "handle": "back-nine-ponytail-cap",
+    "title": "The Back Nine Ponytail Cap",
+    "subtitle": "UPF 50+ performance ponytail cap",
+    "line": "performance",
+    "style": "cap",
+    "price": 3800,
+    "decoration": "print",
+    "description": "Built for hot rounds: UPF 50+ fabric, moisture-wicking performance and an open back with elastic cross bands for your ponytail or bun. Our golfer is printed on the front-left panel.",
+    "features": {
+      "ponytail": "open-back",
+      "upf50": true,
+      "wicking": true,
+      "recycled": true
+    },
+    "fit": "Unstructured, low profile. Micro hook-and-loop closure.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% recycled polyester"
+      },
+      {
+        "label": "Sun",
+        "value": "UPF 50+ protection"
+      },
+      {
+        "label": "Hair",
+        "value": "Open back panel with matching elastic cross bands"
+      },
+      {
+        "label": "Inside",
+        "value": "Moisture-management, antimicrobial sweatband"
+      },
+      {
+        "label": "Shape",
+        "value": "Unstructured six-panel, low profile; grey undervisor"
+      },
+      {
+        "label": "Closure",
+        "value": "Micro hook-and-loop"
+      },
+      {
+        "label": "Decoration",
+        "value": "Printed golfer (DTF) on the front-left panel"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Winter Green",
+        "slug": "winter-green",
+        "swatch": "#BFE0CF",
+        "image": {
+          "src": "/images/products/p-perfpony-wintergreen.webp",
+          "alt": "The Back Nine Ponytail Cap in Winter Green with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Winter Green",
+          "variantId": 301482
+        }
+      },
+      {
+        "name": "White",
+        "slug": "white",
+        "swatch": "#F8F8F4",
+        "image": {
+          "src": "/images/products/p-perfpony-white.webp",
+          "alt": "The Back Nine Ponytail Cap in White with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "White",
+          "variantId": 301478
+        }
+      },
+      {
+        "name": "Light Pink",
+        "slug": "light-pink",
+        "swatch": "#F4CCD2",
+        "image": {
+          "src": "/images/products/p-perfpony-lightpink.webp",
+          "alt": "The Back Nine Ponytail Cap in Light Pink with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Light Pink",
+          "variantId": 301474
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "performance",
+      "caps",
+      "ponytail-caps"
+    ],
+    "badge": "UPF 50+",
+    "source": {
+      "kind": "printify",
+      "blueprintId": 6963,
+      "printProviderId": 217,
+      "brand": "Imperial",
+      "model": "L338",
+      "productId": "6afd4846f6a94476cc098310"
+    }
+  },
+  {
+    "handle": "small-fit-performance-cap",
+    "title": "The Small Fit Performance Cap",
+    "subtitle": "UPF 50+ small-fit cap",
+    "line": "performance",
+    "style": "cap",
+    "price": 3600,
+    "decoration": "print",
+    "description": "Made in a small fit for smaller heads, so the brim sits where it should. UPF 50+ fabric and moisture-wicking performance for long, sunny rounds. Our golfer is printed on the front-left panel.",
+    "features": {
+      "smallFit": true,
+      "upf50": true,
+      "wicking": true,
+      "recycled": true
+    },
+    "fit": "Small fit. D-ring micro hook-and-loop closure.",
+    "details": [
+      {
+        "label": "Fit",
+        "value": "Small fit"
+      },
+      {
+        "label": "Fabric",
+        "value": "100% recycled polyester"
+      },
+      {
+        "label": "Sun",
+        "value": "UPF 50+ protection"
+      },
+      {
+        "label": "Inside",
+        "value": "Moisture-wicking, antimicrobial sweatband"
+      },
+      {
+        "label": "Shape",
+        "value": "Unstructured six-panel, low profile; grey undervisor"
+      },
+      {
+        "label": "Closure",
+        "value": "D-ring micro hook-and-loop"
+      },
+      {
+        "label": "Decoration",
+        "value": "Printed golfer (DTF) on the front-left panel"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Sage",
+        "slug": "sage",
+        "swatch": "#A9B8A0",
+        "image": {
+          "src": "/images/products/p-smallfit-sage.webp",
+          "alt": "The Small Fit Performance Cap in Sage with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Sage",
+          "variantId": 301479
+        }
+      },
+      {
+        "name": "Putty",
+        "slug": "putty",
+        "swatch": "#CDBFA8",
+        "image": {
+          "src": "/images/products/p-smallfit-putty.webp",
+          "alt": "The Small Fit Performance Cap in Putty with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Putty",
+          "variantId": 301488
+        }
+      },
+      {
+        "name": "Light Pink",
+        "slug": "light-pink",
+        "swatch": "#F4CCD2",
+        "image": {
+          "src": "/images/products/p-smallfit-lightpink.webp",
+          "alt": "The Small Fit Performance Cap in Light Pink with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Light Pink",
+          "variantId": 301495
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "performance",
+      "caps"
+    ],
+    "badge": "Small fit",
+    "source": {
+      "kind": "printify",
+      "blueprintId": 6962,
+      "printProviderId": 217,
+      "brand": "Imperial",
+      "model": "L210P",
+      "productId": "6afd4849e37c0316bf055b9a"
+    }
+  },
+  {
+    "handle": "clubhouse-visor",
+    "title": "The Clubhouse Visor",
+    "subtitle": "Cotton golf visor",
+    "line": "performance",
+    "style": "visor",
+    "price": 3000,
+    "decoration": "print",
+    "description": "Shade for your eyes, nothing on your hair. Soft bio-washed cotton twill with a pre-curved brim and an easy hook-and-loop strap. Our golfer is printed on the front.",
+    "features": {},
+    "fit": "Adjustable hook-and-loop strap.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% cotton bio-washed chino twill"
+      },
+      {
+        "label": "Brim",
+        "value": "Pre-curved visor"
+      },
+      {
+        "label": "Closure",
+        "value": "Hook-and-loop"
+      },
+      {
+        "label": "Label",
+        "value": "Tear-away label"
+      },
+      {
+        "label": "Decoration",
+        "value": "Printed golfer (DTF) on the front"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Forest",
+        "slug": "forest",
+        "swatch": "#2F4A35",
+        "image": {
+          "src": "/images/products/p-visor-forest.webp",
+          "alt": "The Clubhouse Visor in Forest with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Forest",
+          "variantId": 325346
+        }
+      },
+      {
+        "name": "Stone",
+        "slug": "stone",
+        "swatch": "#CFC4AD",
+        "image": {
+          "src": "/images/products/p-visor-stone.webp",
+          "alt": "The Clubhouse Visor in Stone with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Stone",
+          "variantId": 325362
+        }
+      },
+      {
+        "name": "White",
+        "slug": "white",
+        "swatch": "#F8F8F4",
+        "image": {
+          "src": "/images/products/p-visor-white.webp",
+          "alt": "The Clubhouse Visor in White with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "White",
+          "variantId": 325358
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "performance",
+      "visors"
+    ],
+    "source": {
+      "kind": "printify",
+      "blueprintId": 7650,
+      "printProviderId": 217,
+      "brand": "ValuCap",
+      "model": "VC500",
+      "productId": "6afd484b407fa5bff003728c"
+    }
+  },
+  {
+    "handle": "19th-hole-bucket",
+    "title": "The 19th Hole Bucket",
+    "subtitle": "UPF 50+ performance bucket hat",
+    "line": "performance",
+    "style": "bucket",
+    "price": 4000,
+    "decoration": "print",
+    "description": "All-around shade for the sunniest rounds. UPF 50+ performance fabric, a cooling sweatband and sewn eyelets, with a green-striped band and our golfer printed on the front.",
+    "features": {
+      "upf50": true,
+      "wicking": true
+    },
+    "fit": "Unstructured, relaxed fit.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% polyester performance fabric"
+      },
+      {
+        "label": "Sun",
+        "value": "UPF 50+ protection"
+      },
+      {
+        "label": "Inside",
+        "value": "Performance sweatband; sewn eyelets for airflow"
+      },
+      {
+        "label": "Shape",
+        "value": "Unstructured bucket with a striped band"
+      },
+      {
+        "label": "Maker mark",
+        "value": "Small Imperial logo printed on the left side of the crown"
+      },
+      {
+        "label": "Decoration",
+        "value": "Printed golfer (DTF) on the front"
+      }
+    ],
+    "colors": [
+      {
+        "name": "White / Green",
+        "slug": "white-green",
+        "swatch": "#F8F8F4",
+        "image": {
+          "src": "/images/products/p-bucket19-whitegreen.webp",
+          "alt": "The 19th Hole Bucket in White with a green band and the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "White/ Green",
+          "variantId": 259237
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "performance",
+      "bucket-hats"
+    ],
+    "badge": "UPF 50+",
+    "source": {
+      "kind": "printify",
+      "blueprintId": 5836,
+      "printProviderId": 217,
+      "brand": "Imperial",
+      "model": "1371P",
+      "productId": "6afd484ef6a94476cc09831a"
+    }
+  },
+  {
+    "handle": "weekend-bucket-hat",
+    "title": "The Weekend Bucket Hat",
+    "subtitle": "Cotton bucket hat",
+    "line": "classics",
+    "style": "bucket",
+    "price": 3400,
+    "decoration": "print",
+    "description": "A soft cotton bucket for range days, beach weekends and everything after. Side eyelets keep it airy. Our golfer is printed on the front.",
+    "features": {},
+    "fit": "Snug fit, one size fits all.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "Light to mid-weight 100% cotton"
+      },
+      {
+        "label": "Fit",
+        "value": "Snug, one size fits all"
+      },
+      {
+        "label": "Brim",
+        "value": "Reinforced brim with stitching detail"
+      },
+      {
+        "label": "Airflow",
+        "value": "Side eyelets"
+      },
+      {
+        "label": "Decoration",
+        "value": "Printed golfer (DTF) on the front"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Ecru",
+        "slug": "ecru",
+        "swatch": "#E9E1CF",
+        "image": {
+          "src": "/images/products/p-wbucket-ecru.webp",
+          "alt": "The Weekend Bucket Hat in Ecru with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Ecru",
+          "variantId": 402676
+        }
+      },
+      {
+        "name": "Hazy Pink",
+        "slug": "hazy-pink",
+        "swatch": "#E7C4C4",
+        "image": {
+          "src": "/images/products/p-wbucket-hazypink.webp",
+          "alt": "The Weekend Bucket Hat in Hazy Pink with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Hazy Pink",
+          "variantId": 402677
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "bucket-hats"
+    ],
+    "source": {
+      "kind": "printify",
+      "blueprintId": 10920,
+      "printProviderId": 217,
+      "brand": "AS Colour",
+      "model": "1178",
+      "productId": "6afd4850d6206acee60fe627"
+    }
+  },
+  {
+    "handle": "cart-path-trucker",
+    "title": "The Cart Path Trucker",
+    "subtitle": "Women's trucker cap",
+    "line": "classics",
+    "style": "cap",
+    "price": 3600,
+    "decoration": "print",
+    "description": "A structured trucker with a breathable mesh back, a makeup-resistant sweatband and a concealed ponytail opening. Our golfer is printed on the front-left panel.",
+    "features": {
+      "ponytail": "concealed",
+      "makeupResistant": true,
+      "meshBack": true,
+      "wicking": true
+    },
+    "fit": "Structured six-panel, mid profile. Snapback closure.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% cotton printed micro canvas front; 100% polyester mesh back"
+      },
+      {
+        "label": "Shape",
+        "value": "Structured six-panel, mid profile; pre-curved visor"
+      },
+      {
+        "label": "Hair",
+        "value": "Evolve™ concealed ponytail opening"
+      },
+      {
+        "label": "Inside",
+        "value": "Elude™ makeup-resistant, breathable sweatband"
+      },
+      {
+        "label": "Closure",
+        "value": "Snapback"
+      },
+      {
+        "label": "Decoration",
+        "value": "Printed golfer (DTF) on the front-left panel"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Emerald",
+        "slug": "emerald",
+        "swatch": "#2E7D5B",
+        "image": {
+          "src": "/images/products/p-trucker-emerald.webp",
+          "alt": "The Cart Path Trucker in Emerald with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Emerald/ White",
+          "variantId": 305069
+        }
+      },
+      {
+        "name": "Vanilla",
+        "slug": "vanilla",
+        "swatch": "#EFE6CF",
+        "image": {
+          "src": "/images/products/p-trucker-vanilla.webp",
+          "alt": "The Cart Path Trucker in Vanilla with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Vanilla/ White",
+          "variantId": 305073
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "caps",
+      "ponytail-caps"
+    ],
+    "source": {
+      "kind": "printify",
+      "blueprintId": 7033,
+      "printProviderId": 217,
+      "brand": "Infinity Her",
+      "model": "CHARLIE",
+      "productId": "6afd4853407fa5bff0037297"
+    }
+  },
+  {
+    "handle": "the-turn-cord-cap",
+    "title": "The Turn Cord Cap",
+    "subtitle": "Corduroy ponytail cap",
+    "line": "classics",
+    "style": "cap",
+    "price": 3600,
+    "decoration": "print",
+    "description": "Thin-wale corduroy for cool-weather rounds, with a mesh back, a makeup-resistant sweatband and a concealed ponytail opening. Our golfer is printed on the front-left panel.",
+    "features": {
+      "ponytail": "concealed",
+      "makeupResistant": true,
+      "meshBack": true,
+      "wicking": true
+    },
+    "fit": "Light-structured six-panel, low profile. Snapback closure.",
+    "details": [
+      {
+        "label": "Fabric",
+        "value": "100% cotton thin-wale corduroy front; 100% polyester mesh back"
+      },
+      {
+        "label": "Shape",
+        "value": "Light-structured six-panel, low profile; patterned undervisor"
+      },
+      {
+        "label": "Hair",
+        "value": "Evolve® concealed ponytail opening"
+      },
+      {
+        "label": "Inside",
+        "value": "Elude® makeup-resistant, breathable, moisture-wicking sweatband"
+      },
+      {
+        "label": "Closure",
+        "value": "Snapback"
+      },
+      {
+        "label": "Maker mark",
+        "value": "Tonal Infinity Her icon on the back left"
+      },
+      {
+        "label": "Decoration",
+        "value": "Printed golfer (DTF) on the front-left panel"
+      }
+    ],
+    "colors": [
+      {
+        "name": "Vanilla",
+        "slug": "vanilla",
+        "swatch": "#EFE6CF",
+        "image": {
+          "src": "/images/products/p-cord-vanilla.webp",
+          "alt": "The Turn Cord Cap in Vanilla corduroy with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Vanilla/ Tonal Longhorn/ Vanilla",
+          "variantId": 305090
+        }
+      },
+      {
+        "name": "Chocolate",
+        "slug": "chocolate",
+        "swatch": "#5B3A2B",
+        "image": {
+          "src": "/images/products/p-cord-chocolate.webp",
+          "alt": "The Turn Cord Cap in Chocolate corduroy with the printed golfer",
+          "width": 928,
+          "height": 1152,
+          "ai": true
+        },
+        "printify": {
+          "color": "Chocolate/ Tonal Fawn/ Chocolate",
+          "variantId": 305094
+        }
+      }
+    ],
+    "gallery": [],
+    "collections": [
+      "all",
+      "caps",
+      "ponytail-caps"
+    ],
+    "source": {
+      "kind": "printify",
+      "blueprintId": 7036,
+      "printProviderId": 217,
+      "brand": "Infinity Her",
+      "model": "JO",
+      "productId": "6afd4855d6206acee60fe62a"
+    }
+  }
+]

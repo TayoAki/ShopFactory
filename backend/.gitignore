@@ -1,0 +1,12 @@
+/node_modules
+/.medusa
+/dist
+/build
+/uploads
+.env
+.env.*
+!.env.template
+.DS_Store
+.cache
+coverage
+*.tsbuildinfo
