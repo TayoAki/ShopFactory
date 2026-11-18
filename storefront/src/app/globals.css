@@ -140,7 +140,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 @media (min-width: 900px) { .icon-btn.hide-mobile, .icon-btn.header__search { display: inline-flex; } }
 @media (min-width: 1024px) {
   :root { --header-h: 96px; }
-  /* Desktop: no text menu. At the top of the page the crest patch (168px) is centred on the bar's bottom edge, so
+  /* Desktop: the centered crest and navigation. At the top of the page the crest patch (168px) is centred on the bar's bottom edge, so
      half of it sits on the nav and half hangs below; once the page scrolls it shrinks into the bar (80px). */
   .header__brand { align-self: start; align-items: flex-start; height: var(--header-h); padding: calc(var(--header-h) - 84px) 0 0; position: relative; z-index: 2; }
   .header__badge { display: block; width: 168px; height: 168px; transform-origin: 50% 0; transition: transform 220ms var(--ease); filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3)); }
@@ -406,6 +406,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 @media (min-width: 900px) { .hide-mobile { display: initial; } .hide-desktop { display: none; } }
 
 /* Embroidered primary navigation. The sheet is shared across all four labels. */
+.header__center { display: contents; }
 .header__primary { display: none; }
 .embroidered-nav-link { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; border-radius: 4px; }
 .embroidered-nav-link:focus-visible { outline: 2px solid var(--pine-900); outline-offset: 5px; }
@@ -426,10 +427,12 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .menu-utility-links { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 24px; }
 .menu-utility-links a { color: var(--ink-soft); font-size: .9rem; text-underline-offset: 4px; }
 @media (min-width: 1024px) {
-  .header__primary { display: flex; align-items: center; gap: clamp(14px, 1.8vw, 28px); }
+  .header__primary { display: flex; align-items: center; gap: 20px; }
   .header__left { gap: clamp(10px, 1.4vw, 22px); }
   .header__right { gap: 3px; }
-  .header__primary--right { margin-right: clamp(8px, 1.2vw, 20px); }
+  .header__center { display: grid; grid-template-columns: minmax(0, 1fr) 168px minmax(0, 1fr); align-items: center; gap: 24px; width: 648px; height: var(--header-h); }
+  .header__primary--left { justify-content: flex-end; }
+  .header__primary--right { justify-content: flex-start; }
 }
 
 .embroidered-nav-word--shop { --word-width: 590px; --word-x: -280px; --word-y: -170px; }

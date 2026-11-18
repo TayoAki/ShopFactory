@@ -99,18 +99,20 @@ export function Header() {
             <button className="icon-btn menu-toggle" aria-label="Open menu" aria-controls="main-menu-drawer" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}>
               <Icon name="menu" />
             </button>
+          </div>
+          <div className="header__center">
             <nav className="header__primary header__primary--left" aria-label="Shop navigation">
               {primaryLinks.slice(0, 2).map(word => <NavigationWord key={word.art} word={word} />)}
             </nav>
-          </div>
           <Link href="/" className="header__brand" aria-label="Bogey Baby home">
             <Image className="header__badge" src="/brand/golfer-badge-384.webp" alt="" width={384} height={384} sizes="168px" priority />
             <Image className="header__wordmark header__wordmark--mobile" src="/brand/wordmark-embroidered.webp" alt="Bogey Baby" width={1400} height={191} sizes="230px" priority />
           </Link>
-          <div className="header__right">
             <nav className="header__primary header__primary--right" aria-label="Discover navigation">
               {primaryLinks.slice(2).map(word => <NavigationWord key={word.art} word={word} />)}
             </nav>
+          </div>
+          <div className="header__right">
             <Link href="/search" className="icon-btn header__search" aria-label="Search">
               <Icon name="search" />
             </Link>
