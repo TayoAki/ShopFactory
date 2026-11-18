@@ -31,6 +31,7 @@ npm run build && npm start   # production build (PORT is respected)
 | First-party analytics (server-side, no third-party pixels) | `src/lib/analytics.ts`, `src/app/api/analytics/route.ts` |
 | Waitlist and newsletter (Klaviyo when keys are set) | `src/app/api/waitlist/route.ts` |
 | Lifestyle media manifest | `src/data/media.ts` |
+| Homepage hero video (phone 9:16 and desktop 4:3 cuts, poster frames, pause button) | `src/components/HeroVideo.tsx`, `public/video/`, `scripts/encode-hero-video.py` |
 
 ### Pages
 
@@ -51,6 +52,17 @@ npm run build && npm start   # production build (PORT is respected)
 **Deep links:**
 - `/products/front-nine-ponytail-cap?color=rose&bundle=2` preselects a color and a bundle size.
 - `?src=` and `utm_*` parameters are recorded with page views.
+
+## Hero video
+
+The homepage hero plays the brand film "See You Out There" (15 s, no sound):
+- **Phones** get a 9:16 cut and **desktops** a 4:3 cut. Each shot is reframed around its subject.
+- **Formats:** each cut is a VP9 WebM with an H.264 MP4 fallback, 1.2 to 2.1 MB.
+- **Loading:** a poster frame renders first and stays the largest paint. The video starts after the page loads and fades in.
+- **Skipped** for visitors with reduced motion or Save-Data on.
+- **Pause button:** always shown while the video is playing.
+
+To replace the video, run `python3 scripts/encode-hero-video.py <source.mp4> <out-dir>`. First update the shot cut frames and subject positions at the top of the script, then copy the outputs to `public/video/` and the posters to `public/images/lifestyle/`.
 
 ## Switches (environment variables)
 

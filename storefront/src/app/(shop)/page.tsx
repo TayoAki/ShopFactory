@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArtImage } from '@/components/ArtImage';
 import { EmailCapture } from '@/components/EmailCapture';
 import { FeatureRow } from '@/components/FeatureRow';
+import { HeroVideo } from '@/components/HeroVideo';
 import { Icon } from '@/components/Icon';
 import { ProductCard } from '@/components/ProductCard';
 import { TrustLine } from '@/components/TrustLine';
@@ -23,7 +24,11 @@ export default function HomePage() {
       {/* 1. Hero */}
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero__media">
-          <ArtImage mobile={media.heroMobile} desktop={media.heroDesktop} alt="A golfer in the Cream Rope Cap laughs with friends on the fairway" priority />
+          <ArtImage mobile={media.heroVideoMobile} desktop={media.heroVideoDesktop} alt={media.heroVideoMobile.alt} priority />
+          <HeroVideo
+            mobile={{ webm: '/video/hero-mobile.webm', mp4: '/video/hero-mobile.mp4' }}
+            desktop={{ webm: '/video/hero-desktop.webm', mp4: '/video/hero-desktop.mp4' }}
+          />
         </div>
         <div className="hero__content container">
           <span className="eyebrow">Good company. Better hats.</span>

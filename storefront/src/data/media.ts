@@ -3,6 +3,21 @@
 export interface Media { src: string; width: number; height: number; alt: string; ai: boolean }
 
 export const media = {
+  // First frames of the brand video "See You Out There", reframed for the hero (desktop 4:3, phone 9:16).
+  "heroVideoDesktop": {
+    "src": "/images/lifestyle/hero-video-desktop.webp",
+    "width": 1280,
+    "height": 960,
+    "alt": "The Bogey Baby golfer, embroidered on the front of the Cream Rope Cap",
+    "ai": false
+  },
+  "heroVideoMobile": {
+    "src": "/images/lifestyle/hero-video-mobile.webp",
+    "width": 608,
+    "height": 1080,
+    "alt": "The Bogey Baby golfer, embroidered on the front of the Cream Rope Cap",
+    "ai": false
+  },
   "heroDesktop": {
     "src": "/images/lifestyle/hero-desktop.webp",
     "width": 1376,

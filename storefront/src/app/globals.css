@@ -186,11 +186,23 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 /* ---------- Hero ---------- */
 .hero { position: relative; background: var(--pine-900); color: var(--cream-ink); overflow: hidden; }
 .hero__media { position: relative; width: 100%; height: min(calc(100svh - 100px), 780px); min-height: 540px; }
-.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; opacity: 0; transition: opacity 0.6s ease; }
+.hero__video.is-playing { opacity: 1; }
+.hero__pause { position: absolute; z-index: 3; top: 12px; right: 12px; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(250, 239, 223, 0.5); background: rgba(8, 45, 34, 0.55); color: var(--cream-ink); cursor: pointer; }
+.hero__pause:hover { background: rgba(8, 45, 34, 0.8); }
+.hero__pause:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 2px; }
+@media (min-width: 900px) { .hero__pause { top: auto; bottom: 16px; right: 16px; } }
 .hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 45, 34, 0) 30%, rgba(8, 45, 34, 0.72) 55%, rgba(8, 45, 34, 0.94) 78%, var(--pine-900) 100%); }
 .hero__content { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding-bottom: 22px; }
 .hero__content .trust { margin-top: 12px; }
-@media (max-width: 899px) { .hero h1 { font-size: clamp(2.3rem, 10.5vw, 2.9rem); } .hero__sub { font-size: 1.02rem; margin: 10px 0 16px; } .hero .btn { width: 100%; } }
+@media (max-width: 899px) {
+  .hero h1 { font-size: clamp(2.3rem, 10.5vw, 2.9rem); margin-bottom: 16px; }
+  /* On phones the video carries the story; the long subheading would cover the golfer in most shots. */
+  .hero__sub { display: none; }
+  .hero__media::after { background: linear-gradient(180deg, rgba(8, 45, 34, 0) 48%, rgba(8, 45, 34, 0.7) 66%, rgba(8, 45, 34, 0.94) 82%, var(--pine-900) 100%); }
+  .hero .btn { width: 100%; }
+}
 .hero h1 { color: var(--cream-ink); text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25); }
 .hero .eyebrow { color: var(--gold-light); }
 .hero__sub { font-size: 1.12rem; line-height: 1.55; max-width: 34ch; margin: 14px 0 22px; color: #f3ecd2; }
