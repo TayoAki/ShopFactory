@@ -29,8 +29,8 @@ export default function HomePage() {
           <ArtImage mobile={media.heroVideoMobile} desktop={media.heroVideoDesktop} alt={media.heroVideoMobile.alt} priority />
           <HeroVideo
             heroId="hero"
-            mobile={{ webm: '/video/see-you-out-there-mobile.webm', mp4: '/video/see-you-out-there-mobile.mp4' }}
-            desktop={{ webm: '/video/see-you-out-there-desktop.webm', mp4: '/video/see-you-out-there-desktop.mp4' }}
+            mobile={{ webm: '/video/see-you-out-there-bw-mobile.webm', mp4: '/video/see-you-out-there-bw-mobile.mp4' }}
+            desktop={{ webm: '/video/see-you-out-there-bw-desktop.webm', mp4: '/video/see-you-out-there-bw-desktop.mp4' }}
             revealAt={23.17}
           />
         </div>

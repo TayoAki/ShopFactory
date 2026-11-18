@@ -55,7 +55,7 @@ npm run build && npm start   # production build (PORT is respected)
 
 ## Hero video
 
-The homepage hero loops the brand film (See You Out There, Editor V1 Static Light; 60 s with sound: about 23 s of footage, then the Cream Rope Cap holds). Over it sit two lines and no buttons:
+The homepage hero loops the brand film (See You Out There, Editor V1 BW Through Cap; 60 s with sound: about 23 s of footage, then the Cream Rope Cap holds). Over it sit two lines and no buttons:
 - the headline "Good company. Better hats."
 - "For women who bring their own style to the course."
 
