@@ -364,7 +364,6 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .tile-link::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 45, 34, 0) 40%, rgba(8, 45, 34, 0.85) 100%); }
 .tile-link:hover img { transform: scale(1.04); }
 .tile-link span { position: relative; z-index: 2; padding: 18px; font-family: var(--font-stitch), Georgia, serif; font-size: clamp(1.2rem, 2.4vw, 1.6rem); }
-.demo-banner { background: var(--burgundy); color: var(--cream-ink); text-align: center; font-weight: 700; padding: 5px var(--gutter); font-size: 0.78rem; }
 .check-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .check-list li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; }
 .check-list svg { width: 22px; height: 22px; color: var(--pine-700); margin-top: 2px; }

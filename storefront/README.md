@@ -59,7 +59,7 @@ npm run build && npm start   # production build (PORT is respected)
 | `NEXT_PUBLIC_DROP_MODE=true` | Pre-launch mode: waitlist signups replace add-to-bag sitewide, and the cart is hidden |
 | `NEXT_PUBLIC_DROP_DATE` | Shown in drop-mode copy, e.g. "March 14" |
 | `NEXT_PUBLIC_INDEXABLE=true` | Lets search engines index the site. Leave `false` until launch |
-| `NEXT_PUBLIC_CHECKOUT_MODE` | `demo` (default) runs checkout without taking payment and shows a banner. Set `live` only after Stripe is wired |
+| `NEXT_PUBLIC_CHECKOUT_MODE` | `demo` (default) runs checkout without taking payment; only the checkout page says so. Set `live` only after Stripe is wired |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, sitemap and structured data |
 | `KLAVIYO_PRIVATE_KEY`, `KLAVIYO_LIST_ID` | Send signups to Klaviyo. Without them, signups are logged |
 
