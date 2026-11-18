@@ -1,41 +1,60 @@
-"""Cut the brand video for the homepage hero: a full-frame 16:9 desktop version and a 9:16 phone version
-reframed shot by shot, each as H.264 MP4 and VP9 WebM with no audio, plus a poster from the first frame.
+"""Cut the brand video for the homepage hero.
 
-Usage: python3 scripts/encode-hero-video.py <source.mp4> <out-dir>. Needs ffmpeg with libx264 and libvpx-vp9."""
-import subprocess, sys, os
+Outputs, in <out-dir>:
+  hero-desktop.{webm,mp4}   the full 16:9 frame at 1920x1080
+  hero-mobile.{webm,mp4}    a 9:16 cut (608x1080), reframed shot by shot around each subject
+  hero-{desktop,mobile}-poster.webp       first frame (shown while the video loads)
+  hero-{desktop,mobile}-end.webp          last frame (shown to visitors who already watched it this session)
+Video is VP9 + Opus in WebM, H.264 + AAC in MP4. Pass --no-audio to drop the soundtrack.
 
-SRC = sys.argv[1]
-OUT = sys.argv[2]
+Usage: python3 scripts/encode-hero-video.py <source.mp4> <shots.json> <out-dir> [--no-audio]
+shots.json: {"cuts_s": [0, 1.5333, ..., end], "mobile_centres": [0.55, ...]}: shot boundaries in seconds (timestamps,
+not frame numbers, so dropped frames in the source don't shift them) and one centre per shot (0-1, the subject's
+horizontal position). Find cuts with:
+  ffmpeg -i src.mp4 -filter:v "select='gt(scene,0.25)',showinfo" -an -f null - 2>&1 | grep -o "pts_time:[0-9.]*"
+Needs ffmpeg with libx264, libvpx-vp9 and libopus.
+"""
+import json, os, subprocess, sys
+
+SRC, SHOTS, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
+AUDIO = "--no-audio" not in sys.argv
+cfg = json.load(open(SHOTS))
+CUTS, CENTRES = cfg["cuts_s"], cfg["mobile_centres"]
+assert len(CENTRES) == len(CUTS) - 1, "one mobile centre per shot"
+W, H = 1920, 1080
 os.makedirs(OUT, exist_ok=True)
 
-# Shot boundaries in frames (30 fps), from scene detection, and the subject's horizontal centre (0-1) per shot.
-# DESK_C only matters if the desktop crop is narrower than the full 1920-px frame.
-CUTS = [0, 50, 69, 94, 123, 153, 200, 264, 313, 371, 454]
-DESK_C = [0.50, 0.60, 0.42, 0.32, 0.33, 0.40, 0.56, 0.36, 0.48, 0.57]
-MOB_C = [0.52, 0.42, 0.42, 0.32, 0.33, 0.38, 0.56, 0.36, 0.45, 0.585]
-W, H = 1920, 1080
-
-def graph(cw, centres, scale):
-    parts, labels = [], []
-    for i, c in enumerate(centres):
+def mobile_graph(cw=608):
+    """One crop whose x position switches at each cut time. Nothing is split or re-joined, so every frame and
+    timestamp of the source is kept (trim + concat dropped the last shot when the source had dropped frames)."""
+    xs = []
+    for c in CENTRES:
         x = int(min(max(c * W - cw / 2, 0), W - cw))
-        x -= x % 2
-        parts.append(f"[0:v]trim=start_frame={CUTS[i]}:end_frame={CUTS[i+1]},setpts=PTS-STARTPTS,crop={cw}:{H}:{x}:0[s{i}]")
-        labels.append(f"[s{i}]")
-    parts.append("".join(labels) + f"concat=n={len(centres)}:v=1:a=0,scale={scale}:flags=lanczos,format=yuv420p[v]")
-    return ";".join(parts)
+        xs.append(x - x % 2)
+    expr = str(xs[-1])
+    for i in range(len(xs) - 2, -1, -1):
+        expr = f"if(lt(t,{CUTS[i + 1]}),{xs[i]},{expr})"
+    return f"[0:v]crop=w={cw}:h={H}:x='{expr}':y=0,format=yuv420p[v]"
 
 def run(args):
-    print(" ".join(args[-3:]), flush=True)
+    print("->", args[-1], flush=True)
     subprocess.run(args, check=True)
 
-for name, cw, centres, scale in [("desktop", 1920, DESK_C, "1920:1080"), ("mobile", 608, MOB_C, "608:1080")]:
-    g = graph(cw, centres, scale)
-    base = ["ffmpeg", "-v", "error", "-y", "-i", SRC, "-filter_complex", g, "-map", "[v]", "-an"]
-    run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "23", "-profile:v", "high",
-                "-movflags", "+faststart", f"{OUT}/hero-{name}.mp4"])
-    run(base + ["-c:v", "libvpx-vp9", "-crf", "32", "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "2",
-                f"{OUT}/hero-{name}.webm"])
-    # Poster: the first frame of this cut.
-    run(["ffmpeg", "-v", "error", "-y", "-i", f"{OUT}/hero-{name}.mp4", "-frames:v", "1", "-c:v", "libwebp", "-quality", "78",
+for name, graph in [("desktop", "[0:v]scale=1920:1080:flags=lanczos,format=yuv420p[v]"), ("mobile", mobile_graph())]:
+    base = ["ffmpeg", "-v", "error", "-y", "-i", SRC, "-filter_complex", graph, "-map", "[v]"]
+    base += ["-map", "0:a?"] if AUDIO else ["-an"]
+    run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "25", "-profile:v", "high"]
+        + (["-c:a", "aac", "-b:a", "128k"] if AUDIO else []) + ["-movflags", "+faststart", f"{OUT}/hero-{name}.mp4"])
+    run(base + ["-c:v", "libvpx-vp9", "-crf", "35", "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "2"]
+        + (["-c:a", "libopus", "-b:a", "96k"] if AUDIO else []) + [f"{OUT}/hero-{name}.webm"])
+    run(["ffmpeg", "-v", "error", "-y", "-i", f"{OUT}/hero-{name}.mp4", "-frames:v", "1", "-c:v", "libwebp", "-quality", "80",
          f"{OUT}/hero-{name}-poster.webp"])
+    # Decode the video's last half second, keep overwriting one PNG (which leaves the final frame), then convert it.
+    # Seek from the video stream's own duration: the audio can run a little longer.
+    vdur = float(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=duration", "-of", "csv=p=0",
+                                 f"{OUT}/hero-{name}.mp4"], capture_output=True, text=True, check=True).stdout.strip())
+    last = f"{OUT}/hero-{name}-end.png"
+    run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(vdur - 0.5, 0):.3f}", "-i", f"{OUT}/hero-{name}.mp4", "-an", "-update", "1",
+         "-f", "image2", last])
+    run(["ffmpeg", "-v", "error", "-y", "-i", last, "-c:v", "libwebp", "-quality", "80", f"{OUT}/hero-{name}-end.webp"])
+    os.remove(last)

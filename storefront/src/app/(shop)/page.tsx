@@ -22,12 +22,15 @@ export default function HomePage() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="hero" aria-labelledby="hero-title">
+      {/* The copy waits for the film to finish (data-intro="pending" hides it); HeroVideo reveals it. */}
+      <section id="hero" className="hero" data-intro="pending" aria-labelledby="hero-title">
+        <noscript dangerouslySetInnerHTML={{ __html: '<style>.hero[data-intro] .hero__content{opacity:1;transform:none;pointer-events:auto}.hero[data-intro] .hero__media::after{opacity:1}</style>' }} />
         <div className="hero__media">
           <ArtImage mobile={media.heroVideoMobile} desktop={media.heroVideoDesktop} alt={media.heroVideoMobile.alt} priority />
           <HeroVideo
-            mobile={{ webm: '/video/hero-mobile.webm', mp4: '/video/hero-mobile.mp4' }}
-            desktop={{ webm: '/video/hero-desktop.webm', mp4: '/video/hero-desktop.mp4' }}
+            heroId="hero"
+            mobile={{ webm: '/video/hero-mobile.webm', mp4: '/video/hero-mobile.mp4', end: '/images/lifestyle/hero-video-mobile-end.webp' }}
+            desktop={{ webm: '/video/hero-desktop.webm', mp4: '/video/hero-desktop.mp4', end: '/images/lifestyle/hero-video-desktop-end.webp' }}
           />
         </div>
         <div className="hero__content container">

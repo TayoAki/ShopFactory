@@ -31,7 +31,7 @@ npm run build && npm start   # production build (PORT is respected)
 | First-party analytics (server-side, no third-party pixels) | `src/lib/analytics.ts`, `src/app/api/analytics/route.ts` |
 | Waitlist and newsletter (Klaviyo when keys are set) | `src/app/api/waitlist/route.ts` |
 | Lifestyle media manifest | `src/data/media.ts` |
-| Homepage hero video (full-width 16:9 on desktop, 9:16 on phones, poster frames, plays once) | `src/components/HeroVideo.tsx`, `public/video/`, `scripts/encode-hero-video.py` |
+| Homepage hero film (16:9 desktop, 9:16 phone, sound, plays once, copy appears after) | `src/components/HeroVideo.tsx`, `public/video/`, `scripts/encode-hero-video.py`, `scripts/hero-shots.json` |
 
 ### Pages
 
@@ -55,14 +55,32 @@ npm run build && npm start   # production build (PORT is respected)
 
 ## Hero video
 
-The homepage hero plays the brand film "See You Out There" (15 s, no sound):
-- **Desktops** get the full 16:9 frame filling the hero. **Phones** get a 9:16 cut, with each shot reframed around its subject.
-- **Formats:** each cut is a VP9 WebM (phone 1.7 MB, desktop 3.5 MB) with an H.264 MP4 fallback.
-- **Loading:** a poster frame renders first and stays the largest paint. The video starts after the page loads and fades in.
-- **Skipped** for visitors with reduced motion or Save-Data on.
-- **Plays once:** the video doesn't loop, and stops on its last frame, the Cream Rope Cap.
+The homepage hero plays the brand film (Cut 2, bright ending; 30 s, with sound). The hero copy appears when it ends.
 
-To replace the video, run `python3 scripts/encode-hero-video.py <source.mp4> <out-dir>`. First update the shot cut frames and subject positions at the top of the script, then copy the outputs to `public/video/` and the posters to `public/images/lifestyle/`.
+**Formats**
+- **Desktops** get the full 16:9 frame (WebM 7.2 MB).
+- **Phones** get a 9:16 cut, reframed shot by shot around each subject (WebM 3.6 MB).
+- Each also has an MP4 fallback for browsers without WebM.
+
+**Sound and timing**
+- **Sound:** browsers only allow autoplay with sound after a visitor has interacted with the site. Otherwise the film plays muted with a "Sound on" button.
+- **Plays once:** the film stops on its last frame, the Cream Rope Cap, and the copy and CTA fade in.
+- **Repeat visits:** visitors who already watched it this session get that last frame and the copy straight away.
+
+**The copy shows immediately when:**
+- reduced motion or Save-Data is on
+- the film can't play, or hasn't started within 6 seconds
+- keyboard focus moves into the hero
+- JavaScript is off
+
+**Loading:** a poster frame renders first and stays the largest paint.
+
+**To swap in a new cut:**
+1. Find its shot changes (the command is in the script's docstring).
+2. Put the cut times and each shot's subject position in `scripts/hero-shots.json`.
+3. Run `python3 scripts/encode-hero-video.py <source.mp4> scripts/hero-shots.json <out-dir>`.
+4. Copy `hero-*.webm|mp4` to `public/video/`.
+5. Copy the posters and end frames to `public/images/lifestyle/hero-video-*.webp`.
 
 ## Switches (environment variables)
 

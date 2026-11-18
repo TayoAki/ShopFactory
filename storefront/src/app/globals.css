@@ -189,6 +189,17 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; opacity: 0; transition: opacity 0.6s ease; }
 .hero__video.is-playing { opacity: 1; }
+/* The copy and its shadow wait for the film to finish; keyboard focus inside the hero shows them at once. */
+.hero__content { transition: opacity 0.8s ease, transform 0.8s ease; }
+.hero__media::after { transition: opacity 0.8s ease; }
+.hero[data-intro='pending'] .hero__content { opacity: 0; transform: translateY(14px); pointer-events: none; }
+.hero[data-intro='pending'] .hero__media::after { opacity: 0; }
+.hero[data-intro='pending']:focus-within .hero__content { opacity: 1; transform: none; pointer-events: auto; }
+.hero__sound { position: absolute; z-index: 3; top: 12px; right: 12px; min-height: 44px; padding: 0 14px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid rgba(250, 239, 223, 0.55); background: rgba(0, 0, 0, 0.45); color: var(--cream-ink); font: 700 0.8rem/1 var(--font-sans), Arial, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+.hero__sound:hover { background: rgba(0, 0, 0, 0.65); }
+.hero__sound:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 2px; }
+@media (min-width: 900px) { .hero__sound { top: auto; bottom: 20px; right: 20px; } }
+@media (prefers-reduced-motion: reduce) { .hero__content, .hero__media::after { transition: none; } }
 /* A neutral shadow behind the copy on phones only; no colour cast over the footage. */
 .hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.28) 66%, rgba(0, 0, 0, 0.62) 100%); }
 .hero__content { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding-bottom: 22px; }
