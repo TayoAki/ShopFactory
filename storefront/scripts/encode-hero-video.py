@@ -44,7 +44,7 @@ def run(args):
     subprocess.run(args, check=True)
 
 # Quality per cut (lower CRF = higher quality, bigger file). Phones get slightly more compression to save data.
-CRF = {"desktop": {"x264": 26, "vp9": 37}, "mobile": {"x264": 27, "vp9": 38}}
+CRF = {"desktop": {"x264": 23, "vp9": 31}, "mobile": {"x264": 24, "vp9": 33}}
 
 for name, graph in [("desktop", "[0:v]scale=1920:1080:flags=lanczos,format=yuv420p[v]"), ("mobile", mobile_graph())]:
     base = ["ffmpeg", "-v", "error", "-y", "-i", SRC, "-filter_complex", graph, "-map", "[v]"]

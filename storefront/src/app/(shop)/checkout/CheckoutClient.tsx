@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { LiveCheckout } from '@/components/LiveCheckout';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { CartLines, CartSummary } from '@/components/CartDrawer';
@@ -38,6 +39,8 @@ export function CheckoutClient() {
         </div>
       </section>
     );
+
+  if (site.checkoutMode !== 'demo') return <LiveCheckout />;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

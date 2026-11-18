@@ -9,7 +9,7 @@ export const site = {
   dropMode: process.env.NEXT_PUBLIC_DROP_MODE === 'true',
   dropDate: process.env.NEXT_PUBLIC_DROP_DATE || '',
   indexable: process.env.NEXT_PUBLIC_INDEXABLE === 'true',
-  checkoutMode: (process.env.NEXT_PUBLIC_CHECKOUT_MODE === 'live' ? 'live' : 'demo') as 'live' | 'demo',
+  checkoutMode: (['live', 'test'].includes(process.env.NEXT_PUBLIC_CHECKOUT_MODE || '') ? process.env.NEXT_PUBLIC_CHECKOUT_MODE : 'demo') as 'live' | 'test' | 'demo',
   policies: {
     freeShippingUS: true,
     exchangeDays: 30,

@@ -99,6 +99,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     track('remove_from_cart', { item: `${handle}:${color}` });
   }, []);
 
+  const clear = useCallback(() => setLines([]), []);
+
   const value: CartState = {
     lines,
     ...totals,
@@ -111,7 +113,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     add,
     setQty,
     remove,
-    clear: () => setLines([]),
+    clear,
     toast,
   };
 

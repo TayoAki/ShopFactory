@@ -55,7 +55,7 @@ npm run build && npm start   # production build (PORT is respected)
 
 ## Hero video
 
-The homepage hero loops the brand film (See You Out There, Editor V1 BW Through Cap; 60 s with sound: about 23 s of footage, then the Cream Rope Cap holds). Over it sit two lines and no buttons:
+The homepage hero loops the brand film (See You Out There, Editor V1 Swing Bass Effects; 60 s with sound: about 23 s of footage, then the Cream Rope Cap holds). Over it sit two lines and no buttons:
 - the headline "Good company. Better hats."
 - "For women who bring their own style to the course."
 
@@ -162,3 +162,15 @@ Both lines fade in when the film reaches the cap at 23 s (`revealAt` in `page.ts
 - No console errors.
 - No horizontal scroll at 390 px.
 - Add to bag, the bundle discount and demo checkout through to confirmation all pass on phone and desktop.
+
+## Stripe Payments and Tax
+
+Checkout uses Stripe-hosted Checkout Sessions. Set NEXT_PUBLIC_CHECKOUT_MODE to live with a live restricted key, or test with a sandbox key. Keep STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET and CHECKOUT_DATABASE_URL in Railway server variables. The database uses its own bogey_checkout schema and stores the catalog/variant snapshot, Stripe session and payment totals for each paid order.
+
+The signed /api/stripe/webhook endpoint handles completed and asynchronous successful payments. Each Stripe session can create only one paid order. It retrieves the payment from Stripe and validates it against the persisted checkout attempt before recording the order. The return page also reconciles confirmed payments. Client-supplied prices and confirmation parameters cannot mark an order paid.
+
+Stripe Tax is enabled on sessions. It requires active Tax settings and a product tax code. Stripe collects tax only for configured registrations. Check the account's registered jurisdictions before launch. Product prices are exclusive of any applicable tax.
+
+Fulfillment is manual in Stripe's Payments dashboard. Paid order records have fulfillment_status=awaiting_fulfillment. Automatic Printify order submission and synchronization into Medusa's order list are not implemented. Confirm and arrange fulfillment for every paid order.
+
+Umami emits demo_checkout_completed for browser demos, test_purchase for verified sandbox payments, and purchase with revenue for verified live payments. Purchase analytics are recorded when the customer returns to the confirmation page, while payment/order persistence is driven by signed webhooks as well. Browser privacy settings or a customer who does not return may leave analytics lower than Stripe's totals. Use Stripe as the sales ledger.

@@ -4,7 +4,7 @@ type EventData = Record<string, EventValue>;
 export type AnalyticsEvent =
   | 'generate_lead' | 'select_item' | 'view_item' | 'add_to_cart'
   | 'remove_from_cart' | 'view_cart' | 'begin_checkout' | 'add_shipping_info'
-  | 'demo_checkout_completed' | 'select_promotion' | 'scroll' | 'search' | 'contact_submitted';
+  | 'purchase' | 'test_purchase' | 'demo_checkout_completed' | 'select_promotion' | 'scroll' | 'search' | 'contact_submitted';
 
 declare global {
   interface Window {

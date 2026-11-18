@@ -1,5 +1,5 @@
 {
-  "source": "See-You-Out-There-Editor-V1-BW-Through-Cap-4K.mp4 (60 s, 3840x2160)",
+  "source": "See-You-Out-There-Editor-V1-Swing-Bass-Effects-4K.mp4 (60 s, 3840x2160)",
   "reveal_at_s": 23.166667,
   "cuts_s": [
     0,
@@ -40,7 +40,7 @@
     "0.25+0.55*(t-15.6)/1.2",
     0.5,
     0.5,
-    0.4,
+    0.5,
     0.5,
     0.5
   ]
