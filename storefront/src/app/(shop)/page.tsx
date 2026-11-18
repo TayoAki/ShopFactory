@@ -107,7 +107,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="media-frame">
-              <Image src={media.groupTee.src} alt="Four women golfers in Bogey Baby hats laughing on the first tee" width={media.groupTee.width} height={media.groupTee.height} sizes="(min-width: 900px) 50vw, 100vw" />
+              <Image src={media.homeCartOverTheShoulder.src} alt={media.homeCartOverTheShoulder.alt} width={media.homeCartOverTheShoulder.width} height={media.homeCartOverTheShoulder.height} sizes="(min-width: 900px) 50vw, 100vw" />
             </div>
           </div>
           <div style={{ marginTop: 48 }}>
@@ -150,7 +150,7 @@ export default function HomePage() {
         <section className="section section--pine">
           <div className="container split">
             <div className="media-frame">
-              <Image src={media.cartFriends.src} alt="Two friends in Cream Rope Caps laugh beside a golf cart" width={media.cartFriends.width} height={media.cartFriends.height} sizes="(min-width: 900px) 50vw, 100vw" />
+              <Image src={media.homeGoodCompany.src} alt={media.homeGoodCompany.alt} width={media.homeGoodCompany.width} height={media.homeGoodCompany.height} sizes="(min-width: 900px) 50vw, 100vw" />
             </div>
             <div>
               <span className="badge">{pair.badge}</span>
@@ -176,7 +176,7 @@ export default function HomePage() {
             <p className="lead" style={{ marginTop: 12 }}>Range days, league nights, girls&apos; trips and the 19th hole. Brand new this season: tag your first round and tell us how it fits.</p>
           </div>
           <div className="grid grid--3">
-            {[media.range, media.nineteenth, media.visorOnHead].map((m) => (
+            {[media.homeBackswing, media.homeAfterTheRound, media.homeCartPortrait].map((m) => (
               <div className="media-frame" key={m.src} style={{ aspectRatio: '4 / 5' }}>
                 <Image src={m.src} alt={m.alt} width={m.width} height={m.height} sizes="(min-width: 900px) 33vw, 50vw" />
               </div>

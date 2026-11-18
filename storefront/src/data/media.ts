@@ -3,6 +3,41 @@
 export interface Media { src: string; width: number; height: number; alt: string; ai: boolean }
 
 export const media = {
+  "homeCartOverTheShoulder": {
+    "src": "/images/lifestyle/home-cart-over-the-shoulder.webp",
+    "width": 1672,
+    "height": 941,
+    "alt": "A golfer in a cream cap looks over her shoulder from a golf cart",
+    "ai": true
+  },
+  "homeGoodCompany": {
+    "src": "/images/lifestyle/home-good-company.webp",
+    "width": 1672,
+    "height": 941,
+    "alt": "Two golfers lean on their clubs and laugh together",
+    "ai": true
+  },
+  "homeBackswing": {
+    "src": "/images/lifestyle/home-backswing.webp",
+    "width": 752,
+    "height": 940,
+    "alt": "A golfer starts her backswing on a sunlit fairway",
+    "ai": true
+  },
+  "homeAfterTheRound": {
+    "src": "/images/lifestyle/home-after-the-round.webp",
+    "width": 752,
+    "height": 940,
+    "alt": "Friends share drinks at an outdoor table after a round",
+    "ai": true
+  },
+  "homeCartPortrait": {
+    "src": "/images/lifestyle/home-cart-portrait.webp",
+    "width": 752,
+    "height": 940,
+    "alt": "A golfer in a cream cap smiles from the driver’s seat of a golf cart",
+    "ai": true
+  },
   // Fit Guide step photos (AI-generated instructional images; not customers).
   "fitWrap": {
     "src": "/images/fit/fit-wrap.webp",
