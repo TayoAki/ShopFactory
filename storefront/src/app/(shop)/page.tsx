@@ -22,16 +22,16 @@ export default function HomePage() {
   return (
     <>
       {/* 1. Hero */}
-      {/* The two lines wait until the film reaches its Cream Rope Cap end card at 27 s (data-intro="pending" hides them). */}
+      {/* The two lines wait until the film reaches its Cream Rope Cap end card at 23 s (data-intro="pending" hides them). */}
       <section id="hero" className="hero" data-intro="pending" aria-labelledby="hero-title">
         <noscript dangerouslySetInnerHTML={{ __html: '<style>.hero[data-intro] .hero__content{opacity:1;transform:none;pointer-events:auto}.hero[data-intro] .hero__media::after{opacity:1}</style>' }} />
         <div className="hero__media">
           <ArtImage mobile={media.heroVideoMobile} desktop={media.heroVideoDesktop} alt={media.heroVideoMobile.alt} priority />
           <HeroVideo
             heroId="hero"
-            mobile={{ webm: '/video/hero-mobile.webm', mp4: '/video/hero-mobile.mp4' }}
-            desktop={{ webm: '/video/hero-desktop.webm', mp4: '/video/hero-desktop.mp4' }}
-            revealAt={27.07}
+            mobile={{ webm: '/video/see-you-out-there-mobile.webm', mp4: '/video/see-you-out-there-mobile.mp4' }}
+            desktop={{ webm: '/video/see-you-out-there-desktop.webm', mp4: '/video/see-you-out-there-desktop.mp4' }}
+            revealAt={23.17}
           />
         </div>
         <div className="hero__content container">

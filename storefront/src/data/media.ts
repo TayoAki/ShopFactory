@@ -62,14 +62,14 @@ export const media = {
   },
   // First frames of the brand film (Cut 2, bright ending), for the hero: desktop full 16:9 frame, phone 9:16 reframed.
   "heroVideoDesktop": {
-    "src": "/images/lifestyle/hero-video-desktop.webp",
+    "src": "/images/lifestyle/see-you-out-there-desktop.webp",
     "width": 1920,
     "height": 1080,
     "alt": "The Bogey Baby golfer, embroidered on the front of a cap",
     "ai": false
   },
   "heroVideoMobile": {
-    "src": "/images/lifestyle/hero-video-mobile.webp",
+    "src": "/images/lifestyle/see-you-out-there-mobile.webp",
     "width": 608,
     "height": 1080,
     "alt": "The Bogey Baby golfer, embroidered on the front of a cap",

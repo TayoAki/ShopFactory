@@ -55,15 +55,15 @@ npm run build && npm start   # production build (PORT is respected)
 
 ## Hero video
 
-The homepage hero loops the brand film (Cut 2, "No Flag"; 60 s with sound: about 27 s of footage, then the Cream Rope Cap holds). Over it sit two lines and no buttons:
+The homepage hero loops the brand film (See You Out There, Editor V1 Static Light; 60 s with sound: about 23 s of footage, then the Cream Rope Cap holds). Over it sit two lines and no buttons:
 - the headline "Good company. Better hats."
 - "For women who bring their own style to the course."
 
-Both lines fade in when the film reaches the cap at 27 s (`revealAt` in `page.tsx`; `reveal_at_s` in `scripts/hero-shots.json`) and then stay up.
+Both lines fade in when the film reaches the cap at 23 s (`revealAt` in `page.tsx`; `reveal_at_s` in `scripts/hero-shots.json`) and then stay up.
 
 **Formats**
-- **Desktops** get the full 16:9 frame (WebM 10 MB).
-- **Phones** get a 9:16 cut, reframed shot by shot around each subject (WebM 5 MB).
+- **Desktops** get the full 16:9 frame (optimized WebM).
+- **Phones** get a 9:16 cut, reframed shot by shot around each subject (optimized WebM).
 - Each also has an MP4 fallback.
 
 **Sound**

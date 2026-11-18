@@ -12,7 +12,7 @@ shots.json: {"cuts_s": [0, 1.5333, ..., end], "mobile_centres": [0.55, ...]}: sh
 not frame numbers, so dropped frames in the source don't shift them) and one centre per shot (0-1, the subject's
 horizontal position). Find cuts with:
   ffmpeg -i src.mp4 -filter:v "select='gt(scene,0.25)',showinfo" -an -f null - 2>&1 | grep -o "pts_time:[0-9.]*"
-Needs ffmpeg with libx264, libvpx-vp9 and libopus.
+Needs ffmpeg with libx264, libvpx-vp9 and libopus, plus ImageMagick for WebP posters.
 """
 import json, os, subprocess, sys
 
@@ -29,12 +29,15 @@ def mobile_graph(cw=608):
     timestamp of the source is kept (trim + concat dropped the last shot when the source had dropped frames)."""
     xs = []
     for c in CENTRES:
+        if isinstance(c, str):
+            xs.append(f"max(0,min({W - cw},({c})*{W}-{cw / 2}))")
+            continue
         x = int(min(max(c * W - cw / 2, 0), W - cw))
         xs.append(x - x % 2)
     expr = str(xs[-1])
     for i in range(len(xs) - 2, -1, -1):
         expr = f"if(lt(t,{CUTS[i + 1]}),{xs[i]},{expr})"
-    return f"[0:v]crop=w={cw}:h={H}:x='{expr}':y=0,format=yuv420p[v]"
+    return f"[0:v]scale=1920:1080:flags=lanczos,crop=w={cw}:h={H}:x='{expr}':y=0,format=yuv420p[v]"
 
 def run(args):
     print("->", args[-1], flush=True)
@@ -46,12 +49,14 @@ CRF = {"desktop": {"x264": 26, "vp9": 37}, "mobile": {"x264": 27, "vp9": 38}}
 for name, graph in [("desktop", "[0:v]scale=1920:1080:flags=lanczos,format=yuv420p[v]"), ("mobile", mobile_graph())]:
     base = ["ffmpeg", "-v", "error", "-y", "-i", SRC, "-filter_complex", graph, "-map", "[v]"]
     base += ["-map", "0:a?"] if AUDIO else ["-an"]
-    run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", str(CRF[name]["x264"]), "-profile:v", "high"]
+    run(base + ["-c:v", "libx264", "-preset", "fast", "-crf", str(CRF[name]["x264"]), "-profile:v", "high"]
         + (["-c:a", "aac", "-b:a", "128k"] if AUDIO else []) + ["-movflags", "+faststart", f"{OUT}/hero-{name}.mp4"])
-    run(base + ["-c:v", "libvpx-vp9", "-crf", str(CRF[name]["vp9"]), "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "2"]
+    run(base + ["-c:v", "libvpx-vp9", "-crf", str(CRF[name]["vp9"]), "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "4"]
         + (["-c:a", "libopus", "-b:a", "96k"] if AUDIO else []) + [f"{OUT}/hero-{name}.webm"])
-    run(["ffmpeg", "-v", "error", "-y", "-i", f"{OUT}/hero-{name}.mp4", "-frames:v", "1", "-c:v", "libwebp", "-quality", "80",
-         f"{OUT}/hero-{name}-poster.webp"])
+    poster = f"{OUT}/hero-{name}-poster.png"
+    run(["ffmpeg", "-v", "error", "-y", "-i", f"{OUT}/hero-{name}.mp4", "-frames:v", "1", poster])
+    run(["magick", poster, "-strip", "-quality", "80", f"{OUT}/hero-{name}-poster.webp"])
+    os.remove(poster)
     # Decode the video's last half second, keep overwriting one PNG (which leaves the final frame), then convert it.
     # Seek from the video stream's own duration: the audio can run a little longer.
     vdur = float(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=duration", "-of", "csv=p=0",
@@ -59,5 +64,5 @@ for name, graph in [("desktop", "[0:v]scale=1920:1080:flags=lanczos,format=yuv42
     last = f"{OUT}/hero-{name}-end.png"
     run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(vdur - 0.5, 0):.3f}", "-i", f"{OUT}/hero-{name}.mp4", "-an", "-update", "1",
          "-f", "image2", last])
-    run(["ffmpeg", "-v", "error", "-y", "-i", last, "-c:v", "libwebp", "-quality", "80", f"{OUT}/hero-{name}-end.webp"])
+    run(["magick", last, "-strip", "-quality", "80", f"{OUT}/hero-{name}-end.webp"])
     os.remove(last)
