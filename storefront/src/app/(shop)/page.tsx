@@ -59,7 +59,7 @@ export default function HomePage() {
           <div className="section-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: 16, maxWidth: 'none', flexWrap: 'wrap' }}>
             <div>
               <span className="eyebrow">Best sellers</span>
-              <h2>Start with these</h2>
+              <h2>No Cap, All Carry</h2>
             </div>
             <Link href="/collections/all" className="link link--cta">Shop all {productsIn('all').length} hats →</Link>
           </div>
@@ -76,7 +76,7 @@ export default function HomePage() {
         <div className="container">
           <div className="section-head">
             <span className="eyebrow">Find your hat</span>
-            <h2>Shop by what matters to you</h2>
+            <h2>Functional Fashion</h2>
           </div>
           <div className="grid grid--3">
             <Link href="/collections/ponytail-caps" className="tile-link">
@@ -103,7 +103,7 @@ export default function HomePage() {
               <span className="eyebrow">Why Bogey Baby</span>
               <h2>Not shrunk. Not pinked. Drawn for us.</h2>
               <p className="lead" style={{ marginTop: 16 }}>
-                Most golf hats are men&apos;s hats in smaller boxes, plus one pink one. We started over, with a golfer who looks like us and hats chosen for how women actually play.
+                Most golf hats are men&apos;s hats in smaller boxes, plus one pink one. We started over.
               </p>
             </div>
             <div className="media-frame">
@@ -194,10 +194,6 @@ export default function HomePage() {
           <div>
             <span className="eyebrow">Our story</span>
             <h2>Made for the people we want to see more of on the course.</h2>
-            <p className="lead" style={{ marginTop: 14 }}>
-              We center women and Black golfers, from the first bucket at the range to the last tee time of the day. Our golfer is caught in her follow-through, in sunglasses and a green striped sweater, and she sets the colors for everything we make: pine, cream and old gold.
-            </p>
-            <Link href="/pages/about-us" className="link link--cta">Read our story →</Link>
           </div>
         </div>
       </section>

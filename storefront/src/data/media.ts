@@ -3,6 +3,28 @@
 export interface Media { src: string; width: number; height: number; alt: string; ai: boolean }
 
 export const media = {
+  // Fit Guide step photos (AI-generated instructional images; not customers).
+  "fitWrap": {
+    "src": "/images/fit/fit-wrap.webp",
+    "width": 1200,
+    "height": 896,
+    "alt": "A woman wraps a soft tape measure around her head, across her forehead and just above her ears",
+    "ai": true
+  },
+  "fitRead": {
+    "src": "/images/fit/fit-read.webp",
+    "width": 1200,
+    "height": 896,
+    "alt": "Close-up of the tape measure meeting at 22 inches just above her ear",
+    "ai": true
+  },
+  "fitMatch": {
+    "src": "/images/fit/fit-match.webp",
+    "width": 1200,
+    "height": 896,
+    "alt": "The Cream Rope Cap and the sage Small Fit Performance Cap side by side, with a tape measure between them",
+    "ai": true
+  },
   // First frames of the brand film (Cut 2, bright ending), for the hero: desktop full 16:9 frame, phone 9:16 reframed.
   "heroVideoDesktop": {
     "src": "/images/lifestyle/hero-video-desktop.webp",
