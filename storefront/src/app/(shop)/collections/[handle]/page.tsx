@@ -44,7 +44,6 @@ export default async function CollectionPage({ params }: { params: Promise<{ han
         <div className="banner">
           <Image src={c.image.src} alt="" width={c.image.width} height={c.image.height} sizes="(min-width: 1300px) 1300px, 100vw" priority />
           <div className="banner__content">
-            <span className="eyebrow">{c.eyebrow}</span>
             <h1>{c.title}</h1>
             <p style={{ marginTop: 10, color: '#f3ecd2' }}>{c.description}</p>
             <TrustLine light />
