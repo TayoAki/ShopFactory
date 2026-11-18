@@ -119,12 +119,15 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .announce { background: var(--pine-900); color: var(--cream-ink); font-size: 0.85rem; font-weight: 700; text-align: center; }
 .announce a { display: flex; align-items: center; justify-content: center; padding: 6px var(--gutter); text-decoration: none; min-height: 44px; }
 .announce a:hover { text-decoration: underline; }
-.header { position: sticky; top: 0; z-index: 40; background: var(--paper-2); border-bottom: 1px solid var(--line); }
+/* Cream twill, like the cap fabric. The image is a 1600x200 band; it never repeats (it doesn't tile seamlessly). */
+.header { position: sticky; top: 0; z-index: 40; background: var(--paper-2) url('/brand/twill.webp') center / max(100%, 1600px) auto no-repeat; border-bottom: 1px solid var(--line); }
 .header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: var(--header-h); }
 .header__left, .header__right { display: flex; align-items: center; gap: 4px; }
 .header__right { justify-content: flex-end; }
 .header__brand { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 8px 4px; text-decoration: none; }
-.header__wordmark { width: 144px; height: auto; }
+.header__wordmark { width: 160px; height: auto; }
+/* The embroidered wordmark sits slightly raised off the fabric. */
+.header__wordmark, .wordmark-embroidered { filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.28)); }
 .header__badge { display: none; }
 .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; background: none; border-radius: 10px; color: var(--pine-900); position: relative; text-decoration: none; }
 .icon-btn:hover { background: rgba(8, 45, 34, 0.06); }
@@ -217,6 +220,9 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .hero h1 { color: var(--cream-ink); text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25); }
 .hero .eyebrow { color: var(--gold-light); }
 .hero__sub { font-size: 1.12rem; line-height: 1.55; max-width: 34ch; margin: 14px 0 22px; color: #f3ecd2; }
+.hero__headline { margin: 0; line-height: 0; }
+.hero__headline img { width: min(86vw, 420px); height: auto; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)); }
+@media (min-width: 900px) { .hero__headline img { width: clamp(440px, 40vw, 640px); } }
 .hero__line { font-size: 1.15rem; line-height: 1.45; max-width: 30ch; text-wrap: balance; margin: 10px 0 0; color: #f3ecd2; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55); }
 @media (min-width: 900px) { .hero__line { font-size: 1.4rem; margin-top: 14px; } }
 @media (min-width: 900px) {

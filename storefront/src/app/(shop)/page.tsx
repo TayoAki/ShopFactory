@@ -34,7 +34,9 @@ export default function HomePage() {
           />
         </div>
         <div className="hero__content container">
-          <h1 id="hero-title">Good company. Better hats.</h1>
+          <h1 id="hero-title" className="hero__headline">
+            <Image src="/brand/hero-headline-stitched.webp" alt="Good company. Better hats." width={1400} height={405} sizes="(min-width: 900px) 640px, 90vw" loading="eager" />
+          </h1>
           <p className="hero__line">For women who bring their own style to the course.</p>
         </div>
       </section>

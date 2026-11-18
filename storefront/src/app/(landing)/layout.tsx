@@ -11,7 +11,7 @@ export default function LandingLayout({ children }: { children: React.ReactNode 
       <header className="header">
         <div className="container minimal-header">
           <Link href="/" aria-label="Bogey Baby home">
-            <Image src="/brand/wordmark-stitched.webp" alt="Bogey Baby" width={1200} height={293} sizes="160px" style={{ width: 160, height: 'auto' }} priority />
+            <Image className="wordmark-embroidered" src="/brand/wordmark-embroidered.webp" alt="Bogey Baby" width={1200} height={164} sizes="170px" style={{ width: 170, height: 'auto' }} priority />
           </Link>
           <LandingBag />
         </div>
