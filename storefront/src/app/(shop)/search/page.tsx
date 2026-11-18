@@ -7,12 +7,16 @@ import { bestSellers } from '@/lib/catalog';
 export const metadata: Metadata = { title: 'Search', robots: { index: false } };
 
 function matches(q: string) {
-  const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+  const stopWords = new Set(['a', 'an', 'the', 'for', 'and', 'of', 'with']);
+  const normalize = (text: string) => text.toLowerCase().replace(/[’']/g, '').split(/[^a-z0-9]+/).filter(Boolean)
+    .map((word) => word === 'womens' ? 'women' : ['hats', 'caps', 'visors', 'beanies', 'colors'].includes(word) ? word.slice(0, -1) : word);
+  const terms = normalize(q).filter((term) => !stopWords.has(term));
+  if (terms.length === 0) return [];
   return products.filter((p) => {
-    const hay = [p.title, p.subtitle, p.description, p.style, ...p.colors.map((c) => c.name), ...p.collections, p.features.ponytail ? 'ponytail' : '', p.features.upf50 ? 'upf sun' : '', p.features.smallFit ? 'small fit' : '']
-      .join(' ')
-      .toLowerCase();
-    return terms.every((t) => hay.includes(t));
+    const hay = ['Bogey Baby golf hats for women', p.title, p.subtitle, p.description, p.style, ...p.colors.map((c) => c.name), ...p.collections, p.features.ponytail ? 'ponytail' : '', p.features.upf50 ? 'upf sun' : '', p.features.smallFit ? 'small fit' : '']
+      .join(' ');
+    const searchable = normalize(hay).join(' ');
+    return terms.every((t) => searchable.includes(t));
   });
 }
 
