@@ -26,6 +26,21 @@ const nextConfig: NextConfig = {
     imageSizes: [48, 96, 160, 240, 320, 480],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
+  // Client chunk files are named after their routes, e.g. "app/(shop)/products/[handle]/page". Some
+  // proxies and browsers percent-encode "(" and ")" in those URLs, and Next's static server then
+  // returns 404 for the chunk, so the page never hydrates. Keep chunk filenames to safe characters.
+  webpack(config, { isServer, dev }) {
+    if (!isServer && !dev) {
+      const original = config.output.filename;
+      config.output.filename = (pathData: { chunk?: { name?: string | null } }) => {
+        const name = pathData.chunk?.name;
+        if (!name || !/[^a-zA-Z0-9/_.-]/.test(name)) return typeof original === 'string' ? original : 'static/chunks/[name]-[chunkhash].js';
+        const safe = name.replace(/[()]/g, '').replace(/\[/g, '_').replace(/\]/g, '_').replace(/[^a-zA-Z0-9/_.-]/g, '_');
+        return `static/chunks/${safe}-[chunkhash].js`;
+      };
+    }
+    return config;
+  },
   async headers() {
     return [
       {
