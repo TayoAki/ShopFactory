@@ -353,7 +353,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .quote { font-family: var(--font-stitch), Georgia, serif; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.25; color: var(--pine-900); margin: 0; }
 .panel { border-radius: var(--radius); background: var(--cream); padding: clamp(22px, 4vw, 40px); }
 .panel--line { background: transparent; border: 2px dashed var(--line); }
-.prose { max-width: 65ch; font-size: 1.0625rem; line-height: 1.7; }
+.prose { max-width: min(65ch, 42rem); font-size: 1.0625rem; line-height: 1.7; }
 .prose h2 { font-family: var(--font-ui); font-weight: 650; font-size: clamp(1.5rem, 2.8vw, 2rem); line-height: 1.25; letter-spacing: -0.02em; margin: 1.6em 0 0.6em; }
 .prose h3 { margin: 1.4em 0 0.4em; }
 .prose ul { padding-left: 1.2em; }
@@ -572,7 +572,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .journal-card .eyebrow { font-size:var(--type-caption); }
 .journal-card p { font-size:1rem; line-height:1.6; color:var(--ink-soft); }
 .journal-hero { display:block; width:min(100%,900px); height:auto; max-height:600px; object-fit:cover; border-radius:var(--radius); margin:0 auto 40px; }
-.journal-body { max-width:65ch; margin:auto; }
+.journal-body { max-width:min(65ch,42rem); margin:auto; }
 .journal-body section { margin-bottom:30px; }
 .fit-quiz__intro-image { width:100%; height:auto; aspect-ratio:16/7; object-fit:cover; border-radius:var(--radius); margin-bottom:28px; }
 .fit-quiz__option { display:grid; grid-template-columns:22px 1fr; align-content:start; padding:10px; gap:12px; }
