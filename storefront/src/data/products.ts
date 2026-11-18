@@ -61,7 +61,7 @@ export interface Product {
   badge?: string;
   source:
     | { kind: 'flagship'; note: string; suggestedBlueprintId?: number }
-    | { kind: 'printify'; blueprintId: number; printProviderId: number; brand: string; model: string };
+    | { kind: 'printify'; blueprintId: number; printProviderId: number; brand: string; model: string; /** Product in the Bogey Baby Printify shop. */ productId?: string };
 }
 
 const P = 928;
@@ -98,6 +98,7 @@ export const products: Product[] = [
         slug: 'cream',
         swatch: '#EFE6CF',
         image: { src: '/images/products/flagship-cream-front.webp', alt: 'The Cream Rope Cap, front view, with the embroidered golfer', width: 1200, height: 1500 },
+        printify: { color: 'Ivory', variantId: 288216 },
       },
     ],
     gallery: [
@@ -108,11 +109,7 @@ export const products: Product[] = [
     ],
     collections: ['all', 'embroidered', 'caps', 'rope-caps'],
     badge: 'Best seller',
-    source: {
-      kind: 'flagship',
-      note: 'Hero product from the existing Bogey Baby store. Closest embroidered Printify match: Comfort Colors Sunwashed Rope Cap (Ivory).',
-      suggestedBlueprintId: 6597,
-    },
+    source: { kind: 'printify', blueprintId: 6597, printProviderId: 99, brand: 'Comfort Colors', model: 'CCRC0', productId: '6afd48122457491ec709aff7' },
   },
   {
     handle: 'sunwashed-rope-cap',
@@ -142,7 +139,7 @@ export const products: Product[] = [
     gallery: [],
     collections: ['all', 'embroidered', 'caps', 'rope-caps'],
     badge: 'New',
-    source: { kind: 'printify', blueprintId: 6597, printProviderId: 99, brand: 'Comfort Colors', model: 'CCRC0' },
+    source: { kind: 'printify', blueprintId: 6597, printProviderId: 99, brand: 'Comfort Colors', model: 'CCRC0', productId: '6afd4839c9c982cfa30d38a0' },
   },
   {
     handle: 'front-nine-ponytail-cap',
@@ -175,7 +172,7 @@ export const products: Product[] = [
     ],
     collections: ['all', 'embroidered', 'caps', 'ponytail-caps'],
     badge: 'Made for ponytails',
-    source: { kind: 'printify', blueprintId: 2667, printProviderId: 99, brand: 'Infinity Her', model: 'CASSIE' },
+    source: { kind: 'printify', blueprintId: 2667, printProviderId: 99, brand: 'Infinity Her', model: 'CASSIE', productId: '6afd483c407fa5bff003727b' },
   },
   {
     handle: 'range-day-mesh-cap',
@@ -204,7 +201,7 @@ export const products: Product[] = [
     ],
     gallery: [],
     collections: ['all', 'embroidered', 'caps', 'ponytail-caps'],
-    source: { kind: 'printify', blueprintId: 2003, printProviderId: 99, brand: 'Infinity Her', model: 'TESS' },
+    source: { kind: 'printify', blueprintId: 2003, printProviderId: 99, brand: 'Infinity Her', model: 'TESS', productId: '6afd483ec9c982cfa30d38a6' },
   },
   {
     handle: 'tee-time-dad-cap',
@@ -232,7 +229,7 @@ export const products: Product[] = [
     ],
     gallery: [],
     collections: ['all', 'embroidered', 'caps'],
-    source: { kind: 'printify', blueprintId: 1447, printProviderId: 217, brand: 'Yupoong', model: '6245CM' },
+    source: { kind: 'printify', blueprintId: 1447, printProviderId: 217, brand: 'Yupoong', model: '6245CM', productId: '6afd4841e37c0316bf055b91' },
   },
   {
     handle: 'winter-rules-beanie',
@@ -258,7 +255,7 @@ export const products: Product[] = [
     ],
     gallery: [],
     collections: ['all', 'embroidered', 'beanies'],
-    source: { kind: 'printify', blueprintId: 1691, printProviderId: 99, brand: 'Yupoong', model: '1501KC' },
+    source: { kind: 'printify', blueprintId: 1691, printProviderId: 99, brand: 'Yupoong', model: '1501KC', productId: '6afd4843407fa5bff0037282' },
   },
   {
     handle: 'back-nine-ponytail-cap',
@@ -289,7 +286,7 @@ export const products: Product[] = [
     gallery: [],
     collections: ['all', 'performance', 'caps', 'ponytail-caps'],
     badge: 'UPF 50+',
-    source: { kind: 'printify', blueprintId: 6963, printProviderId: 217, brand: 'Imperial', model: 'L338' },
+    source: { kind: 'printify', blueprintId: 6963, printProviderId: 217, brand: 'Imperial', model: 'L338', productId: '6afd4846f6a94476cc098310' },
   },
   {
     handle: 'small-fit-performance-cap',
@@ -320,7 +317,7 @@ export const products: Product[] = [
     gallery: [],
     collections: ['all', 'performance', 'caps'],
     badge: 'Small fit',
-    source: { kind: 'printify', blueprintId: 6962, printProviderId: 217, brand: 'Imperial', model: 'L210P' },
+    source: { kind: 'printify', blueprintId: 6962, printProviderId: 217, brand: 'Imperial', model: 'L210P', productId: '6afd4849e37c0316bf055b9a' },
   },
   {
     handle: 'clubhouse-visor',
@@ -348,7 +345,7 @@ export const products: Product[] = [
     ],
     gallery: [],
     collections: ['all', 'performance', 'visors'],
-    source: { kind: 'printify', blueprintId: 7650, printProviderId: 217, brand: 'ValuCap', model: 'VC500' },
+    source: { kind: 'printify', blueprintId: 7650, printProviderId: 217, brand: 'ValuCap', model: 'VC500', productId: '6afd484b407fa5bff003728c' },
   },
   {
     handle: '19th-hole-bucket',
@@ -376,7 +373,7 @@ export const products: Product[] = [
     gallery: [],
     collections: ['all', 'performance', 'bucket-hats'],
     badge: 'UPF 50+',
-    source: { kind: 'printify', blueprintId: 5836, printProviderId: 217, brand: 'Imperial', model: '1371P' },
+    source: { kind: 'printify', blueprintId: 5836, printProviderId: 217, brand: 'Imperial', model: '1371P', productId: '6afd484ef6a94476cc09831a' },
   },
   {
     handle: 'weekend-bucket-hat',
@@ -403,7 +400,7 @@ export const products: Product[] = [
     ],
     gallery: [],
     collections: ['all', 'bucket-hats'],
-    source: { kind: 'printify', blueprintId: 10920, printProviderId: 217, brand: 'AS Colour', model: '1178' },
+    source: { kind: 'printify', blueprintId: 10920, printProviderId: 217, brand: 'AS Colour', model: '1178', productId: '6afd4850d6206acee60fe627' },
   },
   {
     handle: 'cart-path-trucker',
@@ -431,7 +428,7 @@ export const products: Product[] = [
     ],
     gallery: [],
     collections: ['all', 'caps', 'ponytail-caps'],
-    source: { kind: 'printify', blueprintId: 7033, printProviderId: 217, brand: 'Infinity Her', model: 'CHARLIE' },
+    source: { kind: 'printify', blueprintId: 7033, printProviderId: 217, brand: 'Infinity Her', model: 'CHARLIE', productId: '6afd4853407fa5bff0037297' },
   },
   {
     handle: 'the-turn-cord-cap',
@@ -460,7 +457,7 @@ export const products: Product[] = [
     ],
     gallery: [],
     collections: ['all', 'caps', 'ponytail-caps'],
-    source: { kind: 'printify', blueprintId: 7036, printProviderId: 217, brand: 'Infinity Her', model: 'JO' },
+    source: { kind: 'printify', blueprintId: 7036, printProviderId: 217, brand: 'Infinity Her', model: 'JO', productId: '6afd4855d6206acee60fe62a' },
   },
 ];
 

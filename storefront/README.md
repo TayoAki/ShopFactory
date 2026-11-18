@@ -128,7 +128,21 @@ Both lines fade in when the film reaches the cap at 27 s (`revealAt` in `page.ts
 2. **Orders.** After payment succeeds, create the order in one of two ways:
    - in Medusa, if you keep the existing backend, or
    - directly through Printify's `POST /v1/shops/{shop_id}/orders.json`, using each line's `printify.variantId` and a published Printify product.
-3. **Products in Printify.** Create one Printify product per hat with the golfer artwork, using each product's `source.blueprintId` and `printProviderId`. Use embroidery placements where listed. Then replace the concept renders with Printify's mockups.
+3. **Products in Printify (done).** All 13 hats exist in the Bogey Baby Printify shop (ID 29796342). Each `source.productId` in `products.ts` holds the Printify product ID, and each colour's `printify.variantId` holds its variant ID.
+   - **Artwork:** the "Golden-Tan Golfer with Green Striped Scarf" upload.
+   - **Decoration:** embroidered on the front of the embroidered caps and the beanie. On the printed hats it's DTF: front-left on the performance caps, trucker and cord cap, and front on the visor and bucket hats.
+   - **Cream Rope Cap:** made on the Comfort Colors Sunwashed Rope Cap in Ivory.
+   - **Re-running:** `node scripts/export-catalog.cjs > catalog.json` then `python3 scripts/printify-create-products.py catalog.json <token-file> created.json`. It skips titles that already exist.
+   - **Site images:** the site still shows the earlier concept renders, not Printify's mockups. These colours differ from the real Printify product, so fix the render or pick another variant before launch:
+
+     | Hat | Colour | Real Printify colour |
+     |-----|--------|----------------------|
+     | Front Nine | Rose | Hot pink |
+     | Back Nine | Winter Green | Dark green |
+     | Weekend Bucket | Hazy Pink | Mauve brown |
+     | Winter Rules beanie | Gold | Bright yellow-gold |
+     | Cart Path Trucker | Emerald | Teal |
+     | Turn Cord | Chocolate | Mauve brown |
 4. **Tracking.** Forward `/api/analytics` events to:
    - the GA4 Measurement Protocol
    - the Meta Conversions API
