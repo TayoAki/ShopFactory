@@ -1,3 +1,5 @@
+import { after } from 'next/server';
+import { fulfillPaidOrder } from '@/lib/fulfillment';
 import { recordPaidSession, stripeClient } from '@/lib/payments';
 
 export const runtime = 'nodejs';
@@ -10,6 +12,7 @@ export async function GET(request: Request) {
     if (!session.metadata?.bogey_attempt) return new Response(null, { status: 404 });
     if (session.payment_status !== 'paid') return Response.json({ status: 'pending' }, { headers: { 'Cache-Control': 'no-store' } });
     const order = await recordPaidSession(id);
+    if (order) after(async () => { await fulfillPaidOrder(order.id); });
     return Response.json({ status: 'paid', ...order }, { headers: { 'Cache-Control': 'no-store' } });
   } catch {
     return Response.json({ error: 'Unable to confirm payment yet.' }, { status: 503 });

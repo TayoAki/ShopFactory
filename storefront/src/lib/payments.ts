@@ -74,6 +74,16 @@ export async function paymentDatabase() {
       fulfillment_status text NOT NULL DEFAULT 'awaiting_fulfillment',
       created_at timestamptz NOT NULL DEFAULT now()
     );
+    ALTER TABLE bogey_checkout.orders
+      ADD COLUMN IF NOT EXISTS printify_order_id text,
+      ADD COLUMN IF NOT EXISTS printify_shop_id text,
+      ADD COLUMN IF NOT EXISTS fulfillment_attempts integer NOT NULL DEFAULT 0,
+      ADD COLUMN IF NOT EXISTS fulfillment_next_attempt_at timestamptz NOT NULL DEFAULT now(),
+      ADD COLUMN IF NOT EXISTS fulfillment_last_error text,
+      ADD COLUMN IF NOT EXISTS fulfillment_updated_at timestamptz NOT NULL DEFAULT now();
+    CREATE INDEX IF NOT EXISTS orders_fulfillment_queue
+      ON bogey_checkout.orders(fulfillment_next_attempt_at)
+      WHERE fulfillment_status IN ('awaiting_fulfillment','retry_pending');
   `).catch(error => { schema = undefined; throw error; });
   await schema;
   return pool;

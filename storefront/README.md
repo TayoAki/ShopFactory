@@ -171,6 +171,14 @@ The signed /api/stripe/webhook endpoint handles completed and asynchronous succe
 
 Stripe Tax is enabled on sessions. It requires active Tax settings and a product tax code. Stripe collects tax only for configured registrations. Check the account's registered jurisdictions before launch. Product prices are exclusive of any applicable tax.
 
-Fulfillment is manual in Stripe's Payments dashboard. Paid order records have fulfillment_status=awaiting_fulfillment. Automatic Printify order submission and synchronization into Medusa's order list are not implemented. Confirm and arrange fulfillment for every paid order.
+With PRINTIFY_AUTO_FULFILLMENT=true, confirmed live payments are automatically submitted to Printify for standard-shipping production. Configure PRINTIFY_API_TOKEN and PRINTIFY_SHOP_ID. The shipping address and product/variant snapshot come from the verified paid order. Demo and sandbox orders are skipped, and refunded/disputed payments are blocked before production.
+
+Each Stripe session is the Printify external_id. PostgreSQL advisory locks prevent concurrent callbacks from creating or submitting the same order twice. The provider ID is persisted before production. Retries recover a lost create response using Printify's external_id uniqueness and check production status after an ambiguous response.
+
+A Railway scheduled function runs scripts/printify-fulfillment-cron.mjs every five minutes. FULFILLMENT_ENDPOINT points to /api/fulfillment/process and FULFILLMENT_CRON_SECRET authenticates it. Retry delays increase from one minute to a maximum of six hours. Printify billing, stock, address or provider failures remain retry_pending and are recorded as sanitized error codes on bogey_checkout.orders. Check storefront and retry-job logs if an order remains queued. Submitted orders have fulfillment_status=submitted_to_printify and printify_order_id. Refunds after production starts do not automatically cancel a Printify order.
+
+Printify sends shipping notifications for submitted orders. Paid orders are persisted in the storefront's PostgreSQL schema; synchronization into Medusa's order list is not implemented.
+
+Run npm test for provider retry/idempotency tests. To include real PostgreSQL concurrency and queue tests, set PRINTIFY_TEST_DATABASE_URL to a localhost database named bogey_fulfillment_test. These tests block external HTTP and use fixtures, never actual production orders.
 
 Umami emits demo_checkout_completed for browser demos, test_purchase for verified sandbox payments, and purchase with revenue for verified live payments. Purchase analytics are recorded when the customer returns to the confirmation page, while payment/order persistence is driven by signed webhooks as well. Browser privacy settings or a customer who does not return may leave analytics lower than Stripe's totals. Use Stripe as the sales ledger.

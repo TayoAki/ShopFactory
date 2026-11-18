@@ -1,3 +1,5 @@
+import { after } from 'next/server';
+import { fulfillPaidOrder } from '@/lib/fulfillment';
 import Stripe from 'stripe';
 import { recordPaidSession, stripeClient } from '@/lib/payments';
 
@@ -15,7 +17,8 @@ export async function POST(request: Request) {
   }
   if (event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
     try {
-      await recordPaidSession(event.data.object.id);
+      const order = await recordPaidSession(event.data.object.id);
+      if (order) after(async () => { await fulfillPaidOrder(order.id); });
     } catch {
       console.error('Paid checkout could not be recorded', event.id);
       return new Response('Please retry', { status: 500 });
