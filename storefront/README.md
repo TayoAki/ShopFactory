@@ -63,7 +63,7 @@ The homepage hero plays the brand film (Cut 2, bright ending; 30 s, with sound).
 - Each also has an MP4 fallback for browsers without WebM.
 
 **Sound and timing**
-- **Sound:** browsers only allow autoplay with sound after a visitor has interacted with the site. Otherwise the film plays muted with a "Sound on" button.
+- **Sound** is on by default. Browsers refuse autoplay with sound until a visitor has interacted with the site. In that case the film starts muted, and the sound comes on with their first tap, click or key press anywhere on the page. A speaker icon toggles it.
 - **Plays once:** the film stops on its last frame, the Cream Rope Cap, and the copy and CTA fade in.
 - **Repeat visits:** visitors who already watched it this session get that last frame and the copy straight away.
 

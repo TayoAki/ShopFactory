@@ -195,7 +195,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .hero[data-intro='pending'] .hero__content { opacity: 0; transform: translateY(14px); pointer-events: none; }
 .hero[data-intro='pending'] .hero__media::after { opacity: 0; }
 .hero[data-intro='pending']:focus-within .hero__content { opacity: 1; transform: none; pointer-events: auto; }
-.hero__sound { position: absolute; z-index: 3; top: 12px; right: 12px; min-height: 44px; padding: 0 14px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid rgba(250, 239, 223, 0.55); background: rgba(0, 0, 0, 0.45); color: var(--cream-ink); font: 700 0.8rem/1 var(--font-sans), Arial, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+.hero__sound { position: absolute; z-index: 3; top: 12px; right: 12px; width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(250, 239, 223, 0.55); background: rgba(0, 0, 0, 0.45); color: var(--cream-ink); cursor: pointer; }
 .hero__sound:hover { background: rgba(0, 0, 0, 0.65); }
 .hero__sound:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 2px; }
 @media (min-width: 900px) { .hero__sound { top: auto; bottom: 20px; right: 20px; } }
