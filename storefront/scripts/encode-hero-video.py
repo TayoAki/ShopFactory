@@ -1,6 +1,7 @@
 """Reframe the brand video shot by shot for the homepage hero: a 9:16 phone cut and a 4:3 desktop cut,
-# Usage: python3 scripts/encode-hero-video.py <source.mp4> <out-dir>. Needs ffmpeg with libx264 and libvpx-vp9.
-each as H.264 MP4 and VP9 WebM with no audio, plus a poster from the first frame."""
+each as H.264 MP4 and VP9 WebM with no audio, plus a poster from the first frame.
+
+Usage: python3 scripts/encode-hero-video.py <source.mp4> <out-dir>. Needs ffmpeg with libx264 and libvpx-vp9."""
 import subprocess, sys, os
 
 SRC = sys.argv[1]
