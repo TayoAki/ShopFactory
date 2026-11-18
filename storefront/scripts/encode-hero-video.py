@@ -40,12 +40,15 @@ def run(args):
     print("->", args[-1], flush=True)
     subprocess.run(args, check=True)
 
+# Quality per cut (lower CRF = higher quality, bigger file). Phones get slightly more compression to save data.
+CRF = {"desktop": {"x264": 26, "vp9": 37}, "mobile": {"x264": 27, "vp9": 38}}
+
 for name, graph in [("desktop", "[0:v]scale=1920:1080:flags=lanczos,format=yuv420p[v]"), ("mobile", mobile_graph())]:
     base = ["ffmpeg", "-v", "error", "-y", "-i", SRC, "-filter_complex", graph, "-map", "[v]"]
     base += ["-map", "0:a?"] if AUDIO else ["-an"]
-    run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "25", "-profile:v", "high"]
+    run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", str(CRF[name]["x264"]), "-profile:v", "high"]
         + (["-c:a", "aac", "-b:a", "128k"] if AUDIO else []) + ["-movflags", "+faststart", f"{OUT}/hero-{name}.mp4"])
-    run(base + ["-c:v", "libvpx-vp9", "-crf", "35", "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "2"]
+    run(base + ["-c:v", "libvpx-vp9", "-crf", str(CRF[name]["vp9"]), "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "2"]
         + (["-c:a", "libopus", "-b:a", "96k"] if AUDIO else []) + [f"{OUT}/hero-{name}.webm"])
     run(["ffmpeg", "-v", "error", "-y", "-i", f"{OUT}/hero-{name}.mp4", "-frames:v", "1", "-c:v", "libwebp", "-quality", "80",
          f"{OUT}/hero-{name}-poster.webp"])

@@ -8,7 +8,8 @@ const SEEN_KEY = 'bb_hero_seen';
 
 /**
  * The homepage hero film. It loops; the hero's two lines (hidden by `data-intro="pending"` on the section) fade in
- * when the first play-through ends and stay up from then on.
+ * when the film reaches `revealAt` seconds (the start of its end card) on the first play, and stay up from then on.
+ * Without `revealAt` they appear when the first play-through ends.
  *
  * - Sound is on by default. Browsers refuse autoplay with sound until a visitor has interacted with the site; if
  *   the unmuted start is refused, the film plays muted and the sound comes on with the visitor's first tap, click
@@ -17,7 +18,7 @@ const SEEN_KEY = 'bb_hero_seen';
  *   within 6 seconds, or the visitor already watched it this session (the film then loops muted behind them).
  * - The server-rendered poster underneath stays the largest paint.
  */
-export function HeroVideo({ heroId, mobile, desktop }: { heroId: string; mobile: Cut; desktop: Cut }) {
+export function HeroVideo({ heroId, mobile, desktop, revealAt }: { heroId: string; mobile: Cut; desktop: Cut; revealAt?: number }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [cut, setCut] = useState<Cut | null>(null);
   const [visible, setVisible] = useState(false);
@@ -25,10 +26,21 @@ export function HeroVideo({ heroId, mobile, desktop }: { heroId: string; mobile:
   const repeatVisit = useRef(false);
   const userChose = useRef(false);
   const timer = useRef<number | undefined>(undefined);
+  const revealed = useRef(false);
 
   const reveal = useCallback(() => {
+    revealed.current = true;
     document.getElementById(heroId)?.setAttribute('data-intro', 'done');
   }, [heroId]);
+
+  // The intro is over: show the lines and remember it for the rest of the session.
+  const finishIntro = useCallback(() => {
+    if (revealed.current) return;
+    reveal();
+    try {
+      sessionStorage.setItem(SEEN_KEY, '1');
+    } catch {}
+  }, [reveal]);
 
   useEffect(() => {
     const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
@@ -56,9 +68,9 @@ export function HeroVideo({ heroId, mobile, desktop }: { heroId: string; mobile:
         reveal();
       });
     };
+    v.loop = true;
     if (repeatVisit.current) {
       // Already heard it this session: loop quietly behind the lines.
-      v.loop = true;
       quiet();
       return;
     }
@@ -113,16 +125,11 @@ export function HeroVideo({ heroId, mobile, desktop }: { heroId: string; mobile:
           setVisible(true);
           window.clearTimeout(timer.current);
         }}
-        onEnded={(e) => {
-          // First play-through done: show the lines, then loop from here on.
-          reveal();
-          try {
-            sessionStorage.setItem(SEEN_KEY, '1');
-          } catch {}
+        onTimeUpdate={(e) => {
+          if (revealed.current) return;
           const v = e.currentTarget;
-          v.loop = true;
-          v.currentTime = 0;
-          v.play().catch(() => undefined);
+          const at = revealAt ?? (Number.isFinite(v.duration) ? v.duration - 0.3 : Infinity);
+          if (v.currentTime >= at) finishIntro();
         }}
         onError={reveal}
       >
