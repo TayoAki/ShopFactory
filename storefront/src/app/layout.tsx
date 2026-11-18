@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
-import { Suspense } from 'react';
 import { CartProvider } from '@/lib/cart';
 import { site } from '@/lib/site';
-import { PageViewTracker } from '@/components/PageViewTracker';
+import { UmamiTracker } from '@/components/UmamiTracker';
 import { JsonLd } from '@/components/JsonLd';
 import './globals.css';
 
@@ -44,9 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
         <CartProvider>
-          <Suspense fallback={null}>
-            <PageViewTracker />
-          </Suspense>
+          <UmamiTracker />
           {children}
         </CartProvider>
         <JsonLd

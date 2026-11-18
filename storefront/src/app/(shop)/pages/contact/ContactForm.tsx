@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { track } from '@/lib/analytics';
 
 export function ContactForm() {
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
@@ -9,7 +10,8 @@ export function ContactForm() {
     const data = Object.fromEntries(new FormData(e.currentTarget).entries());
     setState('sending');
     const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(() => null);
-    setState(res && res.ok ? 'done' : 'error');
+    if (res?.ok) track('contact_submitted');
+    setState(res?.ok ? 'done' : 'error');
   }
   if (state === 'done') return <p className="panel form-msg" role="status">Thanks, we&apos;ve got it. Expect a reply within one business day.</p>;
   return (

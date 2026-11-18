@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CartLines, CartSummary } from '@/components/CartDrawer';
 import { Icon } from '@/components/Icon';
 import { TrustLine } from '@/components/TrustLine';
@@ -22,10 +22,12 @@ export function CheckoutClient() {
   const [placing, setPlacing] = useState(false);
   const [error, setError] = useState('');
 
+  const checkoutTracked = useRef(false);
   useEffect(() => {
-    if (cart.count > 0) track('begin_checkout', { value: cart.total / 100, items: cart.count });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (checkoutTracked.current || cart.count === 0) return;
+    checkoutTracked.current = true;
+    track('begin_checkout', { value: cart.total / 100, items: cart.count });
+  }, [cart.count, cart.total]);
 
   if (cart.count === 0)
     return (
@@ -47,7 +49,6 @@ export function CheckoutClient() {
     setError('');
     setPlacing(true);
     track('add_shipping_info', { value: cart.total / 100 });
-    track('add_payment_info', { value: cart.total / 100 });
     const orderId = 'BB-' + Math.random().toString(36).slice(2, 7).toUpperCase();
     const summary = { orderId, firstName: String(form.get('firstName') || ''), email: String(form.get('email')), total: cart.total, count: cart.count, demo: site.checkoutMode === 'demo' };
     try {
@@ -55,7 +56,7 @@ export function CheckoutClient() {
     } catch {
       /* ignore */
     }
-    track('purchase', { transaction_id: orderId, value: cart.total / 100, items: cart.count, demo: summary.demo });
+    track('demo_checkout_completed', { items: cart.count });
     cart.clear();
     router.push(`/order/confirmed?order=${orderId}`);
   }

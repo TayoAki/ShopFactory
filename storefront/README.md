@@ -28,7 +28,7 @@ npm run build && npm start   # production build (PORT is respected)
 | Claims engine: benefit copy comes only from true feature flags | `src/lib/catalog.ts` (`benefitBullets`) |
 | Bundle pricing (2 hats save 10%, 3+ save 15%) | `src/lib/pricing.ts` |
 | Cart (saved in the browser), drawer, bundle nudge | `src/lib/cart.tsx`, `src/components/CartDrawer.tsx` |
-| First-party analytics (server-side, no third-party pixels) | `src/lib/analytics.ts`, `src/app/api/analytics/route.ts` |
+| Self-hosted Umami pageviews and storefront events | `src/components/UmamiTracker.tsx`, `src/lib/analytics.ts` |
 | Waitlist and newsletter (Klaviyo when keys are set) | `src/app/api/waitlist/route.ts` |
 | Lifestyle media manifest | `src/data/media.ts` |
 | Homepage hero film (16:9 desktop, 9:16 phone, sound, loops, two lines appear after the first play) | `src/components/HeroVideo.tsx`, `public/video/`, `scripts/encode-hero-video.py`, `scripts/hero-shots.json` |
@@ -143,12 +143,7 @@ Both lines fade in when the film reaches the cap at 27 s (`revealAt` in `page.ts
      | Winter Rules beanie | Gold | Bright yellow-gold |
      | Cart Path Trucker | Emerald | Teal |
      | Turn Cord | Chocolate | Mauve brown |
-4. **Tracking.** Forward `/api/analytics` events to:
-   - the GA4 Measurement Protocol
-   - the Meta Conversions API
-   - the TikTok Events API
-
-   Reuse `event_id` for deduplication, and skip forwarding when a request carries `Sec-GPC: 1`.
+4. **Tracking.** Set `NEXT_PUBLIC_UMAMI_URL` and `NEXT_PUBLIC_UMAMI_WEBSITE_ID` on the storefront service before building. Umami tracks pageviews for the Bogey Baby domains. Campaign parameters are allowed, while search queries and other URL parameters are excluded. Demo checkouts emit `demo_checkout_completed`. Emit sales only from a verified payment or order when live checkout is implemented.
 5. **Launch switches.** Set `NEXT_PUBLIC_CHECKOUT_MODE=live`, `NEXT_PUBLIC_INDEXABLE=true` and `NEXT_PUBLIC_DROP_MODE=false`.
 
 ## Security

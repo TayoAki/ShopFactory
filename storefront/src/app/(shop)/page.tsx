@@ -61,7 +61,7 @@ export default function HomePage() {
               <span className="eyebrow">Best sellers</span>
               <h2>No Cap, All Carry</h2>
             </div>
-            <Link href="/collections/all" className="link link--cta">Shop all {productsIn('all').length} hats →</Link>
+            <Link href="/collections/all" className="link link--cta" data-umami-event="home_shop_all">Shop all {productsIn('all').length} hats →</Link>
           </div>
           <div className="grid grid--4">
             {bestSellers().map((p, i) => (
@@ -139,7 +139,7 @@ export default function HomePage() {
               ))}
             </ul>
             <div className="btn-row">
-              <Link href="/products/cream-rope-cap" className="btn">{site.dropMode ? 'See the details' : `Shop it · ${money(flagship.price)}`}</Link>
+              <Link href="/products/cream-rope-cap" className="btn" data-umami-event="home_shop_flagship">{site.dropMode ? 'See the details' : `Shop it · ${money(flagship.price)}`}</Link>
             </div>
           </div>
         </div>
@@ -159,7 +159,7 @@ export default function HomePage() {
                 Save {pair.percentOff}% on any 2 hats and {four.percentOff}% on 3 or more. One for you, one for whoever makes you book the next tee time. Mix any styles and colors.
               </p>
               <div className="btn-row" style={{ marginTop: 22 }}>
-                <Link href="/pages/golf-buddy" className="btn btn--cream">Get the Golf Buddy Pair <Icon name="arrow" width={20} /></Link>
+                <Link href="/pages/golf-buddy" className="btn btn--cream" data-umami-event="home_golf_buddy">Get the Golf Buddy Pair <Icon name="arrow" width={20} /></Link>
               </div>
               <TrustLine light />
             </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SearchTracker } from '@/components/SearchTracker';
 import { ProductCard } from '@/components/ProductCard';
 import { products } from '@/data/products';
 import { bestSellers } from '@/lib/catalog';
@@ -27,6 +28,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
           <input id="q" name="q" className="input" defaultValue={q} placeholder="Try 'ponytail', 'visor' or 'sage'" autoFocus />
           <button className="btn btn--sm" type="submit">Search</button>
         </form>
+        {q && <SearchTracker key={q} resultCount={results.length} />}
         {q && (
           <p className="muted" style={{ marginTop: 16 }} role="status">
             {results.length ? `${results.length} ${results.length === 1 ? 'hat' : 'hats'} for “${q}”` : `No hats match “${q}”. Try “cap”, “visor” or a color.`}

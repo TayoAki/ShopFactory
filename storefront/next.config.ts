@@ -3,13 +3,16 @@ import type { NextConfig } from 'next';
 // Security headers. Next.js App Router hydrates with small inline scripts, so script-src
 // needs 'unsafe-inline' unless you switch to per-request nonces (see README, "Security").
 // Add a vendor's domains here only if you load its browser script; server-side events need none.
+const umamiOrigin = process.env.NEXT_PUBLIC_UMAMI_URL
+  ? ' ' + new URL(process.env.NEXT_PUBLIC_UMAMI_URL).origin
+  : '';
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://js.stripe.com",
+  "script-src 'self' 'unsafe-inline' https://js.stripe.com" + umamiOrigin,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
-  "connect-src 'self' https://api.stripe.com",
+  "connect-src 'self' https://api.stripe.com" + umamiOrigin,
   "frame-src https://js.stripe.com https://hooks.stripe.com",
   "media-src 'self'",
   "form-action 'self'",
