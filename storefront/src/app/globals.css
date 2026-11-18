@@ -404,3 +404,46 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .ai-note { font-size: 0.75rem; color: var(--ink-soft); margin-top: 8px; }
 .hide-mobile { display: none; }
 @media (min-width: 900px) { .hide-mobile { display: initial; } .hide-desktop { display: none; } }
+
+/* Embroidered primary navigation. The sheet is shared across all four labels. */
+.header__primary { display: none; }
+.embroidered-nav-link { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; border-radius: 4px; }
+.embroidered-nav-link:focus-visible { outline: 2px solid var(--pine-900); outline-offset: 5px; }
+.embroidered-nav-link[aria-current='page'] { box-shadow: 0 2px 0 var(--pine-900); }
+.embroidered-nav-word {
+  display: block;
+  width: calc(var(--word-width) * .12 * var(--word-scale, 1));
+  height: calc(24px * var(--word-scale, 1));
+  background-size: calc(1145px * .12 * var(--word-scale, 1)) calc(1374px * .12 * var(--word-scale, 1));
+  background-position: calc(var(--word-x) * .12 * var(--word-scale, 1)) calc(var(--word-y) * .12 * var(--word-scale, 1));
+  background-image: url('/brand/navigation-embroidery.webp');
+  background-repeat: no-repeat;
+}
+.drawer__primary { display: grid; gap: 12px; margin: 14px 0 26px; }
+.drawer__primary .embroidered-nav-link { min-height: 62px; width: fit-content; --word-scale: 1.5; }
+.menu-categories { border-top: 1px solid var(--line); padding-top: 16px; }
+.menu-categories summary { cursor: pointer; padding: 8px 0; font-weight: 700; }
+.menu-utility-links { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 24px; }
+.menu-utility-links a { color: var(--ink-soft); font-size: .9rem; text-underline-offset: 4px; }
+@media (min-width: 1024px) {
+  .header__primary { display: flex; align-items: center; gap: clamp(14px, 1.8vw, 28px); }
+  .header__left { gap: clamp(10px, 1.4vw, 22px); }
+  .header__right { gap: 3px; }
+  .header__primary--right { margin-right: clamp(8px, 1.2vw, 20px); }
+}
+
+.embroidered-nav-word--shop { --word-width: 590px; --word-x: -280px; --word-y: -170px; }
+.embroidered-nav-word--gift-guide { --word-width: 1015px; --word-x: -68px; --word-y: -451px; }
+.embroidered-nav-word--fit-quiz { --word-width: 840px; --word-x: -158px; --word-y: -724px; }
+.embroidered-nav-word--no-cap { --word-width: 780px; --word-x: -185px; --word-y: -1020px; }
+.fit-quiz { max-width: 760px; display: grid; gap: 28px; }
+.fit-quiz__question { min-width: 0; margin: 0; padding: 0; border: 0; }
+.fit-quiz__question legend { font-weight: 700; font-size: 1.15rem; margin-bottom: 12px; }
+.fit-quiz__options { display: grid; gap: 10px; }
+.fit-quiz__option { display: flex; align-items: center; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius); cursor: pointer; }
+.fit-quiz__option:has(input:checked) { border-color: var(--pine-900); background: var(--paper-2); }
+.fit-quiz__option:focus-within { outline: 2px solid var(--pine-900); outline-offset: 2px; }
+.fit-quiz__option input { width: 20px; height: 20px; accent-color: var(--pine-900); flex-shrink: 0; }
+.fit-quiz .btn { justify-self: start; }
+.fit-quiz__results { scroll-margin-top: 120px; }
+@media (min-width: 640px) { .fit-quiz__options { grid-template-columns: 1fr 1fr; } }

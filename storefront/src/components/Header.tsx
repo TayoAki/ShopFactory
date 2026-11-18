@@ -3,10 +3,27 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { site } from '@/lib/site';
 import { Icon } from './Icon';
+
+const primaryLinks = [
+  { href: '/collections/all', label: 'Shop', art: 'shop' },
+  { href: '/pages/gift-guide', label: 'Gift Guide', art: 'gift-guide' },
+  { href: '/pages/fit-quiz', label: 'Fit Quiz', art: 'fit-quiz' },
+  { href: '/pages/about-us', label: 'No Cap', art: 'no-cap' },
+] as const;
+
+function NavigationWord({ word }: { word: typeof primaryLinks[number] }) {
+  const pathname = usePathname();
+  return (
+    <Link href={word.href} className="embroidered-nav-link" aria-current={pathname === word.href ? 'page' : undefined} data-umami-event="navigation_clicked" data-umami-event-destination={word.art}>
+      <span className={`embroidered-nav-word embroidered-nav-word--${word.art}`} aria-hidden="true" />
+      <span className="sr-only">{word.label}</span>
+    </Link>
+  );
+}
 
 const shopLinks = [
   { href: '/collections/all', label: 'Shop all hats' },
@@ -24,15 +41,14 @@ const styleLinks = [
 ];
 
 /**
- * Twill header with no text menu: the menu button (every screen size) opens the drawer with all the links.
- * Desktop: the crest patch sits in the middle, half on the bar and half hanging below it at the top of the page,
- * shrinking into the bar once the page scrolls. Phones: the embroidered BOGEY BABY wordmark in the middle; search lives in the drawer.
+ * Embroidered navigation around the desktop crest. Phones use the wordmark and a menu drawer.
  */
 export function Header() {
   const cart = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const drawer = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -52,20 +68,49 @@ export function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const focusable = () => Array.from(drawer.current?.querySelectorAll<HTMLElement>('a[href], button, input, summary') || []);
+    focusable()[0]?.focus();
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return;
+      const items = focusable().filter(item => item.getClientRects().length > 0);
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    document.addEventListener('keydown', trapFocus);
+    return () => {
+      document.body.style.overflow = overflow;
+      document.removeEventListener('keydown', trapFocus);
+      previous?.focus();
+    };
+  }, [menuOpen]);
+
   return (
     <>
       <header className={`header${scrolled ? ' is-scrolled' : ''}`}>
         <div className="container header__bar">
           <div className="header__left">
-            <button className="icon-btn menu-toggle" aria-label="Open menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}>
+            <button className="icon-btn menu-toggle" aria-label="Open menu" aria-controls="main-menu-drawer" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}>
               <Icon name="menu" />
             </button>
+            <nav className="header__primary header__primary--left" aria-label="Shop navigation">
+              {primaryLinks.slice(0, 2).map(word => <NavigationWord key={word.art} word={word} />)}
+            </nav>
           </div>
           <Link href="/" className="header__brand" aria-label="Bogey Baby home">
             <Image className="header__badge" src="/brand/golfer-badge-384.webp" alt="" width={384} height={384} sizes="168px" priority />
             <Image className="header__wordmark header__wordmark--mobile" src="/brand/wordmark-embroidered.webp" alt="Bogey Baby" width={1400} height={191} sizes="230px" priority />
           </Link>
           <div className="header__right">
+            <nav className="header__primary header__primary--right" aria-label="Discover navigation">
+              {primaryLinks.slice(2).map(word => <NavigationWord key={word.art} word={word} />)}
+            </nav>
             <Link href="/search" className="icon-btn header__search" aria-label="Search">
               <Icon name="search" />
             </Link>
@@ -83,7 +128,7 @@ export function Header() {
       </header>
 
       <div className="overlay" data-open={menuOpen} onClick={() => setMenuOpen(false)} aria-hidden="true" />
-      <aside className="drawer drawer--left" data-open={menuOpen} aria-label="Menu" aria-hidden={!menuOpen} inert={!menuOpen}>
+      <aside ref={drawer} id="main-menu-drawer" role="dialog" aria-modal={menuOpen} className="drawer drawer--left" data-open={menuOpen} aria-label="Menu" aria-hidden={!menuOpen} inert={!menuOpen}>
         <div className="drawer__head">
           <Image className="wordmark-embroidered" src="/brand/wordmark-embroidered.webp" alt="Bogey Baby" width={1400} height={191} sizes="180px" style={{ width: 180, height: 'auto' }} />
           <button className="icon-btn" aria-label="Close menu" onClick={() => setMenuOpen(false)}>
@@ -95,15 +140,21 @@ export function Header() {
             <label className="sr-only" htmlFor="menu-search">Search hats</label>
             <input id="menu-search" className="input" name="q" placeholder="Search hats" />
           </form>
-          <ul className="mobile-nav">
-            {shopLinks.map((l) => <li key={l.href}><Link href={l.href}>{l.label}<Icon name="chevron" width={18} /></Link></li>)}
-            {styleLinks.map((l) => <li key={l.href} className="sub"><Link href={l.href}>{l.label}</Link></li>)}
-            <li><Link href="/pages/golf-buddy">Bring your golf buddy<Icon name="chevron" width={18} /></Link></li>
-            <li><Link href="/pages/fit-guide">Fit Guide<Icon name="chevron" width={18} /></Link></li>
-            <li><Link href="/pages/reviews">Reviews<Icon name="chevron" width={18} /></Link></li>
-            <li><Link href="/pages/about-us">Our Story<Icon name="chevron" width={18} /></Link></li>
-            <li><Link href="/account">Account<Icon name="chevron" width={18} /></Link></li>
-          </ul>
+          <nav aria-label="Main menu" className="drawer__primary">
+            {primaryLinks.map(word => <NavigationWord key={word.art} word={word} />)}
+          </nav>
+          <details className="menu-categories">
+            <summary>Browse hats</summary>
+            <ul className="mobile-nav">
+              {shopLinks.map(l => <li key={l.href}><Link href={l.href}>{l.label}<Icon name="chevron" width={18} /></Link></li>)}
+              {styleLinks.map(l => <li key={l.href} className="sub"><Link href={l.href}>{l.label}</Link></li>)}
+            </ul>
+          </details>
+          <div className="menu-utility-links">
+            <Link href="/pages/fit-guide">Fit Guide</Link>
+            <Link href="/pages/reviews">Reviews</Link>
+            <Link href="/account">Account</Link>
+          </div>
         </div>
         <div className="drawer__foot small">Free US shipping · Free fit exchanges · 30-day returns</div>
       </aside>
