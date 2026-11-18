@@ -139,11 +139,11 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 @media (min-width: 900px) { .icon-btn.hide-mobile, .icon-btn.header__search { display: inline-flex; } }
 @media (min-width: 1024px) {
   :root { --header-h: 96px; }
-  /* Desktop: no text menu. The crest patch hangs below the bar at the top of the page (120px) and shrinks into it
-     (80px) once the page scrolls; the menu button opens the drawer. */
-  .header__brand { align-self: start; align-items: flex-start; height: var(--header-h); padding: 8px 0 0; position: relative; z-index: 2; }
-  .header__badge { display: block; width: 120px; height: 120px; transform-origin: 50% 0; transition: transform 220ms var(--ease); filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.28)); }
-  .header.is-scrolled .header__badge { transform: scale(0.667); }
+  /* Desktop: no text menu. At the top of the page the crest patch (168px) is centred on the bar's bottom edge, so
+     half of it sits on the nav and half hangs below; once the page scrolls it shrinks into the bar (80px). */
+  .header__brand { align-self: start; align-items: flex-start; height: var(--header-h); padding: calc(var(--header-h) - 84px) 0 0; position: relative; z-index: 2; }
+  .header__badge { display: block; width: 168px; height: 168px; transform-origin: 50% 0; transition: transform 220ms var(--ease); filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3)); }
+  .header.is-scrolled .header__badge { transform: scale(0.476); }
   .header__wordmark--mobile { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .header__badge { transition: none; } }

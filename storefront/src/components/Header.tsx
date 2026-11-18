@@ -25,8 +25,8 @@ const styleLinks = [
 
 /**
  * Twill header with no text menu: the menu button (every screen size) opens the drawer with all the links.
- * Desktop: the crest patch sits in the middle, hanging below the bar at the top of the page and shrinking into it
- * once the page scrolls. Phones: the embroidered BOGEY BABY wordmark in the middle; search lives in the drawer.
+ * Desktop: the crest patch sits in the middle, half on the bar and half hanging below it at the top of the page,
+ * shrinking into the bar once the page scrolls. Phones: the embroidered BOGEY BABY wordmark in the middle; search lives in the drawer.
  */
 export function Header() {
   const cart = useCart();
@@ -62,7 +62,7 @@ export function Header() {
             </button>
           </div>
           <Link href="/" className="header__brand" aria-label="Bogey Baby home">
-            <Image className="header__badge" src="/brand/golfer-badge-384.webp" alt="" width={384} height={384} sizes="120px" priority />
+            <Image className="header__badge" src="/brand/golfer-badge-384.webp" alt="" width={384} height={384} sizes="168px" priority />
             <Image className="header__wordmark header__wordmark--mobile" src="/brand/wordmark-embroidered.webp" alt="Bogey Baby" width={1400} height={191} sizes="230px" priority />
           </Link>
           <div className="header__right">
