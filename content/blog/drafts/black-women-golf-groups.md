@@ -26,7 +26,7 @@ heroImage: >-
   the headline badge "BLACK WOMEN'S GOLF GROUPS" inside the center 80% and the G-44 gold stitch frame,
   set as the OG image; filename black-womens-golf-groups-cover.webp. No AI people, no group logos and
   no photos of group members. Inline: a deterministic SVG map of the US (Path C, system-ui, pine on
-  paper #FAEFDF) with one dot per city named in this post (Washington DC, Philadelphia, Chicago, Tampa,
+  paper #FAEFDF) with one dot per city named in the article (Washington DC, Philadelphia, Chicago, Tampa,
   Atlanta, Dallas-Fort Worth, Houston, Charlotte, Raleigh-Durham), filename
   black-womens-golf-groups-us-map.svg, placed after the first paragraph of "How to find a group near
   you". Alt text: "Map of the US with dots on the cities where the Black women's golf groups in this
@@ -92,7 +92,7 @@ Helen Webb Harris founded Wake-Robin on April 22, 1937. Thirteen women came to t
 - **Where:** Founded in Washington, D.C. In 1938 it petitioned Interior Secretary Harold Ickes to desegregate the city's public courses.
 - **Who it's for:** "Any amateur woman golfer as defined by the current rules and policies of the USGA handbook," per its [membership page](https://wake-robingolf.org/membership).
 - **What it does:** It's a 501(c)(3) nonprofit that gives scholarships to college-bound female high school graduates.
-- **How to join:** Applications are accepted year-round. Download the application from the membership page and send it in with the $25 non-refundable application fee.
+- **How to join:** The club takes applications year-round. Download the application from the membership page and send it in with the $25 non-refundable application fee.
 - **Site:** [wake-robingolf.org](https://wake-robingolf.org/about-us)
 
 ### The Green's Ladies Golf Club
@@ -145,7 +145,7 @@ Clemmie Perry established Women of Color Golf and its youth program, Girls on th
 
 The LPGA Amateur Golf Association isn't specific to Black women golfers. It's here because it organizes members into local chapters, and its memberships include access to a program called Let's Go Golf 101 ([LPGA Amateurs, Memberships](https://lpgaamateurs.com/memberships/)).
 
-- **Where:** Local chapters around the country. Members who don't live near a chapter can join At Large.
+- **Where:** Local chapters, plus an At Large option for members who don't live near one.
 - **Who it's for:** Members must be 18 or older.
 - **What it does:** Full members get local chapter golf, networking and social events. Both membership types include access to Let's Go Golf 101.
 - **How to join:** Sign up on the memberships page. On 18 November 2026, full membership dues for new members ran from $65 to $120 by age group, and a Virtual Community membership was $49.99.<!-- Checked on lpgaamateurs.com/memberships, 18 Nov 2026. Recheck before publishing. -->
@@ -173,7 +173,7 @@ Bring what you'd bring to any first round, plus a friend if you can.
 - **Clothes that meet the course's dress code.** Our guide to [what to wear golfing for the first time](/journal/what-to-wear-golfing-women) covers outfits by weather.
 - **Sunscreen.** The Skin Cancer Foundation's [golf advice](https://www.skincancer.org/blog/sun-protection-habits-golf-course/) is water-resistant, broad-spectrum SPF 30 or higher, reapplied every two hours or more often if you're sweating heavily. That's general guidance, not medical advice.
 - **Water and a snack.** Not every course sells food at the range, so bring your own.
-- **A hat that fits your head and your hair.** We make [golf hats made for women](/collections/all) who play, with ponytail openings, a small fit and adjustable closures.
+- **A hat that fits your head and your hair.** Ours are [golf hats made for women](/collections/all) who play, with ponytail openings, a small fit and adjustable closures.
 - **Your golf buddy.** Two new faces are easier than one. If you're both buying, look at [matching hats for the group](/pages/golf-buddy).
 
 ## Black women's golf groups FAQ
@@ -198,4 +198,4 @@ No. On 18 November 2026 that address forwarded to a domain-sale page. The group'
 
 <!-- The journal template renders the product block (C-10 cards; prices come from products.ts) and the C-16 signup after this CTA. -->
 
-> **Found your foursome?** [Bring your golf buddy](/pages/golf-buddy): two hats save 10%, three or more save 15%.
+> **Found your foursome?** [Bring your golf buddy](/pages/golf-buddy): two hats save 10%, three or more save 15%.<!-- OWNER CHECK: 11.2. Bundle tiers are marked confirm-before-launch in the README; the link points to /pages/golf-buddy so they update in one place. -->
