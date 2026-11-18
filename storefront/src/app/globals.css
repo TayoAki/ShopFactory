@@ -211,7 +211,9 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .hero .eyebrow { color: var(--gold-light); }
 .hero__sub { font-size: 1.12rem; line-height: 1.55; max-width: 34ch; margin: 14px 0 22px; color: #f3ecd2; }
 .hero__headline { margin: 0; line-height: 0; }
-.hero__headline img { width: min(86vw, 420px); height: auto; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)); }
+/* The artwork's letters start ~1.2-1.5% in from its edge (outline + shadow); nudge left so the stem of "B" lines up with
+   the subline's "F". */
+.hero__headline img { width: min(86vw, 420px); height: auto; transform: translateX(-1.1%); filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)); }
 @media (min-width: 900px) { .hero__headline img { width: clamp(440px, 40vw, 640px); } }
 .hero__line { font-size: 1.15rem; line-height: 1.45; max-width: 30ch; text-wrap: balance; margin: 10px 0 0; color: #f3ecd2; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55); }
 @media (min-width: 900px) { .hero__line { font-size: 1.4rem; margin-top: 14px; } }
