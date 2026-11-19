@@ -69,6 +69,6 @@ export async function financialSummary(start:number,end:number){const db=await p
 
 export async function syncGrowthSources(){
  const financials=await syncFinancials();const db=await providerDatabase();
- const analytics=await Promise.all([7,28,90].map(async days=>{const b=(await db.query("SELECT (((now() AT TIME ZONE 'America/New_York')::date-$1::int) AT TIME ZONE 'America/New_York') AS start,((now() AT TIME ZONE 'America/New_York')::date AT TIME ZONE 'America/New_York') AS finish",[days])).rows[0];const result=await syncAnalytics(days,new Date(b.start).getTime(),new Date(b.finish).getTime());return {days,connected:!('error' in result)};}));
+ const analytics=await Promise.all([0,7,28,90].map(async days=>{const b=(await db.query("SELECT (((now() AT TIME ZONE 'America/New_York')::date-$1::int) AT TIME ZONE 'America/New_York') AS start,CASE WHEN $1::int=0 THEN now() ELSE ((now() AT TIME ZONE 'America/New_York')::date AT TIME ZONE 'America/New_York') END AS finish",[days])).rows[0];const result=await syncAnalytics(days,new Date(b.start).getTime(),new Date(b.finish).getTime());return {days,connected:!('error' in result)};}));
  return {financials,analytics};
 }

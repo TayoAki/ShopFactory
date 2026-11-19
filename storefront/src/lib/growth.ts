@@ -66,14 +66,14 @@ export async function growthSnapshot(days:number){
   db.query("SELECT COALESCE(sum(cents) FILTER(WHERE state='actual'),0)::int AS actual,COALESCE(sum(cents) FILTER(WHERE state='committed'),0)::int AS committed FROM bogey_growth.expenses WHERE month=$1",[localMonth]),
   db.query("SELECT count(DISTINCT (a.created_at AT TIME ZONE 'America/New_York')::date)::int AS days FROM bogey_growth.activity a JOIN bogey_growth.tasks t ON t.id=a.task_id WHERE a.xp_delta>0 AND t.status='verified' AND a.created_at >= (date_trunc('week',now() AT TIME ZONE 'America/New_York') AT TIME ZONE 'America/New_York')")]);
  let orders:null|{paid:number;previous:number;merchandise:number;exceptions:number;test:number}=null;
- try{const payments=await paymentDatabase();const result=await payments.query(`WITH bounds AS(SELECT ((now() AT TIME ZONE $2)::date AT TIME ZONE $2) AS finish, (((now() AT TIME ZONE $2)::date - $1::int) AT TIME ZONE $2) AS start, (((now() AT TIME ZONE $2)::date - ($1::int*2)) AT TIME ZONE $2) AS previous_start), eligible AS(SELECT * FROM bogey_checkout.orders WHERE created_at >= (SELECT previous_start FROM bounds))
+ try{const payments=await paymentDatabase();const result=await payments.query(`WITH bounds AS(SELECT CASE WHEN $1::int=0 THEN now() ELSE ((now() AT TIME ZONE $2)::date AT TIME ZONE $2) END AS finish, (((now() AT TIME ZONE $2)::date - $1::int) AT TIME ZONE $2) AS start, (((now() AT TIME ZONE $2)::date - ($1::int*2)) AT TIME ZONE $2) AS previous_start), eligible AS(SELECT * FROM bogey_checkout.orders WHERE created_at >= (SELECT previous_start FROM bounds))
  SELECT count(*) FILTER(WHERE livemode AND created_at >= b.start AND created_at<b.finish)::int AS paid,
  count(*) FILTER(WHERE livemode AND created_at >= b.previous_start AND created_at<b.start)::int AS previous,
  COALESCE(sum(GREATEST(0,COALESCE((stripe_session->>'amount_subtotal')::bigint,0)-COALESCE((stripe_session->'total_details'->>'amount_discount')::bigint,0))) FILTER(WHERE livemode AND created_at>=b.start AND created_at<b.finish),0)::text AS merchandise,
  count(*) FILTER(WHERE NOT livemode AND created_at>=b.start AND created_at<b.finish)::int AS test,
  (SELECT count(*)::int FROM bogey_checkout.orders WHERE livemode AND fulfillment_status NOT IN('submitted_to_printify')) AS exceptions FROM eligible CROSS JOIN bounds b`,[days,timezone]);const r=result.rows[0];orders={...r,merchandise:Number(r.merchandise)};}catch{ /* Missing payment source must not look like zero orders. */ }
  const providerDb=await providerDatabase();
- const bounds=(await db.query("SELECT (((now() AT TIME ZONE 'America/New_York')::date-$1::int) AT TIME ZONE 'America/New_York') AS start,((now() AT TIME ZONE 'America/New_York')::date AT TIME ZONE 'America/New_York') AS finish",[days])).rows[0];
+ const bounds=(await db.query("SELECT (((now() AT TIME ZONE 'America/New_York')::date-$1::int) AT TIME ZONE 'America/New_York') AS start,CASE WHEN $1::int=0 THEN now() ELSE ((now() AT TIME ZONE 'America/New_York')::date AT TIME ZONE 'America/New_York') END AS finish",[days])).rows[0];
  const start=new Date(bounds.start).getTime(),end=new Date(bounds.finish).getTime();
  let analytics=null;let analyticsRefreshFailed=false;
  const cached=(await providerDb.query('SELECT payload,updated_at FROM bogey_growth.provider_cache WHERE key=$1',['analytics:'+days])).rows[0];

@@ -23,3 +23,5 @@ Stripe charge/refund balance transactions supply actual fees including fee credi
 Full refunds exclude known original sales tax. Partial-refund tax splits are proportional estimates unless the amount is tax-free; this explicitly labels contribution estimated. Disputes block contribution. Net contribution after recorded growth expenses is not a complete operating profit: unrecorded overhead, commissions, replacement charges and supplier credits still require bookkeeping. Manual costs acquire a spent timestamp when marked actual, so commitments are not double counted.
 
 No live payment, refund, supplier order or advertising expenditure is created by the reporting sync. The private key is stored in Railway, not shipped to the browser. Umami API keys inherit their issuing account permissions; the dashboard only performs reporting GET requests at runtime.
+
+The default Today view includes activity since midnight Eastern; completed 7/28/90-day views remain available. This avoids hiding launch-day visits.
