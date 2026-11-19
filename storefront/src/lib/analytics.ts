@@ -3,6 +3,7 @@ type EventValue = string | number | boolean | string[] | undefined;
 type EventData = Record<string, EventValue>;
 
 export type AnalyticsEvent =
+  | 'custom_design_started' | 'custom_preview_viewed' | 'custom_delivery_started' | 'custom_quote_started' | 'custom_quote_ready' | 'custom_checkout_started' | 'custom_artwork_approved' | 'custom_design_error'
   | 'generate_lead' | 'select_item' | 'view_item' | 'add_to_cart'
   | 'remove_from_cart' | 'view_cart' | 'begin_checkout' | 'add_shipping_info'
   | 'fit_quiz_completed' | 'purchase' | 'test_purchase' | 'demo_checkout_completed' | 'select_promotion' | 'scroll' | 'search' | 'contact_submitted';

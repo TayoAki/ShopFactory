@@ -119,7 +119,7 @@ export default async function ProductPage({ params }: { params: Promise<{ handle
           <div className="panel panel--line" style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
             <Image src="/brand/golfer-badge-96.webp" alt="" width={72} height={72} />
             <div style={{ flex: 1, minWidth: 240 }}>
-              <h3>The 30-day fit promise</h3>
+              <h3>30-day return requests</h3>
               <p style={{ margin: 0 }} className="muted">Request a return within 30 days of ordering. Keep the hat unused with tags and packaging. A $5 fee applies to refunds.</p>
             </div>
             <Link href="/pages/shipping-returns" className="btn btn--secondary">How it works</Link>

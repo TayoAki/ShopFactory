@@ -15,7 +15,7 @@ export default async function ContactPage({searchParams}:{searchParams:Promise<{
           <p className="lead" style={{ marginTop: 14 }}>Questions about your order, a return, or finding your fit? Send us a message.</p>
           <p>Use the form to save your request and receive a reference. Questions about fit? The <Link className="link" href="/pages/fit-guide">Fit Guide</Link> and <Link className="link" href="/pages/faq">FAQ</Link> may answer them faster.</p>
         </div>
-        <ContactForm defaultKind={['order','return','fit'].includes(params.kind||'')?params.kind:'other'} defaultOrder={(params.order||'').slice(0,255)} />
+        <ContactForm defaultKind={['order','return','fit','review'].includes(params.kind||'')?params.kind:'other'} defaultOrder={(params.order||'').slice(0,255)} />
       </div>
     </section>
   );

@@ -302,7 +302,7 @@ export const products: Product[] = [
     description:
       'Made in a small fit for smaller heads, so the brim sits where it should. UPF 50+ fabric and moisture-wicking performance for long, sunny rounds. Our golfer is printed on the front-left panel.',
     features: { smallFit: true, upf50: true, wicking: true, recycled: true },
-    fit: 'Small fit. D-ring micro hook-and-loop closure.',
+    fit: 'Manufacturer hat sizes 6¾–7⅛ (Imperial L210P). D-ring micro hook-and-loop closure.',
     details: [
       { label: 'Fit', value: 'Small fit' },
       { label: 'Fabric', value: '100% recycled polyester' },

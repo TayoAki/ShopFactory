@@ -240,5 +240,7 @@ export const growthSeed = [
     "xp":25
   },
   {"id":"BB-025","title":"Validate one offer before scaling traffic","priority":"P0","timing":"Before SEO expansion or ads","area":"Growth","owner":"Operator + founder","criteria":"Separate listing research from real demand; document paid orders, fulfilled contribution and buyer fit feedback before scaling","xp":50},
-  {"id":"BB-026","title":"Launch customer-designed rope-hat ordering","priority":"P0","timing":"Before offer validation","area":"Product","owner":"Engineering + operator","criteria":"Private design products, approved-artwork checkout, live unpaid session and payment-gated fulfillment verified; budget guards active","xp":50}
+  {"id":"BB-026","title":"Launch customer-designed rope-hat ordering","priority":"P0","timing":"Before offer validation","area":"Product","owner":"Engineering + operator","criteria":"Private design products, approved-artwork checkout, live unpaid session and payment-gated fulfillment verified; budget guards active","xp":50},
+  {"id":"BB-027","title":"Remove custom-design purchase friction","priority":"P0","timing":"Before acquisition","area":"Product","owner":"Engineering + operator","criteria":"Local preview before address; preserved edits; quoted price and immutable approval; shipping prefill and privacy-safe design funnel verified","xp":25},
+  {"id":"BB-028","title":"Collect permissioned customer fit feedback","priority":"P1","timing":"Before scaling traffic","area":"Content","owner":"Operator + founder","criteria":"Working private feedback intake; actual customer evidence and explicit publication permission attached before public testimonials","xp":25}
 ] as const;

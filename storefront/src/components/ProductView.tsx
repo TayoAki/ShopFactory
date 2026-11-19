@@ -5,12 +5,13 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Product, ProductImage } from '@/data/products';
 import { useCart } from '@/lib/cart';
 import { money } from '@/lib/money';
-import { bundleTiers, tierPrice } from '@/lib/pricing';
+import { bundleTiers, tierPrice, shippingFor } from '@/lib/pricing';
 import { site } from '@/lib/site';
 import { track } from '@/lib/analytics';
 import { EmailCapture } from './EmailCapture';
 import { Icon } from './Icon';
-import { TrustLine } from './TrustLine';
+import { fitEvidence } from '@/data/fit-evidence';
+import Link from 'next/link';
 
 type Bullet = { icon: string; title: string; text: string };
 
@@ -33,6 +34,8 @@ export function ProductView({ product, bullets }: { product: Product; bullets: B
 
   const selected = product.colors.find((c) => c.slug === colors[0]) ?? product.colors[0];
   const { total, saved } = tierPrice(product.price, qty);
+  const shipping = shippingFor(total);
+  const fit = fitEvidence[product.handle];
 
   useEffect(() => {
     track('view_item', { item_id: product.handle, price: product.price / 100 });
@@ -52,7 +55,7 @@ export function ProductView({ product, bullets }: { product: Product; bullets: B
   useEffect(() => {
     const el = ctaRef.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => setShowSticky(!e.isIntersecting && e.boundingClientRect.top < 0), { threshold: 0 });
+    const io = new IntersectionObserver(([e]) => setShowSticky(!e.isIntersecting), { threshold: 0 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -117,15 +120,10 @@ export function ProductView({ product, bullets }: { product: Product; bullets: B
           {saved > 0 && <s>{money(product.price * qty)}</s>}
           {saved > 0 && <span className="badge">Save {money(saved)}</span>}
         </div>
-        <TrustLine />
-        <ul className="buy__bullets">
-          {bullets.slice(0, 4).map((b) => (
-            <li key={b.title}>
-              <Icon name={b.icon} />
-              <span><strong>{b.title}.</strong> {b.text}</span>
-            </li>
-          ))}
-        </ul>
+        <p className="buy__delivered">{money(total + shipping)} with US shipping, before tax{shipping ? ` · ${money(shipping)} shipping` : ' · free shipping'}.</p>
+        <p className="buy__delivery">Made to order. Ships within 10 business days; delivery time is additional.</p>
+        {fit && <p className="buy__fit"><strong>Fits hat sizes {fit.hatSizes}.</strong> <a href={fit.source} target="_blank" rel="noreferrer">Manufacturer size guide</a> · <Link href="/pages/fit-guide">How to measure</Link></p>}
+
 
         {product.colors.length > 1 && qty === 1 && (
           <fieldset className="opt">
@@ -134,6 +132,20 @@ export function ProductView({ product, bullets }: { product: Product; bullets: B
           </fieldset>
         )}
 
+        <div className="buy__cta" ref={ctaRef}>
+          {site.dropMode ? (
+            <div className="panel">
+              <p style={{ fontWeight: 700, marginBottom: 8 }}>{site.dropDate ? `Drops ${site.dropDate}.` : 'Dropping soon.'} Get first access.</p>
+              <EmailCapture source="pdp" productHandle={product.handle} cta="Notify me" />
+            </div>
+          ) : (
+            <button type="button" className="btn btn--block" onClick={addToBag}>
+              {qty === 1 ? 'Add to bag' : `Add ${qty} to bag`} · {money(total)}
+            </button>
+          )}
+        </div>
+        <p className="ship-note">US shipping $7 below $120 after discounts; free at $120+. Request returns within 30 days of ordering; unused items only, $5 per-item refund fee. <Link href="/pages/shipping-returns">Shipping &amp; returns</Link></p>
+        {!site.dropMode && <details className="buy__bundles"><summary>{qty === 1 ? 'Buying for your golf buddy? Save on 2 or more' : `${qty} hats selected · change your bundle`}</summary><div>
         {!site.dropMode && (
           <fieldset className="opt">
             <legend>How many?</legend>
@@ -184,21 +196,15 @@ export function ProductView({ product, bullets }: { product: Product; bullets: B
           </div>
         )}
 
-        <div className="buy__cta" ref={ctaRef}>
-          {site.dropMode ? (
-            <div className="panel">
-              <p style={{ fontWeight: 700, marginBottom: 8 }}>{site.dropDate ? `Drops ${site.dropDate}.` : 'Dropping soon.'} Get first access.</p>
-              <EmailCapture source="pdp" productHandle={product.handle} cta="Notify me" />
-            </div>
-          ) : (
-            <button type="button" className="btn btn--block" onClick={addToBag}>
-              {qty === 1 ? 'Add to bag' : `Add ${qty} to bag`} · {money(total)}
-            </button>
-          )}
-        </div>
-        <p className="ship-note">
-          <Icon name="truck" width={18} style={{ display: 'inline', verticalAlign: '-4px' }} /> Made to order for you. Ships within 10 business days, to US addresses. Shipping is free on orders $120+ after discounts.
-        </p>
+        </div></details>}
+        <ul className="buy__bullets">
+          {bullets.slice(0, 4).map((b) => (
+            <li key={b.title}>
+              <Icon name={b.icon} />
+              <span><strong>{b.title}.</strong> {b.text}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {!site.dropMode && (
@@ -206,7 +212,7 @@ export function ProductView({ product, bullets }: { product: Product; bullets: B
           <Image src={selected.image.src} alt="" width={44} height={55} style={{ borderRadius: 6 }} />
           <div className="sticky-atc__info">
             <strong>{product.title}</strong>
-            <span>{money(total)} · 30-day returns</span>
+            <span>{money(total + shipping)} delivered before tax</span>
           </div>
           <button type="button" className="btn btn--sm" onClick={addToBag} tabIndex={showSticky ? 0 : -1}>
             Add to bag

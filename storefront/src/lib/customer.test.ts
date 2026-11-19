@@ -28,6 +28,11 @@ integration('support content persists and identical retries do not duplicate req
  const db=await customerDatabase();const rows=(await db.query('SELECT * FROM bogey_customer.support_requests')).rows;assert.equal(rows.length,1);assert.equal(rows[0].message,input.message);assert.equal((await db.query('SELECT * FROM bogey_customer.email_outbox')).rowCount,2);
  await assert.rejects(()=>saveSupport({...input,message:'Changed request'}));
 });
+integration('customer feedback remains private and durable with an order reference',async()=>{
+ const db=await customerDatabase();const reference=await saveSupport({name:'Fixture Buyer',email:'buyer@example.invalid',kind:'review',order:'outside-order-fixture',message:'Fit feedback; not permission to publish.',requestKey:randomUUID()});
+ const row=(await db.query('SELECT kind,message,status,order_reference FROM bogey_customer.support_requests WHERE reference=$1',[reference])).rows[0];
+ assert.equal(row.kind,'review');assert.equal(row.status,'open');assert.equal(row.order_reference,'outside-order-fixture');assert.match(row.message,/not permission to publish/);
+});
 integration('provider failure preserves retryable email; concurrent retries use one idempotent send',async()=>{
  const {id}=await link('account');process.env.RESEND_API_KEY='fixture-only';process.env.EMAIL_FROM='Test <test@example.invalid>';
  nock('https://api.resend.com').post('/emails').matchHeader('Idempotency-Key','bogey-customer/'+id).reply(503,{});

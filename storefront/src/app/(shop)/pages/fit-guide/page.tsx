@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { JsonLd } from '@/components/JsonLd';
 import { media } from '@/data/media';
+import { fitEvidence } from '@/data/fit-evidence';
 import { products } from '@/data/products';
 import { site } from '@/lib/site';
 
@@ -22,7 +23,7 @@ export default function FitGuidePage() {
             {[
               { img: media.fitWrap, title: 'Wrap', text: 'Run a soft tape around your head, just above your ears and across your forehead.' },
               { img: media.fitRead, title: 'Read', text: 'Note the measurement in inches where the tape meets.' },
-              { img: media.fitMatch, title: 'Match', text: 'Hats often feel big on you? Start with the Small Fit Performance Cap. Everything else adjusts.' },
+              { img: media.fitMatch, title: 'Match', text: 'Hats often feel big on you? Start with the Small Fit Performance Cap. Other styles have different closures and fits; check the table below.' },
             ].map((s, i) => (
               <li key={s.title}>
                 <Image src={s.img.src} alt={s.img.alt} width={s.img.width} height={s.img.height} sizes="(min-width: 900px) 33vw, 100vw" priority={i === 0} />
@@ -40,8 +41,9 @@ export default function FitGuidePage() {
         <div className="container">
           <div className="section-head">
             <h2>How each hat fits</h2>
-            <p className="muted" style={{ marginTop: 8 }}>Between sizes or not sure? Pick the hat you love. If the fit is off, see our 30-day return policy for eligibility and fees.</p>
+            <p className="muted" style={{ marginTop: 8 }}>For the Small Fit Performance Cap, Imperial lists hat sizes 6¾–7⅛. These are hat-size numbers, not circumference in inches. Numerical ranges for other styles are not yet verified; send us your head measurement before ordering if you are unsure.</p>
           </div>
+          <p><Link className="link" href="/pages/contact?kind=fit">Ask about your measurement →</Link></p>
           <div style={{ overflowX: 'auto' }}>
             <table className="table">
               <thead><tr><th scope="col">Hat</th><th scope="col">Fit</th><th scope="col">Ponytail</th></tr></thead>
@@ -49,7 +51,7 @@ export default function FitGuidePage() {
                 {products.map((p) => (
                   <tr key={p.handle}>
                     <th scope="row"><Link className="link" href={`/products/${p.handle}`}>{p.title}</Link></th>
-                    <td>{p.fit}</td>
+                    <td>{p.fit}{fitEvidence[p.handle] && <><br/><a className="link" href={fitEvidence[p.handle].source} target="_blank" rel="noreferrer">Manufacturer size guide</a></>}</td>
                     <td>{p.features.ponytail === 'concealed' ? 'Concealed opening' : p.features.ponytail === 'open-back' ? 'Open back' : '—'}</td>
                   </tr>
                 ))}

@@ -15,7 +15,7 @@ export const site = {
     standardShipping: 700,
     exchangeDays: 30,
     returnDays: 30,
-    makeTime: '2–5 business days',
+    makeTime: 'up to 10 business days',
     transitTime: '2–5 business days',
   },
 } as const;
