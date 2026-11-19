@@ -6,7 +6,7 @@ import { useCart } from '@/lib/cart';
 import { track } from '@/lib/analytics';
 import { money } from '@/lib/money';
 
-type PaidOrder = { id: string; amount: number; count: number; livemode: boolean };
+type PaidOrder = { id: string; amount: number; count: number; livemode: boolean; analyticsId?: string };
 export function PaidConfirmation() {
   const { clear } = useCart();
   const [order, setOrder] = useState<PaidOrder | null>(null);
@@ -29,7 +29,7 @@ export function PaidConfirmation() {
           try {
             if (!localStorage.getItem(key)) {
               track(result.livemode ? 'purchase' : 'test_purchase', {
-                transaction_id: result.id, value: result.amount / 100, items: result.count,
+                transaction_id: result.analyticsId, value: result.amount / 100, items: result.count,
                 ...(result.livemode ? { revenue: result.amount / 100, currency: 'USD' } : {}),
               });
               localStorage.setItem(key, '1');

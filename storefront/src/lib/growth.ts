@@ -2,6 +2,7 @@ import { customerDatabase } from './customer-db';
 import { paymentDatabase } from './payments';
 import { CustomerError } from './customer-security';
 import { growthSeed } from './growth-seed';
+import {providerDatabase,syncAnalytics,financialSummary,syncGrowthSources} from './growth-providers';
 let initialized: Promise<unknown> | undefined;
 export async function growthDatabase() {
  const db=await customerDatabase();
@@ -11,6 +12,8 @@ export async function growthDatabase() {
    CREATE TABLE IF NOT EXISTS bogey_growth.activity(id bigserial PRIMARY KEY,task_id text NOT NULL,status text NOT NULL,evidence text NOT NULL,xp_delta integer NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
    CREATE TABLE IF NOT EXISTS bogey_growth.budgets(month text PRIMARY KEY,cap_cents integer NOT NULL CHECK(cap_cents>0 AND cap_cents<50000));
    CREATE TABLE IF NOT EXISTS bogey_growth.expenses(id uuid PRIMARY KEY,month text NOT NULL,label text NOT NULL,category text NOT NULL,cents integer NOT NULL CHECK(cents>0),state text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
+   ALTER TABLE bogey_growth.expenses ADD COLUMN IF NOT EXISTS spent_at timestamptz;
+   UPDATE bogey_growth.expenses SET spent_at=created_at WHERE state='actual' AND spent_at IS NULL;
    CREATE TABLE IF NOT EXISTS bogey_growth.experiments(id uuid PRIMARY KEY,title text NOT NULL,hypothesis text NOT NULL,metric text NOT NULL,baseline text NOT NULL,guardrail text NOT NULL,start_date date NOT NULL,end_date date NOT NULL,status text NOT NULL,outcome text NOT NULL,updated_at timestamptz NOT NULL DEFAULT now());`);
   for(const task of growthSeed)await db.query('INSERT INTO bogey_growth.tasks(id) VALUES($1) ON CONFLICT DO NOTHING',[task.id]);
  })().catch(error=>{initialized=undefined;throw error;});
@@ -23,6 +26,7 @@ export function centsValue(value:unknown,max=100000000){const raw=bounded(value,
 export function levelFor(xp:number){return xp>=500?'Building Momentum':xp>=250?'On the Fairway':xp>=100?'Finding Our Swing':'Getting Teed Up';}
 export async function mutateGrowth(data:Record<string,unknown>){
  const db=await growthDatabase();
+ if(data.action==='sync'){await syncGrowthSources();return;}
  if(data.action==='task'){
   const task=growthSeed.find(t=>t.id===data.id);const status=bounded(data.status,30);const evidence=bounded(data.evidence,1500,false);
   if(!task||!taskStatuses.includes(status))throw new CustomerError('Choose a valid mission and status.');
@@ -36,10 +40,10 @@ export async function mutateGrowth(data:Record<string,unknown>){
   await db.query('INSERT INTO bogey_growth.budgets(month,cap_cents) VALUES($1,$2) ON CONFLICT(month) DO UPDATE SET cap_cents=excluded.cap_cents',[monthValue(data.month),centsValue(data.amount,50000)]);
  }else if(data.action==='expense'){
   const id=bounded(data.id,36);if(!/^[0-9a-f-]{36}$/i.test(id))throw new CustomerError('Invalid entry.');const state=bounded(data.state,12);if(!['actual','committed'].includes(state))throw new CustomerError('Choose an expense state.');
-  await db.query('INSERT INTO bogey_growth.expenses(id,month,label,category,cents,state) VALUES($1,$2,$3,$4,$5,$6) ON CONFLICT(id) DO NOTHING',[id,monthValue(data.month),bounded(data.label,120),bounded(data.category,60),centsValue(data.amount),state]);
+  await db.query(`INSERT INTO bogey_growth.expenses(id,month,label,category,cents,state,spent_at) VALUES($1,$2,$3,$4,$5,$6,CASE WHEN $6='actual' THEN now() ELSE NULL END) ON CONFLICT(id) DO NOTHING`,[id,monthValue(data.month),bounded(data.label,120),bounded(data.category,60),centsValue(data.amount),state]);
  }else if(data.action==='expense-state'){
   const id=bounded(data.id,36);const state=bounded(data.state,12);if(!/^[0-9a-f-]{36}$/i.test(id)||!['actual','committed','void'].includes(state))throw new CustomerError('Invalid expense update.');
-  await db.query('UPDATE bogey_growth.expenses SET state=$2 WHERE id=$1',[id,state]);
+  await db.query(`UPDATE bogey_growth.expenses SET state=$2,spent_at=CASE WHEN $2='actual' THEN COALESCE(spent_at,now()) WHEN $2='committed' THEN NULL ELSE spent_at END WHERE id=$1`,[id,state]);
  }else if(data.action==='experiment'){
   const id=bounded(data.id,36);const status=bounded(data.status,20);const start=bounded(data.start,10),end=bounded(data.end,10);const outcome=bounded(data.outcome,1500,false);
   const validDate=(s:string)=>/^\d{4}-\d{2}-\d{2}$/.test(s)&&!isNaN(Date.parse(s))&&new Date(s).toISOString().slice(0,10)===s;
@@ -68,6 +72,20 @@ export async function growthSnapshot(days:number){
  COALESCE(sum(GREATEST(0,COALESCE((stripe_session->>'amount_subtotal')::bigint,0)-COALESCE((stripe_session->'total_details'->>'amount_discount')::bigint,0))) FILTER(WHERE livemode AND created_at>=b.start AND created_at<b.finish),0)::text AS merchandise,
  count(*) FILTER(WHERE NOT livemode AND created_at>=b.start AND created_at<b.finish)::int AS test,
  (SELECT count(*)::int FROM bogey_checkout.orders WHERE livemode AND fulfillment_status NOT IN('submitted_to_printify')) AS exceptions FROM eligible CROSS JOIN bounds b`,[days,timezone]);const r=result.rows[0];orders={...r,merchandise:Number(r.merchandise)};}catch{ /* Missing payment source must not look like zero orders. */ }
+ const providerDb=await providerDatabase();
+ const bounds=(await db.query("SELECT (((now() AT TIME ZONE 'America/New_York')::date-$1::int) AT TIME ZONE 'America/New_York') AS start,((now() AT TIME ZONE 'America/New_York')::date AT TIME ZONE 'America/New_York') AS finish",[days])).rows[0];
+ const start=new Date(bounds.start).getTime(),end=new Date(bounds.finish).getTime();
+ let analytics=null;let analyticsRefreshFailed=false;
+ const cached=(await providerDb.query('SELECT payload,updated_at FROM bogey_growth.provider_cache WHERE key=$1',['analytics:'+days])).rows[0];
+ if(!cached||Date.now()-new Date(cached.updated_at).getTime()>120000||cached.payload.start!==start){const result=await syncAnalytics(days,start,end);analyticsRefreshFailed='error' in result;}
+ const fresh=(await providerDb.query('SELECT payload,updated_at FROM bogey_growth.provider_cache WHERE key=$1',['analytics:'+days])).rows[0];
+ if(fresh)analytics={...fresh.payload,updated_at:fresh.updated_at,stale:analyticsRefreshFailed||Date.now()-new Date(fresh.updated_at).getTime()>900000||fresh.payload.start!==start};
+ const finance=await financialSummary(start,end);
+ const expenseTotal=(await providerDb.query("SELECT COALESCE(sum(cents),0)::float8 AS total FROM bogey_growth.expenses WHERE state='actual' AND spent_at>=to_timestamp($1/1000.0) AND spent_at<to_timestamp($2/1000.0)",[start,end])).rows[0].total;
+ const sources=(await providerDb.query('SELECT source,status,checked_at,error FROM bogey_growth.provider_state ORDER BY source')).rows;
+ const stripeSource=sources.find(s=>s.source==='stripe');
+ const financeFresh=!!stripeSource&&stripeSource.status==='connected'&&Date.now()-new Date(stripeSource.checked_at).getTime()<900000;
+ const contribution=financeFresh&&finance.incomplete===0?finance.provisional_contribution:null;
  const tasks=growthSeed.map(t=>({...t,...taskRows.rows.find(r=>r.id===t.id)}));const xp=tasks.reduce((sum,t)=>sum+(t.status==='verified'?t.xp:0),0);
- return {costTotals:costTotals.rows[0],consistency:consistency.rows[0].days,days,month:localMonth,refreshed:new Date().toISOString(),tasks,xp,level:levelFor(xp),activity:activity.rows,budget:budgets.rows[0]?.cap_cents??null,expenses:expenses.rows,experiments:experiments.rows,subscribers:subscribers.rows[0].total,support:support.rows[0].total,orders};
+ return {analytics,finance:{...finance,fresh:financeFresh,contribution,recorded_growth_cost:expenseTotal,after_growth:contribution===null?null:contribution-expenseTotal},sources,costTotals:costTotals.rows[0],consistency:consistency.rows[0].days,days,month:localMonth,refreshed:new Date().toISOString(),tasks,xp,level:levelFor(xp),activity:activity.rows,budget:budgets.rows[0]?.cap_cents??null,expenses:expenses.rows,experiments:experiments.rows,subscribers:subscribers.rows[0].total,support:support.rows[0].total,orders};
 }
