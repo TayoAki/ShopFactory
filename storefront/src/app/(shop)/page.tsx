@@ -37,7 +37,7 @@ export default function HomePage() {
             <Image src="/brand/hero-headline-stitched.webp" alt="Good company. Better hats." width={1400} height={405} sizes="(min-width: 900px) 640px, 90vw" loading="eager" />
           </h1>
           <p className="hero__line">For women who bring their own style to the course.</p>
-          <div className="hero__actions"><Link href="/collections/all" className="btn" data-umami-event="home_shop_hats">Shop hats</Link><Link href="/custom-rope-hats" className="hero__custom" data-umami-event="home_custom_hats">Add your name or logo →</Link></div>
+          <div className="hero__actions"><Link href="/custom-rope-hats" className="hero__custom" data-umami-event="home_custom_hats">Add your name or logo →</Link></div>
         </div>
       </section>
 
