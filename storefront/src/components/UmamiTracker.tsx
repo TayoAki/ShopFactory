@@ -1,6 +1,7 @@
 'use client';
 
 import Script from 'next/script';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { flushAnalytics } from '@/lib/analytics';
 
@@ -21,10 +22,11 @@ function cleanUrl(value: unknown) {
 
 export function UmamiTracker() {
   const [enabled, setEnabled] = useState(false);
+  const pathname = usePathname();
   useEffect(() => {
     if (!websiteId || !host || navigator.globalPrivacyControl || navigator.doNotTrack === '1') return;
     window.umamiConfig = {
-      beforeSend: (_, payload) => ({
+      beforeSend: (_, payload) => window.location.pathname.startsWith('/growth') ? false : ({
         ...payload,
         url: cleanUrl(payload.url),
         referrer: typeof payload.referrer === 'string' && /^https?:\/\//.test(payload.referrer)
@@ -35,7 +37,7 @@ export function UmamiTracker() {
     setEnabled(true);
   }, []);
 
-  if (!enabled) return null;
+  if (!enabled || pathname.startsWith('/growth')) return null;
   return (
     <Script
       src={host + '/script.js'}

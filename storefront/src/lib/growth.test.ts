@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {test,before,after} from 'node:test';
+import {randomUUID} from 'node:crypto';
+import {growthDatabase,mutateGrowth,growthSnapshot,centsValue,levelFor} from './growth';
+import {paymentDatabase} from './payments';
+import {customerDatabase} from './customer-db';
+const url=process.env.GROWTH_TEST_DATABASE_URL;const integration=url?test:test.skip;
+before(async()=>{if(!url)return;const u=new URL(url);assert.equal(u.hostname,'127.0.0.1');assert.equal(u.pathname,'/bogey_growth_test');process.env.CHECKOUT_DATABASE_URL=url;await growthDatabase();await paymentDatabase();const db=await customerDatabase();await db.query('TRUNCATE bogey_growth.activity,bogey_growth.budgets,bogey_growth.expenses,bogey_growth.experiments,bogey_customer.subscribers,bogey_customer.support_requests,bogey_checkout.orders,bogey_checkout.attempts CASCADE');await db.query("UPDATE bogey_growth.tasks SET status='planned',evidence='',verified_at=NULL");});
+after(async()=>{if(url){await (await customerDatabase()).end();await (await paymentDatabase()).end();}});
+test('budget inputs reject invalid precision, nonpositive values and $500 cap',()=>{assert.equal(centsValue('499.99',50000),49999);for(const value of ['500','0','-1','NaN','1.001','1e2'])assert.throws(()=>centsValue(value,50000));assert.equal(levelFor(250),'On the Fairway');});
+integration('concurrent verification cannot duplicate XP; reopening reverses and reverifying restores once',async()=>{
+ const action={action:'task',id:'BB-001',status:'verified',evidence:'Reconciliation fixture evidence reviewed.'};await Promise.all(Array.from({length:8},()=>mutateGrowth(action)));let snapshot=await growthSnapshot(7);assert.equal(snapshot.xp,25);assert.equal(snapshot.activity.length,1);
+ await mutateGrowth({...action,status:'in progress'});assert.equal((await growthSnapshot(7)).xp,0);await Promise.all([mutateGrowth(action),mutateGrowth(action)]);snapshot=await growthSnapshot(7);assert.equal(snapshot.xp,25);assert.equal(snapshot.activity.reduce((n,r)=>n+r.xp_delta,0),25);
+ await assert.rejects(()=>mutateGrowth({...action,id:'BB-002',evidence:'Done'}));
+});
+integration('expense retries are idempotent; committed to actual does not double count; void removes cost',async()=>{
+ const month=(await growthSnapshot(7)).month;await mutateGrowth({action:'budget',month,amount:'450'});const expense={action:'expense',id:randomUUID(),month,label:'Sample fixture',category:'Samples',amount:'30.50',state:'committed'};await Promise.all([mutateGrowth(expense),mutateGrowth(expense)]);let s=await growthSnapshot(7);assert.equal(s.budget,45000);assert.equal(s.costTotals.committed,3050);assert.equal(s.expenses.length,1);
+ await mutateGrowth({action:'expense-state',id:expense.id,state:'actual'});s=await growthSnapshot(7);assert.equal(s.costTotals.committed,0);assert.equal(s.costTotals.actual,3050);await mutateGrowth({action:'expense-state',id:expense.id,state:'void'});assert.equal((await growthSnapshot(7)).costTotals.actual,0);
+});
+integration('complete local-day reports separate live/test and do not leak customer identifiers',async()=>{
+ const db=await paymentDatabase();for(const live of [true,false]){const id=randomUUID();await db.query('INSERT INTO bogey_checkout.attempts(id,basket_hash,basket) VALUES($1,$2,$3)',[id,id,'{}']);await db.query("INSERT INTO bogey_checkout.orders(session_id,attempt_id,livemode,amount_total,currency,basket,stripe_session,created_at,fulfillment_status) VALUES($1,$2,$3,4500,'usd','{}',$4,now()-interval '2 days','submitted_to_printify')",['private_session_'+id,id,live,JSON.stringify({amount_subtotal:3800,total_details:{amount_discount:380},customer_details:{email:'private@example.invalid'}})]);}
+ const s=await growthSnapshot(7);assert.ok(s.orders);assert.equal(s.orders.paid,1);assert.equal(s.orders.test,1);assert.equal(s.orders.merchandise,3420);assert.equal(s.orders.exceptions,0);assert.ok(!JSON.stringify(s).includes('private@example.invalid'));assert.ok(!JSON.stringify(s).includes('private_session_'));
+ await db.query('ALTER TABLE bogey_checkout.orders RENAME TO orders_fixture_hidden');try{assert.equal((await growthSnapshot(7)).orders,null);}finally{await db.query('ALTER TABLE bogey_checkout.orders_fixture_hidden RENAME TO orders');}
+});
+integration('completed experiments require outcome, valid dates and preserve their identity on update',async()=>{const data={action:'experiment',id:randomUUID(),title:'Fit proof fixture',hypothesis:'Real fit evidence helps shoppers',metric:'Tracked add-to-bag sessions',baseline:'Baseline not yet measured; gather before test',guardrail:'No spend; watch support objections',start:'2026-11-19',end:'2026-11-26',status:'complete',outcome:''};await assert.rejects(()=>mutateGrowth(data));await assert.rejects(()=>mutateGrowth({...data,start:'2026-02-30',status:'planned'}));await mutateGrowth({...data,status:'planned'});await mutateGrowth({...data,outcome:'No winner claimed; gather a larger sample first.'});assert.equal((await growthSnapshot(7)).experiments.length,1);});

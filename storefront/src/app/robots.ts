@@ -4,7 +4,7 @@ import { site } from '@/lib/site';
 export default function robots(): MetadataRoute.Robots {
   if (!site.indexable) return { rules: [{ userAgent: '*', disallow: '/' }] };
   return {
-    rules: [{ userAgent: '*', allow: '/', disallow: ['/account', '/customer-care', '/email-preferences', '/cart', '/checkout', '/api/', '/search', '/order/'] }],
+    rules: [{ userAgent: '*', allow: '/', disallow: ['/growth', '/account', '/customer-care', '/email-preferences', '/cart', '/checkout', '/api/', '/search', '/order/'] }],
     sitemap: `${site.url}/sitemap.xml`,
   };
 }
