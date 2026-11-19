@@ -23,7 +23,7 @@ export default function GolfBuddyPage() {
             <span className="eyebrow">The Golf Buddy Pair</span>
             <h1>Two hats. One for you, one for your golf buddy.</h1>
             <p className="lead" style={{ marginTop: 14 }}>
-              Save {pair.percentOff}% on any 2 Bogey Baby hats and {four.percentOff}% on 3 or more. Mix any styles and colors. Every hat ships free, and either fit can be swapped for free.
+              Save {pair.percentOff}% on 2 ready-designed Bogey Baby hats and {four.percentOff}% on 3 or more. Mix styles and colors. Standard US shipping is $7, or free from $120 after discounts. Personalized orders are priced separately; see our 30-day return terms.
             </p>
             <div className="media-frame" style={{ marginTop: 20 }}>
               <Image src={media.cartFriends.src} alt={media.cartFriends.alt} width={media.cartFriends.width} height={media.cartFriends.height} sizes="(min-width: 900px) 50vw, 100vw" priority />

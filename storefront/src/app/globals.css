@@ -654,3 +654,13 @@ input,textarea { caret-color:var(--pine-900); }
 @media(max-width:899px) { .custom-builder__photo { position: static; } }
 
 .custom-review { scroll-margin-top: 140px; }
+
+.journal-pagination { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; margin-top:28px; }
+.journal-pagination p { margin:0; font-size:.9rem; }
+.journal-pagination button:disabled { opacity:.45; cursor:default; }
+.journal-all-titles { margin-top:20px; font-size:.9rem; }
+.journal-all-titles summary { cursor:pointer; text-underline-offset:4px; }
+.journal-all-titles li { margin:8px 0; }
+@media(max-width:460px){.journal-pagination {gap:10px;}.journal-pagination .btn{padding:10px 12px;font-size:.85rem;}.journal-pagination p{font-size:.8rem;}}
+
+.journal-photo-credit { max-width:900px; font-size:.78rem; color:var(--ink-soft); margin:12px auto 0; line-height:1.5; }

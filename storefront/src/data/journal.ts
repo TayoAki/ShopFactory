@@ -7,8 +7,8 @@ export const journal:JournalPost[] = [
     title: 'How Should a Golf Hat Fit? A Practical Measuring Guide',
     category: 'Fit notes',
     date: '2026-11-18',
-    image: '/images/editorial/find-your-fit.webp',
-    alt: 'Cream and sage Bogey Baby caps beside a measuring tape',
+    image: '/images/journal/find-your-golf-hat-fit-photo-v2.webp',
+    alt: "AI-edited stock photograph of hands holding a baseball cap",
     excerpt: 'Roomy crown? Slipping brim? Here is how to narrow down your next golf hat.',
     sections: [
       { title: 'Start with how your current cap feels', text: 'Before choosing a color, think about the hat you already reach for. Does it sit comfortably above your ears, or do you keep pulling it back into place? A closure can adjust the circumference, but it cannot change the entire shape of the crown. If most adjustable caps still feel roomy, start with a style designed for a smaller head.' },
@@ -18,14 +18,15 @@ export const journal:JournalPost[] = [
     ],
     collection: '/pages/fit-quiz',
     cta: 'Find your hat with the fit quiz',
+    imageCredit: {"label": "Original photo: Pexels", "source": "https://www.pexels.com/photo/man-holding-black-baseball-cap-in-hands-18670550/", "license": "https://www.pexels.com/license/"},
   },
   {
     slug: 'ponytail-caps-for-your-round',
     title: 'Ponytail Golf Hats: Concealed Openings vs Open Backs',
     category: 'On the course',
     date: '2026-11-18',
-    image: '/images/editorial/ponytail-round.webp',
-    alt: 'A golfer wearing a sage ponytail cap on a sunny fairway',
+    image: '/images/journal/ponytail-caps-for-your-round-photo-v2.webp',
+    alt: "AI-edited stock photograph of a ponytail through the back of a cap",
     excerpt: 'A closer look at concealed openings, open backs, and finding a cap that works with your hair.',
     sections: [
       { title: 'Choose the opening for your usual hairstyle', text: 'When you wear your hair up for a round, the opening in your cap matters as much as the front. A concealed ponytail opening gives you a way to pull your hair through while keeping a classic cap silhouette. An open-back design offers a different shape around your ponytail or bun. Check the back view and the feature details rather than choosing on color alone.' },
@@ -35,5 +36,6 @@ export const journal:JournalPost[] = [
     ],
     collection: '/collections/ponytail-caps',
     cta: 'Explore ponytail caps',
+    imageCredit: {"label": "Original photo: Pexels", "source": "https://www.pexels.com/photo/black-and-white-back-view-of-woman-in-ponytail-26836883/", "license": "https://www.pexels.com/license/"},
   },
 ];

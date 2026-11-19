@@ -5,8 +5,8 @@ export const journalGuides:JournalPost[] = [
     "title": "Custom Rope Hats: A Guide to Fit, Names and Logos",
     "category": "Custom hats",
     "date": "2026-11-18",
-    "image": "/images/editorial/find-your-fit.webp",
-    "alt": "Bogey Baby caps beside a measuring tape; editorial illustration",
+    "image": "/images/journal/custom-rope-hats-guide-photo-v2.webp",
+    "alt": "AI-edited stock photograph of an ivory and forest-green cap on a wooden table",
     "excerpt": "Choose a custom rope hat by checking its crown, artwork options and total delivered price. Start with this practical buying checklist.",
     "answer": "A custom rope hat pairs the cord across the front of the brim with your chosen artwork. Start with the cap’s fit, then decide whether you want a short name, initials or a logo. Confirm the decoration method and a complete quote before approving production.",
     "sections": [
@@ -78,15 +78,20 @@ export const journalGuides:JournalPost[] = [
     ],
     "collection": "/custom-rope-hats",
     "cta": "Personalize your rope hat",
-    "modified": "2026-11-19"
+    "modified": "2026-11-19",
+    "imageCredit": {
+      "label": "Original photo: Pexels",
+      "source": "https://www.pexels.com/photo/a-yellow-cap-on-a-wooden-table-12489838/",
+      "license": "https://www.pexels.com/license/"
+    }
   },
   {
     "slug": "prepare-logo-for-hat-embroidery",
     "title": "How to Prepare a Logo for Hat Embroidery",
     "category": "Artwork guide",
     "date": "2026-11-18",
-    "image": "/images/editorial/find-your-fit.webp",
-    "alt": "Bogey Baby caps beside a measuring tape; editorial illustration",
+    "image": "/images/journal/prepare-logo-for-hat-embroidery-photo-v2.webp",
+    "alt": "AI-edited photograph of an AB monogram on textured cap fabric",
     "excerpt": "Prepare a readable hat logo, check your artwork and review the proof before embroidery production.",
     "answer": "Prepare a logo for hat embroidery by choosing a clear version, removing details that become unreadable at hat size, and checking the actual product’s decoration template. Send the original artwork as requested by the provider and approve the final placement before production.",
     "sections": [
@@ -162,15 +167,20 @@ export const journalGuides:JournalPost[] = [
     ],
     "collection": "/custom-rope-hats",
     "cta": "Personalize your rope hat",
-    "modified": "2026-11-19"
+    "modified": "2026-11-19",
+    "imageCredit": {
+      "label": "Original photo: Pexels",
+      "source": "https://www.pexels.com/photo/embroidered-olive-branches-on-baseball-hat-16117426/",
+      "license": "https://www.pexels.com/license/"
+    }
   },
   {
     "slug": "name-or-logo-on-a-golf-hat",
     "title": "Name or Logo on a Golf Hat? How to Choose",
     "category": "Personalization",
     "date": "2026-11-18",
-    "image": "/images/editorial/find-your-fit.webp",
-    "alt": "Bogey Baby caps beside a measuring tape; editorial illustration",
+    "image": "/images/journal/name-or-logo-on-a-golf-hat-photo-v2.webp",
+    "alt": "AI-edited stock photograph of a gray cap with a stitched initial",
     "excerpt": "Compare names, initials and logos for a personalized golf hat, with a checklist for readable artwork and accurate spelling.",
     "answer": "Choose a name or initials for a personal hat; choose a logo when identifying a team, club or business matters more. The right choice depends on the wearer and the available decoration area. A short, readable design is a useful starting point for either option.",
     "sections": [
@@ -242,15 +252,20 @@ export const journalGuides:JournalPost[] = [
     ],
     "collection": "/custom-rope-hats",
     "cta": "Personalize your rope hat",
-    "modified": "2026-11-19"
+    "modified": "2026-11-19",
+    "imageCredit": {
+      "label": "Original photo: Pexels",
+      "source": "https://www.pexels.com/photo/close-up-of-a-gray-overnightr-hat-21820212/",
+      "license": "https://www.pexels.com/license/"
+    }
   },
   {
     "slug": "hat-embroidery-costs",
     "title": "Custom Hat Embroidery Costs: What to Ask Before Ordering",
     "category": "Ordering guide",
     "date": "2026-11-18",
-    "image": "/images/editorial/find-your-fit.webp",
-    "alt": "Bogey Baby caps beside a measuring tape; editorial illustration",
+    "image": "/images/journal/hat-embroidery-costs-photo-v2.webp",
+    "alt": "Photograph-based black-and-white close-up of cap brim stitching",
     "excerpt": "Understand a custom-hat quote: cap price, artwork setup, extra placements, shipping and repeat-order costs.",
     "answer": "A custom hat’s total cost can include the cap, decoration, shipping and tax. Our custom rope-hat quotes start at $49 per hat with one front design and setup included. Review the complete price before payment; fixed-design catalog prices are separate.",
     "sections": [
@@ -322,15 +337,20 @@ export const journalGuides:JournalPost[] = [
     ],
     "collection": "/custom-rope-hats",
     "cta": "Personalize your rope hat",
-    "modified": "2026-11-19"
+    "modified": "2026-11-19",
+    "imageCredit": {
+      "label": "Original photo: Pexels",
+      "source": "https://www.pexels.com/photo/close-up-of-a-textured-baseball-cap-in-monochrome-38655380/",
+      "license": "https://www.pexels.com/license/"
+    }
   },
   {
     "slug": "rope-hat-vs-trucker-hat",
     "title": "Rope Hat vs Trucker Hat: What to Compare for Golf",
     "category": "Fit notes",
     "date": "2026-11-18",
-    "image": "/images/editorial/find-your-fit.webp",
-    "alt": "Bogey Baby caps beside a measuring tape; editorial illustration",
+    "image": "/images/journal/rope-hat-vs-trucker-hat-photo-v2.webp",
+    "alt": "AI-edited stock photograph showing the mesh back of a trucker cap",
     "excerpt": "Rope and trucker describe different cap details. Compare the back panels, crown, closure and ponytail access before choosing.",
     "answer": "A rope hat is identified by the cord across the front of the brim; a trucker hat usually has mesh back panels. Those features can appear on the same cap, so they are not always competing categories. Compare the actual construction and fit rather than the label alone.",
     "sections": [
@@ -402,15 +422,20 @@ export const journalGuides:JournalPost[] = [
     ],
     "collection": "/custom-rope-hats",
     "cta": "Personalize your rope hat",
-    "modified": "2026-11-19"
+    "modified": "2026-11-19",
+    "imageCredit": {
+      "label": "Original photo: Pexels",
+      "source": "https://www.pexels.com/photo/close-up-of-a-baseball-cap-with-a-patch-26956138/",
+      "license": "https://www.pexels.com/license/"
+    }
   },
   {
     "slug": "custom-golf-hats-for-groups",
     "title": "Custom Golf Hats for Groups: An Ordering Checklist",
     "category": "Group golf",
     "date": "2026-11-18",
-    "image": "/images/editorial/find-your-fit.webp",
-    "alt": "Bogey Baby caps beside a measuring tape; editorial illustration",
+    "image": "/images/journal/custom-golf-hats-for-groups-photo-v2.webp",
+    "alt": "AI-retouched stock photograph of golfers beside a golf cart",
     "excerpt": "Plan custom hats for a golf outing with a clear artwork brief, fit list, approval owner and realistic delivery window.",
     "answer": "For a group golf-hat order, collect quantities, fit needs, exact artwork and the event date before asking for a quote. Choose one person to approve the proof and confirm a complete production-and-delivery estimate. Start with the cap people want to wear, then add the group design.",
     "sections": [
@@ -482,15 +507,20 @@ export const journalGuides:JournalPost[] = [
     ],
     "collection": "/custom-rope-hats",
     "cta": "Personalize your rope hat",
-    "modified": "2026-11-19"
+    "modified": "2026-11-19",
+    "imageCredit": {
+      "label": "Original photo: Pexels",
+      "source": "https://www.pexels.com/photo/smiling-women-around-golf-cart-9207203/",
+      "license": "https://www.pexels.com/license/"
+    }
   },
   {
     "slug": "how-to-clean-an-embroidered-golf-hat",
     "title": "How to Clean an Embroidered Golf Hat",
     "category": "Hat care",
     "date": "2026-11-18",
-    "image": "/images/editorial/find-your-fit.webp",
-    "alt": "Bogey Baby caps beside a measuring tape; editorial illustration",
+    "image": "/images/journal/how-to-clean-an-embroidered-golf-hat-photo-v2.webp",
+    "alt": "AI-edited stock photograph of a hand holding a plain dark cap",
     "excerpt": "A gentle cleaning checklist for an embroidered cap, starting with its care label and a cautious spot clean.",
     "answer": "Check the hat’s care label before cleaning. For a cap that permits it, start with gentle spot cleaning rather than treating it like a shirt. Printful advises hand cleaning caps because machine washing can damage their shape and embroidery. Follow the actual hat’s instructions if they differ.",
     "sections": [
@@ -561,6 +591,11 @@ export const journalGuides:JournalPost[] = [
     ],
     "collection": "/custom-rope-hats",
     "cta": "Personalize your rope hat",
-    "modified": "2026-11-19"
+    "modified": "2026-11-19",
+    "imageCredit": {
+      "label": "Original photo: Unsplash",
+      "source": "https://unsplash.com/photos/black-and-white-baseball-cap-BIr8rxlnD1s",
+      "license": "https://unsplash.com/license"
+    }
   }
 ];

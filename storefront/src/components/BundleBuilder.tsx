@@ -5,7 +5,7 @@ import { useState } from 'react';
 import type { Product } from '@/data/products';
 import { useCart } from '@/lib/cart';
 import { money } from '@/lib/money';
-import { bundleDiscount, bundleTiers, tierFor } from '@/lib/pricing';
+import { bundleDiscount, bundleTiers, tierFor, shippingFor } from '@/lib/pricing';
 import { site } from '@/lib/site';
 import { track } from '@/lib/analytics';
 import { EmailCapture } from './EmailCapture';
@@ -23,6 +23,7 @@ export function BundleBuilder({ products, defaults }: { products: Product[]; def
   const subtotal = active.reduce((s, pk) => s + find(pk.handle).price, 0);
   const discount = bundleDiscount(subtotal, size);
   const tier = tierFor(size);
+  const shipping=shippingFor(subtotal-discount);
 
   function update(i: number, next: Partial<Pick>) {
     setPicks((prev) =>
@@ -85,8 +86,8 @@ export function BundleBuilder({ products, defaults }: { products: Product[]; def
       <div style={{ marginTop: 16 }}>
         <div className="summary-row"><span>{size} hats</span><span>{money(subtotal)}</span></div>
         {tier && <div className="summary-row saving"><span>{tier.name} savings ({tier.percentOff}%)</span><span>−{money(discount)}</span></div>}
-        <div className="summary-row"><span>Shipping (US)</span><span>Free</span></div>
-        <div className="summary-row summary-row--total"><span>Total</span><span>{money(subtotal - discount)}</span></div>
+        <div className="summary-row"><span>Shipping (US)</span><span>{shipping?money(shipping):'Free'}</span></div>
+        <div className="summary-row summary-row--total"><span>Total before tax</span><span>{money(subtotal - discount + shipping)}</span></div>
       </div>
 
       {site.dropMode ? (
@@ -103,7 +104,7 @@ export function BundleBuilder({ products, defaults }: { products: Product[]; def
             cart.add(active, { source: 'golf-buddy' });
           }}
         >
-          Claim the {tier?.name} · {money(subtotal - discount)}
+          Add the {tier?.name} to bag · {money(subtotal - discount + shipping)}
         </button>
       )}
       <TrustLine />

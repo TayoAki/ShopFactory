@@ -239,5 +239,6 @@ export const growthSeed = [
     "criteria":"Approve a price or discount remedy; validate 1–4-hat contribution and update checkout messaging consistently",
     "xp":25
   },
-  {"id":"BB-025","title":"Validate one offer before scaling traffic","priority":"P0","timing":"Before SEO expansion or ads","area":"Growth","owner":"Operator + founder","criteria":"Separate listing research from real demand; document paid orders, fulfilled contribution and buyer fit feedback before scaling","xp":50}
+  {"id":"BB-025","title":"Validate one offer before scaling traffic","priority":"P0","timing":"Before SEO expansion or ads","area":"Growth","owner":"Operator + founder","criteria":"Separate listing research from real demand; document paid orders, fulfilled contribution and buyer fit feedback before scaling","xp":50},
+  {"id":"BB-026","title":"Launch customer-designed rope-hat ordering","priority":"P0","timing":"Before offer validation","area":"Product","owner":"Engineering + operator","criteria":"Private design products, approved-artwork checkout, live unpaid session and payment-gated fulfillment verified; budget guards active","xp":50}
 ] as const;

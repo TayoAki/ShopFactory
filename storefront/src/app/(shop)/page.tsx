@@ -1,3 +1,4 @@
+import {JournalBrowser} from '@/components/JournalBrowser';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArtImage } from '@/components/ArtImage';
@@ -156,10 +157,7 @@ export default function HomePage() {
       <section className="section" aria-labelledby="journal-title">
         <div className="container">
           <div className="releases__head"><h2 id="journal-title">The Bogey Baby Journal</h2><Link href="/journal" className="link link--cta">All stories →</Link></div>
-          <div className="journal-grid">{journal.map(post => <article className="journal-card" key={post.slug}>
-            <Link href={`/journal/${post.slug}`}><Image src={post.image} alt={post.alt} width={1200} height={900} sizes="(min-width:900px) 25vw, 100vw" /></Link>
-            <div><span className="eyebrow">{post.category}</span><h3><Link href={`/journal/${post.slug}`}>{post.title}</Link></h3><p>{post.excerpt}</p><Link className="link link--cta" href={`/journal/${post.slug}`}>Read more →</Link></div>
-          </article>)}</div>
+          <JournalBrowser posts={journal}/>
         </div>
       </section>
 
