@@ -152,7 +152,7 @@ export function Header() {
               {styleLinks.map(l => <li key={l.href} className="sub"><Link href={l.href}>{l.label}</Link></li>)}
             </ul>
           </details>
-          <div className="menu-utility-links">
+          <div className="menu-utility-links"><Link href="/custom-rope-hats">Personalize a rope hat</Link>
             <Link href="/pages/fit-guide">Fit Guide</Link>
             <Link href="/pages/reviews">Reviews</Link>
             <Link href="/account">Account</Link>

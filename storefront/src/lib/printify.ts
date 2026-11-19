@@ -45,7 +45,7 @@ export function printifyOrderPayload(session: ShippingSession, basket: SavedBask
   };
 }
 export type PrintifyOrderPayload = ReturnType<typeof printifyOrderPayload>;
-type PrintifyOrder = { id: string; status: string; metadata?: { shop_order_id?: string }; external_id?: string };
+export type PrintifyOrder = { line_items?:{product_id:string;variant_id:number;quantity:number;cost?:number}[];total_shipping?:number;total_tax?:number; id: string; status: string; metadata?: { shop_order_id?: string }; external_id?: string };
 
 async function printifyRequest(path: string, body?: object) {
   const token = process.env.PRINTIFY_API_TOKEN;
@@ -68,7 +68,7 @@ function productionStarted(order: PrintifyOrder) {
 }
 
 /** Persist the provider ID before starting production so a retry always addresses the same order. */
-export async function submitPrintifyOrder(payload: PrintifyOrderPayload, existingId: string | null, saveId: (id: string) => Promise<void>) {
+export async function submitPrintifyOrder(payload: PrintifyOrderPayload, existingId: string | null, saveId: (id: string) => Promise<void>, beforeProduction?: (order: PrintifyOrder) => Promise<void>) {
   let id = existingId;
   if (!id) {
     try {
@@ -89,6 +89,7 @@ export async function submitPrintifyOrder(payload: PrintifyOrderPayload, existin
   if (productionStarted(order)) return id;
   if (order.status === 'canceled') throw new FulfillmentError('printify_order_canceled');
   if (!['pending', 'on-hold', 'payment-not-received'].includes(order.status)) throw new FulfillmentError('printify_order_needs_attention');
+  if(beforeProduction)await beforeProduction(order);
   try {
     await printifyRequest(path + '/send_to_production.json', {});
   } catch (error) {

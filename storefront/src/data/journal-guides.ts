@@ -28,7 +28,7 @@ export const journalGuides:JournalPost[] = [
       },
       {
         "title": "What Bogey Baby offers today",
-        "text": "Our existing rope cap carries the fixed Bogey Baby design. Customer-added names and logos are an offer we are developing with Printful; the custom checkout and final pricing are not live yet. The current catalog should not be treated as a personalization form. Contact us with your quantity, preferred color, artwork and needed-by date so we can establish whether the request is feasible before taking a custom order."
+        "text": "You can now start with a name or upload a logo in our custom rope-hat builder. Choose your cap color and quantity, prepare the preview, then approve the artwork and full quote before secure checkout. These custom orders are fulfilled through Printify. Our existing fixed-design rope caps remain separate products; personalization is not added by entering a note on an ordinary catalog order."
       }
     ],
     "table": {
@@ -62,13 +62,13 @@ export const journalGuides:JournalPost[] = [
       },
       {
         "question": "Can I put my own logo on one?",
-        "answer": "A provider may support it when the artwork, decoration area and reproduction rights are suitable. Bogey Baby’s customer-upload workflow is still being developed."
+        "answer": "Yes. Use our custom builder to upload a logo you own or have permission to reproduce, then review the artwork and complete quote before payment."
       }
     ],
     "sources": [
       {
-        "title": "Printful rope-cap catalog",
-        "url": "https://www.printful.com/custom/hats/snapbacks/classic-rope-cap-richardson-258"
+        "title": "Printify rope-cap catalog",
+        "url": "https://printify.com/guide/embroidery-guide/"
       }
     ],
     "related": [
@@ -76,8 +76,9 @@ export const journalGuides:JournalPost[] = [
       "name-or-logo-on-a-golf-hat",
       "custom-golf-hats-for-groups"
     ],
-    "collection": "/pages/contact",
-    "cta": "Ask us about a custom hat"
+    "collection": "/custom-rope-hats",
+    "cta": "Personalize your rope hat",
+    "modified": "2026-11-19"
   },
   {
     "slug": "prepare-logo-for-hat-embroidery",
@@ -99,7 +100,7 @@ export const journalGuides:JournalPost[] = [
       },
       {
         "title": "Check the provider’s template and instructions",
-        "text": "Decoration areas differ between hat models and placements. Use the template for the actual cap, not one borrowed from another product. Printful publishes guidance for file preparation and digitizes embroidery artwork for its own machines. Its current instructions do not accept customer-supplied machine stitch files as a substitute. Confirm the requested image format and final artwork requirements when the product is selected."
+        "text": "Decoration areas differ between hat models and placements. Use the template for the actual cap, not one borrowed from another product. Printify publishes guidance for file preparation and digitizes embroidery artwork for its own machines. Its current instructions do not accept customer-supplied machine stitch files as a substitute. Confirm the requested image format and final artwork requirements when the product is selected."
       },
       {
         "title": "Make an approval checklist",
@@ -107,7 +108,7 @@ export const journalGuides:JournalPost[] = [
       },
       {
         "title": "Send a useful first inquiry",
-        "text": "Include the clean artwork, the wording exactly as it should appear, preferred cap color, quantity and date you need the hats. Mention which details must not be removed. If you are ordering for a business or club, confirm you are allowed to use its logo. Bogey Baby’s custom upload and proof workflow is in development, so ask about feasibility before assuming an upload can go straight into production."
+        "text": "Include the clean artwork, the wording exactly as it should appear, preferred cap color, quantity and date you need the hats. Mention which details must not be removed. If you are ordering for a business or club, confirm you are allowed to use its logo. Use our custom builder to submit the file and approve the artwork preview. Production adjustments can still require further approval."
       }
     ],
     "table": {
@@ -146,12 +147,12 @@ export const journalGuides:JournalPost[] = [
     ],
     "sources": [
       {
-        "title": "Printful artwork preparation",
-        "url": "https://help.printful.com/hc/en-us/articles/50263985175953-How-should-I-prepare-my-design-for-embroidery"
+        "title": "Printify artwork preparation",
+        "url": "https://printify.com/guide/embroidery-guide/"
       },
       {
-        "title": "Printful digitization and source files",
-        "url": "https://help.printful.com/hc/en-us/articles/50264003645073-What-is-embroidery-digitization"
+        "title": "Printify digitization and source files",
+        "url": "https://help.printify.com/hc/en-us/articles/4483629986321-How-does-embroidery-digitization-work"
       }
     ],
     "related": [
@@ -159,8 +160,9 @@ export const journalGuides:JournalPost[] = [
       "hat-embroidery-costs",
       "name-or-logo-on-a-golf-hat"
     ],
-    "collection": "/pages/contact",
-    "cta": "Ask us about a custom hat"
+    "collection": "/custom-rope-hats",
+    "cta": "Personalize your rope hat",
+    "modified": "2026-11-19"
   },
   {
     "slug": "name-or-logo-on-a-golf-hat",
@@ -186,11 +188,11 @@ export const journalGuides:JournalPost[] = [
       },
       {
         "title": "Compare more than the base hat price",
-        "text": "Different names can require separate design preparation; one reusable logo may have a different setup pattern. Ask for an itemized quote that says what is included. Do not assume a text-tool price applies to an uploaded logo, or that a repeat of a previous design is priced like a completely new file. Printful describes digitization as a design-specific preparation process, with reuse depending on the applicable design and product."
+        "text": "Different names require distinct design configurations; one shared logo can be used across hats in the same custom order. Ask for an itemized quote that says what is included. Do not assume a text-tool price applies to an uploaded logo, or that a repeat of a previous design is priced like a completely new file. Printify describes digitization as a design-specific preparation process, with reuse depending on the applicable design and product."
       },
       {
         "title": "Our suggested first version",
-        "text": "For Bogey Baby’s developing custom rope-hat offer, we would start with one clearly defined name treatment or one approved logo placement. That is a proposed offer shape, not a live product option. We will need confirmed provider support, a proof process and final costs before accepting personalized orders. If you want a ready-to-shop hat now, our existing catalog uses the fixed designs shown on its product pages."
+        "text": "Our custom builder supports one name treatment or one uploaded logo on the front of a rope hat. Choose the color and one to six hats with the same design. Check the preview and complete quote before approving checkout. Use the fixed-design catalog if you want the Bogey Baby golfer rather than your own artwork."
       }
     ],
     "table": {
@@ -229,8 +231,8 @@ export const journalGuides:JournalPost[] = [
     ],
     "sources": [
       {
-        "title": "Printful digitization explanation",
-        "url": "https://help.printful.com/hc/en-us/articles/50264003645073-What-is-embroidery-digitization"
+        "title": "Printify digitization explanation",
+        "url": "https://help.printify.com/hc/en-us/articles/4483629986321-How-does-embroidery-digitization-work"
       }
     ],
     "related": [
@@ -238,8 +240,9 @@ export const journalGuides:JournalPost[] = [
       "custom-golf-hats-for-groups",
       "hat-embroidery-costs"
     ],
-    "collection": "/pages/contact",
-    "cta": "Ask us about a custom hat"
+    "collection": "/custom-rope-hats",
+    "cta": "Personalize your rope hat",
+    "modified": "2026-11-19"
   },
   {
     "slug": "hat-embroidery-costs",
@@ -249,7 +252,7 @@ export const journalGuides:JournalPost[] = [
     "image": "/images/editorial/find-your-fit.webp",
     "alt": "Bogey Baby caps beside a measuring tape; editorial illustration",
     "excerpt": "Understand a custom-hat quote: cap price, artwork setup, extra placements, shipping and repeat-order costs.",
-    "answer": "A custom hat’s total cost can include the cap, decoration, artwork preparation, extra placements, shipping and tax. Ask for the complete delivered quote, then distinguish one-time design work from costs charged on every hat. Bogey Baby’s personalized rope-hat price is not finalized.",
+    "answer": "A custom hat’s total cost can include the cap, decoration, shipping and tax. Our custom rope-hat quotes start at $49 per hat with one front design and setup included. Review the complete price before payment; fixed-design catalog prices are separate.",
     "sections": [
       {
         "title": "Separate the cap from the design work",
@@ -257,7 +260,7 @@ export const journalGuides:JournalPost[] = [
       },
       {
         "title": "Understand digitization without treating it as a universal fee",
-        "text": "Embroidery artwork needs machine preparation. Printful’s published standard digitization fee is currently USD $6.50 for a new unique file, with different rates for certain other design types and placements. That supplier fee is not Bogey Baby’s retail customization price. The selected technique, design changes and applicable reuse rules still need checking in the actual order. See the linked supplier fee page for current details."
+        "text": "Printify includes digitization in its embroidery product price. This differs from providers that charge separate setup fees. At Bogey Baby, custom rope-hat quotes start at $49 per hat with one front design and setup included. The actual quote appears before checkout; US shipping is $7 below $120, and tax is additional. Extra embroidery placements are not offered in this builder."
       },
       {
         "title": "Ask how the quote changes for a group",
@@ -269,7 +272,7 @@ export const journalGuides:JournalPost[] = [
       },
       {
         "title": "Compare offers on the result you need",
-        "text": "A name-only hat and a detailed logo cap are not interchangeable simply because both are called custom. Compare the fit, approval process and finished design as well as the price. Our developing Printful-backed offer will need those details confirmed before a retail price is published. We are not using the price of the current fixed-design rope cap as a promise that personalization is included."
+        "text": "A name-only hat and a detailed logo cap are not interchangeable simply because both are called custom. Compare the fit, approval process and finished design as well as the price. Our builder uses Printify for the selected rope cap and shows your submitted artwork before payment. The price of a fixed-design catalog cap should not be treated as a customization quote."
       }
     ],
     "table": {
@@ -299,17 +302,17 @@ export const journalGuides:JournalPost[] = [
     "faq": [
       {
         "question": "Is digitization charged on every reorder?",
-        "answer": "It depends on whether the provider can reuse the applicable existing design. Ask before recreating or re-uploading artwork."
+        "answer": "Printify includes digitization in the embroidery product price. New artwork or changes may still need preparation and review."
       },
       {
         "question": "What is Bogey Baby’s personalized rope-hat price?",
-        "answer": "It is not finalized. The provider configuration, preparation process and fulfillment costs are still being verified."
+        "answer": "Quotes start at $49 per hat for one front name or logo. Setup is included. US shipping is $7 below $120, free from $120, and taxes are calculated at checkout. Your final quote is shown before payment."
       }
     ],
     "sources": [
       {
-        "title": "Printful digitization fees",
-        "url": "https://help.printful.com/hc/en-us/articles/50263327450257-What-are-digitization-and-adjustment-fees-for-embroidery"
+        "title": "Printify digitization fees",
+        "url": "https://help.printify.com/hc/en-us/articles/4483629986321-How-does-embroidery-digitization-work"
       }
     ],
     "related": [
@@ -317,8 +320,9 @@ export const journalGuides:JournalPost[] = [
       "prepare-logo-for-hat-embroidery",
       "custom-golf-hats-for-groups"
     ],
-    "collection": "/pages/contact",
-    "cta": "Ask us about a custom hat"
+    "collection": "/custom-rope-hats",
+    "cta": "Personalize your rope hat",
+    "modified": "2026-11-19"
   },
   {
     "slug": "rope-hat-vs-trucker-hat",
@@ -388,7 +392,7 @@ export const journalGuides:JournalPost[] = [
     "sources": [
       {
         "title": "Example rope-cap specifications",
-        "url": "https://www.printful.com/custom/hats/snapbacks/classic-rope-cap-richardson-258"
+        "url": "https://printify.com/guide/embroidery-guide/"
       }
     ],
     "related": [
@@ -396,8 +400,9 @@ export const journalGuides:JournalPost[] = [
       "ponytail-caps-for-your-round",
       "custom-rope-hats-guide"
     ],
-    "collection": "/pages/contact",
-    "cta": "Ask us about a custom hat"
+    "collection": "/custom-rope-hats",
+    "cta": "Personalize your rope hat",
+    "modified": "2026-11-19"
   },
   {
     "slug": "custom-golf-hats-for-groups",
@@ -427,7 +432,7 @@ export const journalGuides:JournalPost[] = [
       },
       {
         "title": "Approve a record you can reuse",
-        "text": "Keep the final artwork, model details, quantities and written approval together. For a repeat event, those details are more useful than a screenshot of the original promotional image. Bogey Baby is developing customer-added names and logos with Printful, but a live group-customization checkout is not available yet. Contact us for a feasibility discussion; the existing catalog’s fixed-design options remain separate from a custom order."
+        "text": "Keep the final artwork, model details, quantities and written approval together. For a repeat event, those details are more useful than a screenshot of the original promotional image. Our custom builder supports one to six hats with the same name or logo. Contact us before ordering larger groups or when you need different names, multiple designs or a fixed delivery date."
       }
     ],
     "table": {
@@ -466,8 +471,8 @@ export const journalGuides:JournalPost[] = [
     ],
     "sources": [
       {
-        "title": "Printful guidance on previews and samples",
-        "url": "https://help.printful.com/hc/en-us/articles/50264003645073-What-is-embroidery-digitization"
+        "title": "Printify guidance on previews and samples",
+        "url": "https://help.printify.com/hc/en-us/articles/4483629986321-How-does-embroidery-digitization-work"
       }
     ],
     "related": [
@@ -475,8 +480,9 @@ export const journalGuides:JournalPost[] = [
       "name-or-logo-on-a-golf-hat",
       "hat-embroidery-costs"
     ],
-    "collection": "/pages/contact",
-    "cta": "Ask us about a custom hat"
+    "collection": "/custom-rope-hats",
+    "cta": "Personalize your rope hat",
+    "modified": "2026-11-19"
   },
   {
     "slug": "how-to-clean-an-embroidered-golf-hat",
@@ -545,7 +551,7 @@ export const journalGuides:JournalPost[] = [
     ],
     "sources": [
       {
-        "title": "Printful cap care instructions",
+        "title": "Printful general cap-care reference",
         "url": "https://help.printful.com/hc/en-us/articles/50263252811537-How-do-I-take-care-of-my-products"
       }
     ],
@@ -553,7 +559,8 @@ export const journalGuides:JournalPost[] = [
       "custom-rope-hats-guide",
       "prepare-logo-for-hat-embroidery"
     ],
-    "collection": "/pages/contact",
-    "cta": "Ask us about a custom hat"
+    "collection": "/custom-rope-hats",
+    "cta": "Personalize your rope hat",
+    "modified": "2026-11-19"
   }
 ];

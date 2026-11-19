@@ -1,9 +1,10 @@
+import {validateCustomBasket,guardCustomProduction,completeCustomOrder,expireCustomCheckouts} from './custom-fulfillment';
 import { paymentDatabase, stripeClient } from '@/lib/payments';
 import { FulfillmentError, printifyOrderPayload, submitPrintifyOrder } from '@/lib/printify';
 
 export async function fulfillPaidOrder(sessionId: string) {
-  if (process.env.PRINTIFY_AUTO_FULFILLMENT !== 'true') return 'disabled';
   const db = await paymentDatabase();
+  if (process.env.PRINTIFY_AUTO_FULFILLMENT !== 'true') return 'disabled';
   const client = await db.connect();
   let locked = false;
   let destroyConnection = false;
@@ -28,10 +29,12 @@ export async function fulfillPaidOrder(sessionId: string) {
         await client.query("UPDATE bogey_checkout.orders SET fulfillment_status='blocked_refund', fulfillment_last_error='refunded_or_disputed', fulfillment_updated_at=now() WHERE session_id=$1", [sessionId]);
         return 'blocked_refund';
       }
+      if(row.basket.customDesignId)await validateCustomBasket(sessionId,row.basket,client);
       const payload = printifyOrderPayload(session, row.basket);
       const orderId = await submitPrintifyOrder(payload, row.printify_order_id, async id => {
         await client.query('UPDATE bogey_checkout.orders SET printify_order_id=$2, printify_shop_id=$3 WHERE session_id=$1', [sessionId, id, process.env.PRINTIFY_SHOP_ID]);
-      });
+      }, row.basket.customDesignId?order=>guardCustomProduction(sessionId,order,client):undefined);
+      if(row.basket.customDesignId)await completeCustomOrder(sessionId,orderId,client);
       await client.query("UPDATE bogey_checkout.orders SET fulfillment_status='submitted_to_printify', printify_order_id=$2, fulfillment_last_error=NULL, fulfillment_updated_at=now() WHERE session_id=$1", [sessionId, orderId]);
       return 'submitted_to_printify';
     } catch (error) {
@@ -52,6 +55,7 @@ export async function fulfillPaidOrder(sessionId: string) {
 
 export async function processFulfillmentQueue() {
   if (process.env.PRINTIFY_AUTO_FULFILLMENT !== 'true') return { disabled: true };
+  await expireCustomCheckouts();
   const db = await paymentDatabase();
   const pending = await db.query(`
     SELECT session_id FROM bogey_checkout.orders

@@ -1,0 +1,3 @@
+import {designAccess} from '@/lib/custom-hats';
+export const runtime='nodejs';
+export async function GET(request:Request,{params}:{params:Promise<{id:string}>}){try{const {id}=await params;const row=await designAccess(id,new URL(request.url).searchParams.get('token'));if(new Date(row.created_at).getTime()<Date.now()-90*86400000)return new Response(null,{status:404});return new Response(new Uint8Array(new URL(request.url).searchParams.get('view')==='mockup'&&row.mockup?row.mockup:row.artwork),{headers:{'Content-Type':'image/png','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'none'; sandbox"}});}catch{return new Response(null,{status:404});}}

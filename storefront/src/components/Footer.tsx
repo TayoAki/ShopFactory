@@ -21,6 +21,7 @@ export function Footer() {
             <h2>Shop</h2>
             <ul>
               <li><Link href="/collections/all">All hats</Link></li>
+              <li><Link href="/custom-rope-hats">Personalized rope hats</Link></li>
               <li><Link href="/collections/embroidered">Embroidered classics</Link></li>
               <li><Link href="/collections/performance">Performance</Link></li>
               <li><Link href="/collections/ponytail-caps">Ponytail caps</Link></li>
