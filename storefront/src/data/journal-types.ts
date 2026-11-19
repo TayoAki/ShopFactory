@@ -1,0 +1,1 @@
+export type JournalPost={slug:string;title:string;category:string;date:string;image:string;alt:string;excerpt:string;sections:{title:string;text:string}[];collection:string;cta:string;answer?:string;table?:{headers:string[];rows:string[][]};faq?:{question:string;answer:string}[];sources?:{title:string;url:string}[];related?:string[]};

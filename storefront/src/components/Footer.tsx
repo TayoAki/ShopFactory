@@ -1,3 +1,4 @@
+import {CookieSettingsButton} from './CookieBanner';
 import Image from 'next/image';
 import Link from 'next/link';
 import { EmailCapture } from './EmailCapture';
@@ -49,6 +50,7 @@ export function Footer() {
           <span>© {new Date().getFullYear()} Bogey Baby</span>
           <ul>
             <li><Link href="/pages/privacy">Privacy</Link></li>
+            <li><CookieSettingsButton /></li>
             <li><Link href="/pages/terms">Terms</Link></li>
             <li><Link href="/pages/accessibility">Accessibility</Link></li>
             <li><Link href="/pages/privacy-choices">Your Privacy Choices</Link></li>

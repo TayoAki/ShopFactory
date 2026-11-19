@@ -1,3 +1,4 @@
+import {analyticsAllowed} from './consent';
 type EventValue = string | number | boolean | string[] | undefined;
 type EventData = Record<string, EventValue>;
 
@@ -19,13 +20,14 @@ declare global {
 const pending: [AnalyticsEvent, EventData][] = [];
 
 export function flushAnalytics() {
+  if (!analyticsAllowed()) { pending.splice(0); return; }
   if (!window.umami) return;
   for (const [event, data] of pending.splice(0)) window.umami.track(event, data);
 }
 
 export function track(event: AnalyticsEvent, data: EventData = {}) {
   if (typeof window === 'undefined' || !process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID) return;
-  if (window.navigator.globalPrivacyControl || window.navigator.doNotTrack === '1') return;
+  if (!analyticsAllowed()) { pending.splice(0); return; }
   if (window.umami) window.umami.track(event, data);
   else if (pending.length < 50) pending.push([event, data]);
 }

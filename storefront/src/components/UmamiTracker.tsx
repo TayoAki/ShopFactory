@@ -1,6 +1,7 @@
 'use client';
 
 import Script from 'next/script';
+import {analyticsAllowed,consentEvent} from '@/lib/consent';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { flushAnalytics } from '@/lib/analytics';
@@ -25,10 +26,12 @@ export function UmamiTracker() {
   const [enabled, setEnabled] = useState(false);
   const pathname = usePathname();
   useEffect(() => {
-    captureCampaign();
-    if (!websiteId || !host || navigator.globalPrivacyControl || navigator.doNotTrack === '1') return;
+    const refresh=()=>{captureCampaign();setEnabled(!!websiteId&&!!host&&analyticsAllowed());if(!analyticsAllowed())flushAnalytics();};
+    refresh();
+    window.addEventListener(consentEvent,refresh);
+    window.addEventListener('storage',refresh);
     window.umamiConfig = {
-      beforeSend: (_, payload) => window.location.pathname.startsWith('/growth') ? false : ({
+      beforeSend: (_, payload) => !analyticsAllowed() || window.location.pathname.startsWith('/growth') ? false : ({
         ...payload,
         url: cleanUrl(payload.url),
         referrer: typeof payload.referrer === 'string' && /^https?:\/\//.test(payload.referrer)
@@ -36,7 +39,8 @@ export function UmamiTracker() {
           : cleanUrl(payload.referrer).split('?')[0],
       }),
     };
-    setEnabled(true);
+    (window as Window & {bbBeforeSend?:typeof window.umamiConfig.beforeSend}).bbBeforeSend=window.umamiConfig.beforeSend;
+    return ()=>{window.removeEventListener(consentEvent,refresh);window.removeEventListener('storage',refresh);};
   }, [pathname]);
 
   if (!enabled || pathname.startsWith('/growth')) return null;
@@ -44,6 +48,7 @@ export function UmamiTracker() {
     <Script
       src={host + '/script.js'}
       data-website-id={websiteId}
+      data-before-send="bbBeforeSend"
       data-domains="www.bogeybaby.com,bogeybaby.com"
       data-do-not-track="true"
       data-exclude-hash="true"

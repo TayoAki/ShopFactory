@@ -1,3 +1,4 @@
+import {analyticsAllowed} from './consent';
 /** Campaign tags only: no customer identifiers, click IDs, cookies or cross-site tracking. */
 export const campaignKeys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'] as const;
 type CampaignKey=typeof campaignKeys[number];
@@ -21,7 +22,7 @@ export function validateAttribution(value:unknown,optOut=false,now=Date.now()):C
 export function captureCampaign():CampaignAttribution|null{
  if(typeof window==='undefined')return null;
  try{
-  if(navigator.doNotTrack==='1'||navigator.globalPrivacyControl){sessionStorage.removeItem(storageKey);return null;}
+  if(!analyticsAllowed()){sessionStorage.removeItem(storageKey);return null;}
   const now=Date.now();const old=validateAttribution(JSON.parse(sessionStorage.getItem(storageKey)||'null'),false,now);
   const query=new URLSearchParams(window.location.search);const incoming:Record<string,string>={at:new Date(now).toISOString()};
   for(const key of campaignKeys){const value=query.get(key);if(value)incoming[key]=value;}

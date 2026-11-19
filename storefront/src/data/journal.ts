@@ -1,7 +1,10 @@
-export const journal = [
+import {journalGuides} from './journal-guides';
+import type {JournalPost} from './journal-types';
+export const journal:JournalPost[] = [
+  ...journalGuides,
   {
     slug: 'find-your-golf-hat-fit',
-    title: 'A better fit starts above your ears.',
+    title: 'How Should a Golf Hat Fit? A Practical Measuring Guide',
     category: 'Fit notes',
     date: '2026-11-18',
     image: '/images/editorial/find-your-fit.webp',
@@ -18,7 +21,7 @@ export const journal = [
   },
   {
     slug: 'ponytail-caps-for-your-round',
-    title: 'Your ponytail deserves a place in the lineup.',
+    title: 'Ponytail Golf Hats: Concealed Openings vs Open Backs',
     category: 'On the course',
     date: '2026-11-18',
     image: '/images/editorial/ponytail-round.webp',

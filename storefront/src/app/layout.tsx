@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { CartProvider } from '@/lib/cart';
 import { site } from '@/lib/site';
+import { CookieBanner } from '@/components/CookieBanner';
 import { UmamiTracker } from '@/components/UmamiTracker';
 import { JsonLd } from '@/components/JsonLd';
 import './globals.css';
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CartProvider>
           <UmamiTracker />
           {children}
+          <CookieBanner />
         </CartProvider>
         <JsonLd
           data={{
