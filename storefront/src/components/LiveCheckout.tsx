@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { CartLines, CartSummary } from '@/components/CartDrawer';
 import { useCart } from '@/lib/cart';
+import {captureCampaign} from '@/lib/campaign-attribution';
 
 export function LiveCheckout() {
   const cart = useCart();
@@ -16,7 +17,7 @@ export function LiveCheckout() {
     try {
       const response = await fetch('/api/checkout', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lines: cart.lines, attemptId: attempt.current }),
+        body: JSON.stringify({ lines: cart.lines, attemptId: attempt.current, attribution:captureCampaign(), attributionOptOut:navigator.doNotTrack==='1'||navigator.globalPrivacyControl===true }),
       });
       const result = await response.json();
       if (!response.ok || !result.url) throw new Error(result.error || 'Please try checkout again.');

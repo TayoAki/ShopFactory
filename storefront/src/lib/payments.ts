@@ -64,6 +64,7 @@ export async function paymentDatabase() {
       session_id text UNIQUE,
       created_at timestamptz NOT NULL DEFAULT now()
     );
+    ALTER TABLE bogey_checkout.attempts ADD COLUMN IF NOT EXISTS campaign_attribution jsonb;
     CREATE TABLE IF NOT EXISTS bogey_checkout.orders (
       session_id text PRIMARY KEY,
       attempt_id uuid NOT NULL REFERENCES bogey_checkout.attempts(id),

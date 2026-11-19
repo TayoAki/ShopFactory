@@ -1,6 +1,8 @@
 import { getProduct } from '@/lib/catalog';
 import { basketHash, CheckoutError, checkoutMode, paymentDatabase, stripeClient, validateBasket } from '@/lib/payments';
 
+import {validateAttribution,campaignMetadata} from '@/lib/campaign-attribution';
+
 export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
@@ -25,8 +27,11 @@ export async function POST(request: Request) {
     }
     const db = await paymentDatabase();
     const hash = basketHash(basket);
-    await db.query('INSERT INTO bogey_checkout.attempts(id,basket_hash,basket) VALUES($1,$2,$3) ON CONFLICT DO NOTHING', [id, hash, JSON.stringify(basket)]);
-    const stored = (await db.query('SELECT basket_hash, session_id FROM bogey_checkout.attempts WHERE id=$1', [id])).rows[0];
+    const optedOut=input.attributionOptOut===true||request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1';
+    const attribution=validateAttribution(input.attribution,optedOut);
+    await db.query('INSERT INTO bogey_checkout.attempts(id,basket_hash,basket,campaign_attribution) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING', [id, hash, JSON.stringify(basket),attribution?JSON.stringify(attribution):null]);
+    if(optedOut)await db.query('UPDATE bogey_checkout.attempts SET campaign_attribution=NULL WHERE id=$1',[id]);
+    const stored = (await db.query('SELECT basket_hash, session_id, campaign_attribution FROM bogey_checkout.attempts WHERE id=$1', [id])).rows[0];
     if (stored.basket_hash !== hash) throw new CheckoutError('Your bag has changed. Please refresh checkout.');
     if (stored.session_id) {
       const existing = await stripe.checkout.sessions.retrieve(stored.session_id);
@@ -58,7 +63,7 @@ export async function POST(request: Request) {
       automatic_tax: { enabled: true },
       shipping_address_collection: { allowed_countries: ['US'] },
       shipping_options: [{ shipping_rate_data: { display_name: basket.shipping === 0 ? 'Free standard US shipping' : 'Standard US shipping', type: 'fixed_amount', fixed_amount: { amount: basket.shipping, currency: 'usd' }, tax_behavior: 'exclusive' } }],
-      metadata: { bogey_attempt: id, basket_hash: hash },
+      metadata: { bogey_attempt: id, basket_hash: hash, ...campaignMetadata(stored.campaign_attribution) },
       success_url: origin + '/order/confirmed?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: origin + '/checkout',
     }, { idempotencyKey: id });

@@ -86,6 +86,6 @@ export async function growthSnapshot(days:number){
  const stripeSource=sources.find(s=>s.source==='stripe');
  const financeFresh=!!stripeSource&&stripeSource.status==='connected'&&Date.now()-new Date(stripeSource.checked_at).getTime()<900000;
  const contribution=financeFresh&&finance.incomplete===0?finance.provisional_contribution:null;
- const tasks=growthSeed.map(t=>({...t,...taskRows.rows.find(r=>r.id===t.id)}));const xp=tasks.reduce((sum,t)=>sum+(t.status==='verified'?t.xp:0),0);
+ const tasks=growthSeed.map(t=>({...t,...taskRows.rows.find(r=>r.id===t.id)})).sort((a,b)=>a.priority.localeCompare(b.priority));const xp=tasks.reduce((sum,t)=>sum+(t.status==='verified'?t.xp:0),0);
  return {analytics,finance:{...finance,fresh:financeFresh,contribution,recorded_growth_cost:expenseTotal,after_growth:contribution===null?null:contribution-expenseTotal},sources,costTotals:costTotals.rows[0],consistency:consistency.rows[0].days,days,month:localMonth,refreshed:new Date().toISOString(),tasks,xp,level:levelFor(xp),activity:activity.rows,budget:budgets.rows[0]?.cap_cents??null,expenses:expenses.rows,experiments:experiments.rows,subscribers:subscribers.rows[0].total,support:support.rows[0].total,orders};
 }

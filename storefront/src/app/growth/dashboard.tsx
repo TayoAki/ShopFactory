@@ -4,7 +4,7 @@ import type {growthSnapshot} from '@/lib/growth';
 type Snapshot=Awaited<ReturnType<typeof growthSnapshot>>;
 const dollars=(cents:number)=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(cents/100);
 const localTime=(iso:string)=>new Date(iso).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
-const phases=[{name:'Lay the foundation',range:'Days 1–7',ids:['BB-001','BB-002','BB-003','BB-004','BB-005','BB-006','BB-007','BB-014']},{name:'Prove the product',range:'Days 8–30',ids:['BB-008','BB-009','BB-010','BB-011','BB-012','BB-013']},{name:'Find our people',range:'Days 31–60',ids:['BB-015','BB-016','BB-017','BB-018','BB-020']},{name:'Build a lasting habit',range:'Days 61–90',ids:['BB-019','BB-021','BB-022','BB-023']}];
+const phases=[{name:'Lay the foundation',range:'Days 1–7',ids:['BB-001','BB-002','BB-003','BB-004','BB-005','BB-006','BB-007','BB-014','BB-024']},{name:'Prove the product',range:'Days 8–30',ids:['BB-008','BB-009','BB-010','BB-011','BB-012','BB-013']},{name:'Find our people',range:'Days 31–60',ids:['BB-015','BB-016','BB-017','BB-018','BB-020']},{name:'Build a lasting habit',range:'Days 61–90',ids:['BB-019','BB-021','BB-022','BB-023']}];
 export default function GrowthDashboard(){
  const [data,setData]=useState<Snapshot|null>(null),[days,setDays]=useState(0),[error,setError]=useState(''),[notice,setNotice]=useState(''),[busy,setBusy]=useState(false),[filter,setFilter]=useState('active'),[refreshing,setRefreshing]=useState(false);
  const [missionTarget,setMissionTarget]=useState<string|null>(null);

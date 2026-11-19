@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { flushAnalytics } from '@/lib/analytics';
+import {captureCampaign} from '@/lib/campaign-attribution';
 
 const websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
 const host = process.env.NEXT_PUBLIC_UMAMI_URL;
@@ -24,6 +25,7 @@ export function UmamiTracker() {
   const [enabled, setEnabled] = useState(false);
   const pathname = usePathname();
   useEffect(() => {
+    captureCampaign();
     if (!websiteId || !host || navigator.globalPrivacyControl || navigator.doNotTrack === '1') return;
     window.umamiConfig = {
       beforeSend: (_, payload) => window.location.pathname.startsWith('/growth') ? false : ({
@@ -35,7 +37,7 @@ export function UmamiTracker() {
       }),
     };
     setEnabled(true);
-  }, []);
+  }, [pathname]);
 
   if (!enabled || pathname.startsWith('/growth')) return null;
   return (

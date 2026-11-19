@@ -228,5 +228,15 @@ export const growthSeed = [
     "owner": "Operator + founder",
     "criteria": "Incremental contribution and service outcomes remain acceptable",
     "xp": 25
+  },
+  {
+    "id":"BB-024",
+    "title":"Resolve discount losses on high-cost hats",
+    "priority":"P0",
+    "timing":"Before paid acquisition",
+    "area":"Finance",
+    "owner":"Founder + operator",
+    "criteria":"Approve a price or discount remedy; validate 1–4-hat contribution and update checkout messaging consistently",
+    "xp":25
   }
 ] as const;
