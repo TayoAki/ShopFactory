@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { shippingFor, bundleDiscount } from './pricing';
+import {getProduct} from './catalog';
 import type Stripe from 'stripe';
 import { assertPaymentTotals, validateBasket } from './payments';
 
@@ -27,4 +28,18 @@ test('paid shipping and tax reconcile with the checkout snapshot; tampered total
  assert.throws(()=>assertPaymentTotals({...session,amount_total:4115},basket));
  assert.throws(()=>assertPaymentTotals({...session,shipping_cost:{...session.shipping_cost!,amount_subtotal:0}},basket));
  assert.doesNotThrow(()=>assertPaymentTotals({...session,amount_total:4115,shipping_cost:{...session.shipping_cost!,amount_subtotal:0}}, {subtotal:3800,discount:0}));
+});
+
+test('approved performance-hat prices reach server checkout and retain modeled bundle contribution',()=>{
+ const costs:Record<string,number>={'back-nine-ponytail-cap':3254,'small-fit-performance-cap':2893,'19th-hole-bucket':3525};
+ const approved:Record<string,number>={'back-nine-ponytail-cap':5400,'small-fit-performance-cap':4900,'19th-hole-bucket':5800};
+ for(const [handle,price]of Object.entries(approved)){
+  const product=getProduct(handle)!;assert.equal(product.price,price);
+  for(let qty=1;qty<=4;qty++){
+   const basket=validateBasket([{handle,color:product.colors[0].slug,qty}]);assert.equal(basket.subtotal,price*qty);assert.equal(basket.lines[0].unitAmount,price);
+   const merchandise=basket.subtotal-basket.discount;const supplier=costs[handle]*qty;const shipping=499+219*(qty-1);const collected=merchandise+basket.shipping;
+   const fees=Math.ceil(collected*.034)+30;const reserve=Math.ceil(merchandise*.05);const supplierTax=Math.ceil((supplier+shipping)*.1);
+   assert.ok(collected-supplier-shipping-fees-reserve-supplierTax>=800,`${handle}, qty ${qty}: below modeled $8 floor`);
+  }
+ }
 });

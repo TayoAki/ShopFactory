@@ -265,7 +265,7 @@ export const products: Product[] = [
     subtitle: 'UPF 50+ performance ponytail cap',
     line: 'performance',
     style: 'cap',
-    price: 3800,
+    price: 5400,
     decoration: 'print',
     description:
       'Built for hot rounds: UPF 50+ fabric, moisture-wicking performance and an open back with elastic cross bands for your ponytail or bun. Our golfer is printed on the front-left panel.',
@@ -297,7 +297,7 @@ export const products: Product[] = [
     subtitle: 'UPF 50+ small-fit cap',
     line: 'performance',
     style: 'cap',
-    price: 3600,
+    price: 4900,
     decoration: 'print',
     description:
       'Made in a small fit for smaller heads, so the brim sits where it should. UPF 50+ fabric and moisture-wicking performance for long, sunny rounds. Our golfer is printed on the front-left panel.',
@@ -357,7 +357,7 @@ export const products: Product[] = [
     subtitle: 'UPF 50+ performance bucket hat',
     line: 'performance',
     style: 'bucket',
-    price: 4000,
+    price: 5800,
     decoration: 'print',
     description:
       'All-around shade for the sunniest rounds. UPF 50+ performance fabric, a cooling sweatband and sewn eyelets, with a green-striped band and our golfer printed on the front.',
