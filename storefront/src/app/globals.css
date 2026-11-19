@@ -604,3 +604,10 @@ input,textarea { caret-color:var(--pine-900); }
  .collection-hat__subtitle { line-height:1.45; }
 }
 @media (max-width:380px) { .collection-hat__heading a { min-height:4.2em; } }
+
+.customer-account { max-width:960px; }
+.customer-order,.customer-care__request { margin-bottom:20px; }
+.customer-order__reference { overflow-wrap:anywhere; }
+.customer-care__message { white-space:pre-wrap; overflow-wrap:anywhere; }
+.newsletter-consent { display:flex; align-items:flex-start; gap:9px; margin-top:12px; font-size:.8125rem; line-height:1.5; }
+.newsletter-consent input { width:18px; height:18px; flex-shrink:0; accent-color:var(--pine-900); margin:2px 0 0; }

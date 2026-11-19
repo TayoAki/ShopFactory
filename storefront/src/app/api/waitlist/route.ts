@@ -1,51 +1,15 @@
-import { NextResponse } from 'next/server';
-
-/**
- * Waitlist and newsletter signups. With KLAVIYO_PRIVATE_KEY and KLAVIYO_LIST_ID set, subscribes the
- * profile to the list; otherwise logs the signup so nothing is lost in development.
- */
-export async function POST(req: Request) {
-  let body: { email?: string; phone?: string; source?: string; productHandle?: string };
+import { body, requireOrigin, emailAddress, CustomerError, customerFailure, limitForm } from '@/lib/customer-security';
+import { requestEmailLink } from '@/lib/customer-service';
+import { mailReady, processCustomerMail } from '@/lib/customer-mail';
+import { after } from 'next/server';
+export const runtime='nodejs';
+export async function POST(request:Request) {
   try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ ok: false }, { status: 400 });
-  }
-  const email = String(body.email || '').trim().toLowerCase();
-  if (!/^\S+@\S+\.\S+$/.test(email) || email.length > 254) return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
-  const phone = body.phone ? String(body.phone).replace(/[^\d+]/g, '').slice(0, 16) : undefined;
-
-  const key = process.env.KLAVIYO_PRIVATE_KEY;
-  const list = process.env.KLAVIYO_LIST_ID;
-  if (key && list) {
-    const res = await fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs', {
-      method: 'POST',
-      headers: { Authorization: `Klaviyo-API-Key ${key}`, revision: '2024-10-15', 'Content-Type': 'application/json', accept: 'application/json' },
-      body: JSON.stringify({
-        data: {
-          type: 'profile-subscription-bulk-create-job',
-          attributes: {
-            custom_source: `site:${body.source ?? 'unknown'}`,
-            profiles: {
-              data: [
-                {
-                  type: 'profile',
-                  attributes: {
-                    email,
-                    ...(phone ? { phone_number: phone } : {}),
-                    subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } }, ...(phone ? { sms: { marketing: { consent: 'SUBSCRIBED' } } } : {}) },
-                  },
-                },
-              ],
-            },
-          },
-          relationships: { list: { data: { type: 'list', id: list } } },
-        },
-      }),
-    }).catch(() => null);
-    if (!res || !res.ok) return NextResponse.json({ ok: false, error: 'provider' }, { status: 502 });
-  } else {
-    console.log(JSON.stringify({ type: 'signup', email, phone: phone ? 'provided' : undefined, source: body.source, product: body.productHandle, ts: new Date().toISOString() }));
-  }
-  return NextResponse.json({ ok: true });
+    requireOrigin(request);const data=await body(request);const email=emailAddress(data.email);
+    const source=String(data.source||'site').slice(0,100);const productHandle=String(data.productHandle||'').slice(0,100);
+    if(data.consent!==true)throw new CustomerError('Please agree to receive Bogey Baby emails.');
+    await limitForm(request,'newsletter',email);await requestEmailLink(email,'newsletter',source,productHandle);
+    after(()=>processCustomerMail(2).then(()=>undefined));
+    return Response.json({ok:true,message:mailReady()?'Your signup request is saved. Check your email to confirm before we send you updates.':'Your signup request is saved. You will join the email list after confirming your email address.'},{status:202,headers:{'Cache-Control':'no-store'}});
+  }catch(error){return customerFailure(error);}
 }

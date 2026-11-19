@@ -1,27 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { site } from '@/lib/site';
-
-export const metadata: Metadata = { title: 'Account', robots: { index: false } };
-
-export default function AccountPage() {
-  return (
-    <section className="section">
-      <div className="container split" style={{ alignItems: 'start' }}>
-        <div>
-          <span className="eyebrow">Account</span>
-          <h1>Your orders and exchanges</h1>
-          <p className="lead" style={{ marginTop: 14 }}>Sign in to track an order or request a return.</p>
-          <p className="muted">No account? You don&apos;t need one: reply to your order email, or write to <a className="link" href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> with your order number.</p>
-          <Link href="/pages/shipping-returns" className="link link--cta">Returns & exchanges →</Link>
-        </div>
-        <form className="panel form-grid" action="/api/account/magic-link" method="post">
-          <h2 className="h3">Sign in with a link</h2>
-          <label className="field"><span>Email</span><input className="input" type="email" name="email" autoComplete="email" required /></label>
-          <button className="btn" type="submit">Email me a sign-in link</button>
-          <p className="small muted" style={{ margin: 0 }}>Accounts connect to the order system at launch.</p>
-        </form>
-      </div>
-    </section>
-  );
+import { cookies } from 'next/headers';
+import { cookieNames, customerSession } from '@/lib/customer-security';
+import { customerOrders } from '@/lib/customer-service';
+import { mailReady } from '@/lib/customer-mail';
+import { money } from '@/lib/money';
+export const metadata:Metadata={title:'Your orders',robots:{index:false,follow:false}};
+export const dynamic='force-dynamic';
+export default async function AccountPage({searchParams}:{searchParams:Promise<Record<string,string|undefined>>}) {
+ const params=await searchParams;const jar=await cookies();const signedIn=await customerSession(jar.get(cookieNames.customer)?.value);
+ if(signedIn){
+  const orders=await customerOrders(signedIn.email,signedIn.order_scope);
+  return <section className="section"><div className="container customer-account"><div className="releases__head"><div><h1>Your orders</h1><p className="muted">{signedIn.email}</p></div><form method="post" action="/api/account/logout"><button className="btn btn--secondary">Sign out</button></form></div>
+   {orders.length?orders.map(order=><article className="panel customer-order" key={order.session_id}><div className="releases__head"><h2 className="h3">{new Date(order.created_at).toLocaleDateString('en-US',{timeZone:'America/New_York',month:'long',day:'numeric',year:'numeric'})}</h2><strong>{money(order.amount_total)}</strong></div><p>{order.fulfillment_status==='submitted_to_printify'?'Sent to production':order.fulfillment_status==='fulfilled'?'Fulfilled':order.fulfillment_status==='blocked_refund'?'Production is on hold':'Order received'}</p><ul>{order.basket.lines.map((line:{handle:string;color:string;title:string;colorName:string;qty:number},i:number)=><li key={i}>{line.qty} × {line.title} · {line.colorName}</li>)}</ul><p className="small muted customer-order__reference">Reference: {order.session_id}</p><Link className="link" href={`/pages/contact?kind=return&order=${encodeURIComponent(order.session_id)}`}>Ask about this order or request a return →</Link></article>):<div className="panel"><h2 className="h3">No paid orders for this email yet.</h2><p>Use the billing email entered at checkout. Demo and test checkouts do not appear here.</p><Link className="btn" href="/collections/all">Shop hats</Link></div>}
+   <p style={{marginTop:24}}><Link className="link" href="/pages/shipping-returns">Shipping &amp; Returns</Link></p></div></section>;
+ }
+ return <section className="section"><div className="container"><div className="section-head"><h1>Your orders</h1><p className="lead">Find a paid order with the billing email and checkout reference shown on your confirmation page.</p></div>{params.link_error&&<p role="alert" className="notice">That sign-in link has expired or was already used. Request a new one below.</p>}<div className="split" style={{alignItems:'start'}}>
+  <form className="panel form-grid" method="post" action="/api/account/lookup"><h2 className="h3">Find an order</h2><label className="field"><span>Billing email</span><input className="input" name="email" type="email" autoComplete="email" required maxLength={254}/></label><label className="field"><span>Checkout reference</span><input className="input" name="reference" placeholder="cs_live_…" required maxLength={255} autoComplete="off"/></label><button className="btn">View order</button>{params.lookup_error&&<p role="alert" className="form-msg form-msg--error">We could not match that reference and email. Check both details or contact us.</p>}<Link href="/pages/contact" className="link">Need help finding your reference?</Link></form>
+  <div className="panel"><h2 className="h3">Sign in by email</h2><p>Get a single-use link to see paid orders associated with your billing email.</p>{mailReady()?<form className="form-grid" action="/api/account/magic-link" method="post"><label className="field"><span>Email</span><input className="input" type="email" name="email" autoComplete="email" maxLength={254} required/></label><button className="btn">Email me a sign-in link</button></form>:<p className="muted">Email sign-in is temporarily unavailable. You can use your checkout reference to view an order.</p>}{params.sent&&<p role="status" className="form-msg">A sign-in email has been sent. The link expires in 20 minutes.</p>}{params.error&&<p role="alert" className="form-msg form-msg--error">We could not send a sign-in email yet. Please try again later or use order lookup.</p>}</div>
+ </div></div></section>;
 }

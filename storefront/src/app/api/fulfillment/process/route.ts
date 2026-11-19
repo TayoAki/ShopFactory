@@ -1,4 +1,5 @@
 import { timingSafeEqual } from 'node:crypto';
+import { processCustomerMail } from '@/lib/customer-mail';
 import { processFulfillmentQueue } from '@/lib/fulfillment';
 
 export const runtime = 'nodejs';
@@ -12,7 +13,9 @@ export async function POST(request: Request) {
     return new Response(null, { status: 401 });
   }
   try {
-    return Response.json(await processFulfillmentQueue());
+    const [fulfillment,email]=await Promise.allSettled([processFulfillmentQueue(),processCustomerMail(10)]);
+    if(fulfillment.status==='rejected')throw fulfillment.reason;
+    return Response.json({...fulfillment.value,customerMail:email.status==='fulfilled'?email.value:{error:'Email processing unavailable'}});
   } catch {
     console.error('Printify queue processing failed');
     return new Response(null, { status: 503 });

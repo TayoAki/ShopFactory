@@ -1,29 +1,9 @@
 'use client';
-
-import { useState } from 'react';
-import { track } from '@/lib/analytics';
-
-export function ContactForm() {
-  const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-    setState('sending');
-    const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(() => null);
-    if (res?.ok) track('contact_submitted');
-    setState(res?.ok ? 'done' : 'error');
-  }
-  if (state === 'done') return <p className="panel form-msg" role="status">Thanks, we&apos;ve got it. Expect a reply within one business day.</p>;
-  return (
-    <form className="panel form-grid" onSubmit={onSubmit}>
-      <div className="form-grid form-grid--2">
-        <label className="field"><span>Name</span><input className="input" name="name" autoComplete="name" required /></label>
-        <label className="field"><span>Email</span><input className="input" name="email" type="email" autoComplete="email" required /></label>
-      </div>
-      <label className="field"><span>Order number (optional)</span><input className="input" name="order" /></label>
-      <label className="field"><span>Message</span><textarea className="input" name="message" rows={5} required /></label>
-      <button className="btn" type="submit" disabled={state === 'sending'}>{state === 'sending' ? 'Sending…' : 'Send message'}</button>
-      {state === 'error' && <p className="form-msg form-msg--error" role="alert">Something went wrong. Please email us instead.</p>}
-    </form>
-  );
+import {useRef,useState} from 'react';
+import {track} from '@/lib/analytics';
+export function ContactForm({defaultKind='other',defaultOrder=''}:{defaultKind?:string;defaultOrder?:string}) {
+ const [state,setState]=useState<'idle'|'sending'|'done'|'error'>('idle');const [message,setMessage]=useState('');const attempt=useRef<{payload:string;key:string}|null>(null);
+ async function onSubmit(e:React.FormEvent<HTMLFormElement>){e.preventDefault();const data=Object.fromEntries(new FormData(e.currentTarget).entries());const payload=JSON.stringify(data);if(attempt.current?.payload!==payload)attempt.current={payload,key:crypto.randomUUID()};setState('sending');try{const response=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...data,requestKey:attempt.current.key})});const result=await response.json();if(!response.ok)throw new Error(result.error||'Your request could not be saved. Please try again.');setMessage(result.message);setState('done');track('contact_submitted',{kind:String(data.kind)});}catch(error){setMessage(error instanceof Error?error.message:'Your request could not be saved. Please try again.');setState('error');}}
+ if(state==='done')return <div className="panel form-msg" role="status"><h2 className="h3">We have your message.</h2><p>{message}</p></div>;
+ return <form className="panel form-grid" onSubmit={onSubmit}><div className="form-grid form-grid--2"><label className="field"><span>Name</span><input className="input" name="name" autoComplete="name" required maxLength={100}/></label><label className="field"><span>Email</span><input className="input" name="email" type="email" autoComplete="email" required maxLength={254}/></label></div><label className="field"><span>What can we help with?</span><select className="input" name="kind" defaultValue={defaultKind}><option value="other">A question</option><option value="order">My order</option><option value="return">A return or exchange</option><option value="fit">Fit and sizing</option></select></label><label className="field"><span>Order reference (optional)</span><input className="input" name="order" defaultValue={defaultOrder} maxLength={255}/></label><label className="field"><span>Message</span><textarea className="input" name="message" rows={5} required maxLength={5000}/></label><button className="btn" disabled={state==='sending'}>{state==='sending'?'Saving…':'Send message'}</button>{state==='error'&&<p className="form-msg form-msg--error" role="alert">{message}</p>}</form>;
 }

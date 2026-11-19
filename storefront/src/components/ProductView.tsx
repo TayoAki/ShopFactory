@@ -188,7 +188,7 @@ export function ProductView({ product, bullets }: { product: Product; bullets: B
           {site.dropMode ? (
             <div className="panel">
               <p style={{ fontWeight: 700, marginBottom: 8 }}>{site.dropDate ? `Drops ${site.dropDate}.` : 'Dropping soon.'} Get first access.</p>
-              <EmailCapture source="pdp" productHandle={product.handle} cta="Notify me" showPhone successText="You're on the list. We'll email you the moment it drops." />
+              <EmailCapture source="pdp" productHandle={product.handle} cta="Notify me" />
             </div>
           ) : (
             <button type="button" className="btn btn--block" onClick={addToBag}>

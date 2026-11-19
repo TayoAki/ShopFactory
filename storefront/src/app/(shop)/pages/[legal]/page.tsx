@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { site } from '@/lib/site';
+import Link from 'next/link';
 
 /** Legal pages. These are plain-language drafts: have counsel review them before launch. */
 const pages: Record<string, { title: string; summary: string; body: string[] }> = {
@@ -11,7 +11,7 @@ const pages: Record<string, { title: string; summary: string; body: string[] }> 
       'What we collect: your name, email, shipping address and order details; your phone number only if you opt in to texts; and basic site analytics (pages viewed, products added to your bag) measured on our own servers.',
       'How we use it: to make and ship your order through our production partner, to answer your questions, and to send marketing only if you opted in. You can unsubscribe at any time.',
       'Who we share it with: our payment processor, our print-on-demand production and shipping partner, and our email provider, each only for the service they provide.',
-      'Your choices: you can ask to see, correct or delete your information, and opt out of any sale or sharing, from the Your Privacy Choices page or by emailing us.',
+      'Your choices: you can ask to see, correct or delete your information, and opt out of any sale or sharing, from the Your Privacy Choices page or through our contact form.',
     ],
   },
   terms: {
@@ -67,7 +67,7 @@ export default async function LegalPage({ params }: { params: Promise<{ legal: s
         {p.body.map((para) => (
           <p key={para}>{para}</p>
         ))}
-        <p>Questions? Email <a className="link" href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.</p>
+        <p>Questions? <Link className="link" href="/pages/contact">Send us a message</Link>.</p>
       </div>
     </section>
   );

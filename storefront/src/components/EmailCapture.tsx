@@ -3,28 +3,26 @@
 import { useId, useState } from 'react';
 import { track } from '@/lib/analytics';
 
-/** Email + optional SMS signup (plan C-16). Posts to /api/waitlist. */
+/** Explicit email consent; confirmation is required before marketing export. */
 export function EmailCapture({
   source,
   cta = 'Sign up',
   productHandle,
-  showPhone = false,
-  successText = "You're on the list. Check your inbox.",
 }: {
   source: string;
   cta?: string;
   productHandle?: string;
-  showPhone?: boolean;
-  successText?: string;
 }) {
   const id = useId();
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [consent,setConsent]=useState(false);
+  const [feedback,setFeedback]=useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!/^\S+@\S+\.\S+$/.test(email)) {
+    if (!/^\S+@\S+\.\S+$/.test(email) || !consent) {
+      setFeedback('Enter a valid email and agree to receive Bogey Baby emails.');
       setState('error');
       return;
     }
@@ -33,17 +31,20 @@ export function EmailCapture({
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, phone: phone || undefined, source, productHandle }),
+        body: JSON.stringify({ email, consent, source, productHandle }),
       });
-      if (!res.ok) throw new Error('bad status');
+      const result=await res.json();
+      if (!res.ok) throw new Error(result.error||'We could not save your signup. Please try again.');
+      setFeedback(result.message);
       track('generate_lead', { source, product_handle: productHandle });
       setState('done');
-    } catch {
+    } catch(error) {
+      setFeedback(error instanceof Error?error.message:'We could not save your signup. Please try again.');
       setState('error');
     }
   }
 
-  if (state === 'done') return <p className="form-msg" role="status">{successText}</p>;
+  if (state === 'done') return <p className="form-msg" role="status">{feedback}</p>;
 
   return (
     <form onSubmit={onSubmit} noValidate>
@@ -54,16 +55,8 @@ export function EmailCapture({
           {state === 'sending' ? 'Sending…' : cta}
         </button>
       </div>
-      {showPhone && email.length > 3 && (
-        <div style={{ marginTop: 10 }}>
-          <label className="sr-only" htmlFor={`${id}-phone`}>Phone number (optional)</label>
-          <input id={`${id}-phone`} className="input" type="tel" autoComplete="tel" placeholder="Text me instead (optional)" value={phone} onChange={(e) => setPhone(e.target.value)} />
-          <p className="consent">
-            By entering your number you agree to receive recurring marketing texts from Bogey Baby. Consent isn&apos;t a condition of purchase. Msg &amp; data rates may apply. Reply STOP to cancel.
-          </p>
-        </div>
-      )}
-      {state === 'error' && <p className="form-msg form-msg--error" role="alert">Please enter a valid email address.</p>}
+      <label className="newsletter-consent"><input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)} required/><span>Get occasional Bogey Baby emails about new colors and drops. Unsubscribe anytime.</span></label>
+      {state === 'error' && <p className="form-msg form-msg--error" role="alert">{feedback}</p>}
     </form>
   );
 }

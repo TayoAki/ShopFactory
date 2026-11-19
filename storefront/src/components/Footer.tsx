@@ -14,7 +14,7 @@ export function Footer() {
             </div>
             <p>Golf hats for every round, made for women golfers and the friends who play with them.</p>
             <p className="small" style={{ fontWeight: 700, marginBottom: 8 }}>Get new colors before anyone else</p>
-            <EmailCapture source="footer" cta="Join" showPhone successText="You're in. New colors land in your inbox first." />
+            <EmailCapture source="footer" cta="Join" />
           </div>
           <div>
             <h2>Shop</h2>

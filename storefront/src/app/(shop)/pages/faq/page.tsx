@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { JsonLd } from '@/components/JsonLd';
-import { site } from '@/lib/site';
 
 export const metadata: Metadata = { title: 'FAQ', description: 'Answers about fit, ponytails, materials, care, shipping, exchanges and returns for Bogey Baby golf hats.' };
 
@@ -49,7 +48,7 @@ export default function FaqPage() {
             </div>
           </div>
         ))}
-        <p style={{ marginTop: 36 }}>Still stuck? Email <a className="link" href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> and a real person will reply within one business day, or see the <Link className="link" href="/pages/fit-guide">Fit Guide</Link>.</p>
+        <p style={{ marginTop: 36 }}>Still stuck? <Link className="link" href="/pages/contact">Send us a message</Link>, or see the <Link className="link" href="/pages/fit-guide">Fit Guide</Link>.</p>
       </div>
       <JsonLd
         data={{

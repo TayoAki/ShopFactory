@@ -46,7 +46,7 @@ export default function HomePage() {
           <div className="container" style={{ maxWidth: 720, textAlign: 'center' }}>
             <h2>{site.dropDate ? `The first drop lands ${site.dropDate}.` : 'The first drop is almost here.'}</h2>
             <p className="lead">Join the list for 24 hours of early access and first pick of every color.</p>
-            <EmailCapture source="hero" cta="Save my spot" showPhone successText="You're on the list. We'll email you the moment it drops." />
+            <EmailCapture source="hero" cta="Save my spot" />
             <p className="consent">One email when it drops. No spam.</p>
           </div>
         </section>

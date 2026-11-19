@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { track } from '@/lib/analytics';
@@ -38,7 +39,7 @@ export function PaidConfirmation() {
         }
         setMessage('Your payment is still processing. Your bag is saved while we wait for confirmation.');
       } catch {
-        if (!canceled) setMessage('We are checking your payment. Please keep your checkout reference and contact hello@bogeybaby.com if confirmation does not appear.');
+        if (!canceled) setMessage('We are checking your payment. Please keep your checkout reference and use our contact form if confirmation does not appear.');
       }
       attempts += 1;
       if (!canceled && attempts < 10) timer = setTimeout(check, 3000);
@@ -53,6 +54,7 @@ export function PaidConfirmation() {
       <p className="lead" style={{ marginTop: 14 }}>
         {order ? `Payment of ${money(order.amount)} for ${order.count} ${order.count === 1 ? 'hat' : 'hats'} is confirmed.` : message}
       </p>
+      <p><Link className="link" href="/pages/contact">Contact us about your checkout</Link></p>
       {order && <p className="small muted" style={{ marginTop: 16 }}>Checkout reference: {order.id}</p>}
     </>
   );

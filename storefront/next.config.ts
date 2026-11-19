@@ -55,6 +55,7 @@ const nextConfig: NextConfig = {
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=(self "https://js.stripe.com")' },
         ],
       },
+      ...['/account/:path*','/customer-care/:path*','/email-preferences/:path*','/api/customer-care/:path*','/api/account/:path*'].map(source=>({source,headers:[{key:'Cache-Control',value:'private, no-store'},{key:'Referrer-Policy',value:'strict-origin'},{key:'X-Robots-Tag',value:'noindex, nofollow'}]})),
       {
         // Hero video files aren't content-hashed, so cache for a week rather than forever.
         source: '/video/:path*',

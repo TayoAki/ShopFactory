@@ -18,6 +18,7 @@ export default function OrderConfirmedPage() {
           </div>
           <div className="btn-row" style={{ marginTop: 22 }}>
             <Link href="/collections/all" className="btn">Keep shopping</Link>
+            <Link href="/account" className="btn btn--secondary">View your order</Link>
             <Link href="/pages/fit-guide" className="btn btn--secondary">Fit Guide</Link>
           </div>
         </div>
