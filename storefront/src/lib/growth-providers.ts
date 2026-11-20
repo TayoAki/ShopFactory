@@ -72,3 +72,20 @@ export async function syncGrowthSources(){
  const analytics=await Promise.all([0,7,28,90].map(async days=>{const b=(await db.query("SELECT (((now() AT TIME ZONE 'America/New_York')::date-$1::int) AT TIME ZONE 'America/New_York') AS start,CASE WHEN $1::int=0 THEN now() ELSE ((now() AT TIME ZONE 'America/New_York')::date AT TIME ZONE 'America/New_York') END AS finish",[days])).rows[0];const result=await syncAnalytics(days,new Date(b.start).getTime(),new Date(b.finish).getTime());return {days,connected:!('error' in result)};}));
  return {financials,analytics};
 }
+
+/** Read-only aggregate metrics for the private Insights view; never return query strings. */
+export async function insightsTraffic(start:number,end:number){
+ const website=process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;if(!website)return null;
+ const base=`/api/websites/${encodeURIComponent(website)}/metrics`;
+ const results=await Promise.allSettled(['url','device','browser','referrer'].map(async type=>{
+  const q=new URLSearchParams({startAt:String(start),endAt:String(end-1),timezone:'America/New_York',hostname:'www.bogeybaby.com',type,limit:'15'});
+  const data=await umamiGet(base+'?'+q);if(!Array.isArray(data))throw new Error();
+  return {type,rows:data.map((r:{x?:unknown;y?:unknown})=>{
+   let label=typeof r.x==='string'?r.x.slice(0,180):'Unknown';
+   if(type==='url'){try{label=new URL(label,'https://www.bogeybaby.com').pathname;}catch{label='Other page';}if(!/^\/[a-z0-9/-]*$/i.test(label)||label.length>100)label='Other page';}
+   if(type==='referrer'){try{label=new URL(label.includes('://')?label:'https://'+label).hostname;}catch{label='Direct / unknown';}}
+   if(label.includes('@'))label='Other';return {label,count:Number.isSafeInteger(r.y)&&Number(r.y)>=0?Number(r.y):0};
+  })};
+ }));
+ return results.flatMap(r=>r.status==='fulfilled'?[r.value]:[]);
+}

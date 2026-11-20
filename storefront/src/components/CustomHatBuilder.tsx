@@ -54,7 +54,7 @@ export function CustomHatBuilder({variants}:{variants:Variant[]}){
   try{const r=await fetch('/api/custom-hats',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:quote.id,token:quote.token})});if(!r.ok)throw new Error('Your current quote could not be released. Please try again.');setQuote(null);setApproved(false);setStep('design');}
   catch(e){setError(e instanceof Error?e.message:'Please try again.');}finally{setBusy(false);}
  }
- return <div className="custom-builder">
+ return <div className="custom-builder" data-replay-private="true">
   <div className="custom-builder__photo">
    <Image src={variant.image} alt={`Example rope cap in ${variant.color} with Bogey Baby artwork`} width={900} height={900} sizes="(min-width:900px) 45vw, 100vw"/>
    <p className="small muted">Example cap with Bogey Baby artwork. Your design replaces it.</p>

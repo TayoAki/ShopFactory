@@ -13,7 +13,7 @@ const csp = [
   "img-src 'self' data: blob:",
   "font-src 'self'",
   "connect-src 'self' https://api.stripe.com" + umamiOrigin,
-  "frame-src https://js.stripe.com https://hooks.stripe.com",
+  "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
   "media-src 'self'",
   "form-action 'self'",
   "base-uri 'none'",
@@ -55,7 +55,7 @@ const nextConfig: NextConfig = {
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=(self "https://js.stripe.com")' },
         ],
       },
-      ...['/growth/:path*','/api/growth/:path*','/account/:path*','/customer-care/:path*','/email-preferences/:path*','/api/customer-care/:path*','/api/custom-hats/:path*','/api/account/:path*'].map(source=>({source,headers:[{key:'Cache-Control',value:'private, no-store'},{key:'Referrer-Policy',value:'strict-origin'},{key:'X-Robots-Tag',value:'noindex, nofollow'}]})),
+      ...['/insights/:path*','/api/insights/:path*','/custom-rope-hats/:path*','/checkout/:path*','/cart/:path*','/order/:path*','/search/:path*','/pages/contact/:path*','/pages/reviews/:path*','/growth/:path*','/api/growth/:path*','/account/:path*','/customer-care/:path*','/email-preferences/:path*','/api/customer-care/:path*','/api/custom-hats/:path*','/api/account/:path*'].map(source=>({source,headers:[{key:'Cache-Control',value:'private, no-store'},{key:'Referrer-Policy',value:'strict-origin'},{key:'X-Robots-Tag',value:'noindex, nofollow'}]})),
       {
         // Hero video files aren't content-hashed, so cache for a week rather than forever.
         source: '/video/:path*',

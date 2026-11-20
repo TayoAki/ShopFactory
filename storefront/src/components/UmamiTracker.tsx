@@ -26,12 +26,12 @@ export function UmamiTracker() {
   const [enabled, setEnabled] = useState(false);
   const pathname = usePathname();
   useEffect(() => {
-    const refresh=()=>{captureCampaign();setEnabled(!!websiteId&&!!host&&analyticsAllowed());if(!analyticsAllowed())flushAnalytics();};
+    const refresh=()=>{captureCampaign();setEnabled(window.top===window&&!!websiteId&&!!host&&analyticsAllowed()&&!pathname.startsWith('/insights'));if(!analyticsAllowed())flushAnalytics();};
     refresh();
     window.addEventListener(consentEvent,refresh);
     window.addEventListener('storage',refresh);
     window.umamiConfig = {
-      beforeSend: (_, payload) => !analyticsAllowed() || window.location.pathname.startsWith('/growth') ? false : ({
+      beforeSend: (_, payload) => !analyticsAllowed() || (window.location.pathname.startsWith('/growth')||window.location.pathname.startsWith('/insights')) ? false : ({
         ...payload,
         url: cleanUrl(payload.url),
         referrer: typeof payload.referrer === 'string' && /^https?:\/\//.test(payload.referrer)
@@ -43,7 +43,7 @@ export function UmamiTracker() {
     return ()=>{window.removeEventListener(consentEvent,refresh);window.removeEventListener('storage',refresh);};
   }, [pathname]);
 
-  if (!enabled || pathname.startsWith('/growth')) return null;
+  if (!enabled || (pathname.startsWith('/growth')||pathname.startsWith('/insights'))) return null;
   return (
     <Script
       src={host + '/script.js'}

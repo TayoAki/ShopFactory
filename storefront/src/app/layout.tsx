@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import { CartProvider } from '@/lib/cart';
 import { site } from '@/lib/site';
 import { CookieBanner } from '@/components/CookieBanner';
+import { InsightsRecorder } from '@/components/InsightsRecorder';
 import { UmamiTracker } from '@/components/UmamiTracker';
 import { JsonLd } from '@/components/JsonLd';
 import './globals.css';
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="skip-link">Skip to content</a>
         <CartProvider>
           <UmamiTracker />
+          <InsightsRecorder />
           {children}
           <CookieBanner />
         </CartProvider>

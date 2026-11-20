@@ -1,4 +1,4 @@
-export const consentKey='bb_consent_v1';
+export const consentKey='bb_consent_v2';
 export const consentEvent='bb-consent-change';
 const maxAge=180*24*60*60*1000;
 let memory: {analytics:boolean;at:number}|null=null;

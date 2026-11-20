@@ -16,7 +16,7 @@ export function CookieBanner(){
  if(!open)return null;
  return <section className="cookie-banner" role="region" aria-labelledby="cookie-title">
   <div><h2 id="cookie-title" ref={heading} tabIndex={-1}>Your privacy, your choice</h2>
-  <p>We use essential cookies and storage to keep your bag, sign-in and checkout working. With your permission, we also measure visits and shopping activity with Umami. <Link href="/pages/privacy">Privacy policy</Link></p>
+  <p>We use essential cookies and storage to keep your bag, sign-in and checkout working. With your permission, Umami measures shopping activity and Bogey Baby Insights records a limited sample of public-page interactions for click maps and session replay. Text and forms are hidden; custom designs, checkout and account pages are excluded. <Link href="/pages/privacy">Privacy policy</Link></p>
   {privacy&&<p className="cookie-signal">Your browser’s privacy signal keeps optional analytics off.</p>}</div>
   <div className="cookie-actions"><button type="button" onClick={()=>choose(false)}>Reject optional</button><button type="button" onClick={()=>choose(true)} disabled={privacy}>Accept analytics</button>{saved&&<button type="button" onClick={()=>{setOpen(false);previous.current?.focus();}}>Close settings</button>}</div>
  </section>;
