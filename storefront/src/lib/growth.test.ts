@@ -5,7 +5,7 @@ import {growthDatabase,mutateGrowth,growthSnapshot,centsValue,levelFor} from './
 import {paymentDatabase} from './payments';
 import {customerDatabase} from './customer-db';
 import nock from 'nock';
-import {providerDatabase,supplierCosts,refundExTax,syncFinancials,syncAnalytics,financialSummary} from './growth-providers';
+import {providerDatabase,supplierCosts,refundExTax,syncFinancials,syncAnalytics,financialSummary,insightsTraffic} from './growth-providers';
 const url=process.env.GROWTH_TEST_DATABASE_URL;const integration=url?test:test.skip;
 before(async()=>{if(!url)return;const u=new URL(url);assert.equal(u.hostname,'127.0.0.1');assert.equal(u.pathname,'/bogey_growth_test');process.env.CHECKOUT_DATABASE_URL=url;await growthDatabase();await providerDatabase();await paymentDatabase();const db=await customerDatabase();await db.query('TRUNCATE bogey_growth.financial_orders,bogey_growth.provider_state,bogey_growth.provider_cache,bogey_growth.activity,bogey_growth.budgets,bogey_growth.expenses,bogey_growth.experiments,bogey_customer.subscribers,bogey_customer.support_requests,bogey_checkout.orders,bogey_checkout.attempts CASCADE');await db.query("UPDATE bogey_growth.tasks SET status='planned',evidence='',verified_at=NULL");});
 after(async()=>{if(url){await (await customerDatabase()).end();await (await paymentDatabase()).end();}});
@@ -65,4 +65,11 @@ integration('checkout persists permitted campaign attribution and forwards it to
  const privateAttempt=randomUUID();nock('https://api.stripe.com').post('/v1/checkout/sessions',(b:unknown)=>{const value=typeof b==='string'?b:JSON.stringify(b);return value.includes('unknown')&&!value.includes('newsletter');}).reply(200,{id:sessionId+'_private',status:'open',url:'https://checkout.stripe.test/fixture'});
  const privateRequest=new Request('http://localhost:3124/api/checkout',{method:'POST',headers:{origin:'http://localhost:3124','Content-Type':'application/json','sec-gpc':'1'},body:JSON.stringify({...input,attemptId:privateAttempt})});assert.equal((await POST(privateRequest)).status,200);assert.equal((await (await paymentDatabase()).query('SELECT campaign_attribution FROM bogey_checkout.attempts WHERE id=$1',[privateAttempt])).rows[0].campaign_attribution,null);assert.ok(nock.isDone());
  delete process.env.STRIPE_SECRET_KEY;delete process.env.STRIPE_WEBHOOK_SECRET;delete process.env.NEXT_PUBLIC_CHECKOUT_MODE;
+});
+
+
+test('Insights uses Umami path metrics and strips query strings from page breakdowns',async()=>{
+ process.env.NEXT_PUBLIC_UMAMI_URL='https://analytics.example.invalid';process.env.UMAMI_API_KEY='fixture';process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID='website';
+ for(const type of ['path','device','browser','referrer'])nock('https://analytics.example.invalid').get('/api/websites/website/metrics').query((q:Record<string,unknown>)=>q.type===type).reply(200,[{x:type==='path'?'/products/cream-rope-cap?private=redact':type==='referrer'?'https://example.com/path?private=redact':'Desktop',y:3}]);
+ try{const rows=await insightsTraffic(100000,200000);assert.equal(rows?.length,4);assert.equal(rows?.find(r=>r.type==='url')?.rows[0].label,'/products/cream-rope-cap');assert.ok(!JSON.stringify(rows).includes('redact'));assert.equal(rows?.find(r=>r.type==='referrer')?.rows[0].label,'example.com');assert.ok(nock.isDone());}finally{nock.cleanAll();delete process.env.UMAMI_API_KEY;delete process.env.NEXT_PUBLIC_UMAMI_URL;delete process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;}
 });

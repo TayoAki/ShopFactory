@@ -78,7 +78,7 @@ export async function insightsTraffic(start:number,end:number){
  const website=process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;if(!website)return null;
  const base=`/api/websites/${encodeURIComponent(website)}/metrics`;
  const results=await Promise.allSettled(['url','device','browser','referrer'].map(async type=>{
-  const q=new URLSearchParams({startAt:String(start),endAt:String(end-1),timezone:'America/New_York',hostname:'www.bogeybaby.com',type,limit:'15'});
+  const q=new URLSearchParams({startAt:String(start),endAt:String(end-1),timezone:'America/New_York',hostname:'www.bogeybaby.com',type:type==='url'?'path':type,limit:'15'});
   const data=await umamiGet(base+'?'+q);if(!Array.isArray(data))throw new Error();
   return {type,rows:data.map((r:{x?:unknown;y?:unknown})=>{
    let label=typeof r.x==='string'?r.x.slice(0,180):'Unknown';
